@@ -117,6 +117,8 @@ def wrap_words(name, width=15):
 
 def pie(items, w=430, h=270, r=78):
     items = sorted([(k, v) for k, v, *_ in items if v and v > 0], key=lambda t: -t[1])
+    if len(items) > 6:
+        h = 330
     cx, cy = w / 2, h / 2 + 2
     total = sum(v for _, v in items)
     a = -math.pi / 2
@@ -369,7 +371,7 @@ page3 = f"""
 {masthead_pn()}
 <h2 class="noline">Leviathan's Thematic Pillar Spotlight: Defense Supercycle{sup(3)}{sup(10)}</h2>
 <div class="pillar"><b>Defense Supercycle</b> anchors the holdco in the two sleeves that are long the geopolitical cycle: physical-layer effectors and the semiconductor / AI stack beneath them</div>
-<div class="bar"><b>Weapons:</b> cash-generative defense opex — munitions, autonomy, directed energy and counter-drone demand pulled by NATO's 5%-of-GDP pledge and US replenishment budgets</div>
+<div class="bar"><b>Weapons:</b> cash-generative defense opex — munitions, autonomy, directed energy and counter-drone demand pulled by NATO's 5%-of-GDP pledge and US replenishment budgets; each name's CAGR carries a munitions-shortage / FMS-backlog overlay{sup(10)}</div>
 <div class="spot">
   <div><h3>Spotlight: Saronic</h3>
   <div><span class="sq"></span>Investment in a leading autonomous naval-surface-vessel platform scaling under the US Navy's Replicator programme</div></div>
@@ -493,7 +495,7 @@ page6 = f"""
 <p><span class="n">(7)</span>“Regional Breakdown” is by principal place of business. DefendEye (US HQ, Polish manufacturing, EU cap table) is classified North America. Allied-nation names (EdgeCortix, Diraq) are minority-only positions.</p>
 <p><span class="n">(8)</span>“Stage &amp; Liquidity Breakdown” reflects the entry route: listed shares, pre-IPO / IPO-track names, late-stage private rounds, tenders and secondaries, growth-stage primaries, and seed / early rounds.</p>
 <p><span class="n">(9)</span>Represents {short}'s modelled committed capital of {usd_m(holdco_size)}; all breakdowns are percentages of that total and may not sum to 100% due to rounding.</p>
-<p><span class="n">(10)</span>“Thematic Pillar” is selected from the drivers set out on the model's Macro Overlay tab (NATO 5%-of-GDP pledge, US munitions and autonomy budgets, classified / black-budget growth, China decoupling and CHIPS reshoring). Saronic entry mark: Series D, March 2026, $9.25B post-money; 2025 revenue of approximately $200M.</p>
+<p><span class="n">(10)</span>“Thematic Pillar” is selected from the drivers set out on the model's Macro Overlay tab (NATO 5%-of-GDP pledge, US munitions and autonomy budgets, classified / black-budget growth, China decoupling and CHIPS reshoring). Saronic entry mark: Series D, March 2026, $9.25B post-money; 2025 revenue of approximately $200M. Weapons-sleeve CAGRs are the base assumptions plus an exposure-score uplift (average of munitions-shortage and FMS / export-backlog scores, 0–5) at per-point rates set on the Weapons Sleeve tab.</p>
 <p><span class="n">(11)</span>Top 10 positions are the ten largest modelled checks by committed capital and are listed in descending order of check size.</p>
 <p><b>Modelled returns.</b> The model compounds a per-name CAGR over a single terminal exit; it does not model interim cash flows, recycling, credit facilities, FX, taxes or organisational expenses. Six of nine IQT-sleeve entry marks and most Weapons-sleeve marks are estimates pending primary cap-table access; two Consumer-sleeve marks (Made In Cookware, Plunge) have no market reference and Goat Group's last priced round is from June 2021. The TSMC-Shock case is a deliberately low-probability tail whose compounded CAGRs produce very large multiples by design; its weight should be kept honest.</p>
 <p><b>Important disclosure.</b> This material is prepared solely for Leviathan's investment committee and professional advisers and must not be reproduced or distributed to any other person. It is not an offer to sell or a solicitation of an offer to buy any security, and nothing herein is investment, legal or tax advice. Alternative investments are speculative, typically carry higher fees, are illiquid, may employ leverage and involve a high degree of risk, including the possible loss of the entire investment. Opinions expressed are those of Leviathan as of the date hereof and are subject to change without notice. Visual design of this document follows a conventional institutional fact-card layout; it is not affiliated with, endorsed by or derived from any third-party manager's materials.</p>

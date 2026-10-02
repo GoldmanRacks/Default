@@ -183,6 +183,9 @@ SUBS = [
     (r"'Consumer Sleeve'!\$B\$7(?!\d)", "Ret_Con_Mid"),
     (r"'Consumer Sleeve'!\$B\$8(?!\d)", "Ret_Con_Long"),
     (r"'Holdco Summary'!\$B\$9(?!\d)", "Holdco_Size"),
+    (r"'Holdco Summary'!\$B\$6(?!\d)", "IQT_Size"),
+    (r"'Holdco Summary'!\$B\$7(?!\d)", "Wpn_Size"),
+    (r"'Holdco Summary'!\$B\$8(?!\d)", "Con_Size"),
     (r"'Holdco Summary'!\$B\$21(?!\d)", "SPX_CAGR"),
     (r"'Holdco Summary'!\$B\$22(?!\d)", "NDX_CAGR"),
     (r"'Holdco Summary'!\$B\$23(?!\d)", "Basket_CAGR"),
@@ -217,7 +220,7 @@ BLOCKS = {
     "Holdco Summary": [(26, 45, "Short"), (47, 66, "Mid"), (68, 87, "Long")],
     "Portfolio Returns": [(4, 16, "Short"), (18, 30, "Mid"), (32, 44, "Long")],
     "Fund Economics": [(4, 18, "Short"), (20, 34, "Mid"), (36, 50, "Long")],
-    "Weapons Sleeve": [(21, 31, "Short"), (33, 43, "Mid"), (45, 55, "Long")],
+    "Weapons Sleeve": [(23, 35, "Short"), (37, 49, "Mid"), (51, 63, "Long")],
     "Consumer Sleeve": [(23, 35, "Short"), (37, 49, "Mid"), (51, 63, "Long")],
     "PME, DPI & Sensitivity": [(11, 25, "Short"), (27, 41, "Mid"), (43, 57, "Long")],
     "IQT Clusters": [(12, 19, "Short"), (20, 27, "Mid"), (28, 35, "Long")],
@@ -248,6 +251,19 @@ for r in range(62, 70):
                 f"+P_Bear*'Fund Economics'!D{fe_row})/(P_Base+P_Bull+P_Bear)+$A{r}*'Fund Economics'!E{fe_row})/IQT_Committed)")
         P[f"{col}{r}"] = f"={expr}^(1/Hold_{tag})-1"
         n_hold += 1
+for r in [81] + list(range(87, 95)):
+    for col, tag in (("B", "Short"), ("C", "Mid"), ("D", "Long")):
+        c = P[f"{col}{r}"]
+        if isinstance(c.value, str) and c.value.startswith("="):
+            c.value = rewrite_hold(c.value, tag)
+for col, tag in (("B", "Short"), ("C", "Mid"), ("D", "Long")):
+    P[f"{col}100"] = f"=Hold_{tag}"
+    link_cell(P[f"{col}100"], "0")
+    P[f"{col}73"] = f'=Hold_{tag}&"-yr"'
+    P[f"{col}99"] = f'=Hold_{tag}&"-yr"'
+    n_hold += 1
+log("PME, DPI & Sensitivity", "B73:D73, B81:D81, B87:D94, B99:D100", "Holdco PME / sensitivity blocks and the Weapons PME hold-year "
+    "inputs now read the Hold_* levers instead of hard-coded 5 / 7 / 10.")
 log("All model tabs", "hold blocks",
     f"Rewrote {n_hold} hard-coded hold-period literals (^5, *7, (1/10) ...) to the Hold_Short / Hold_Mid / Hold_Long levers. "
     "Change a hold period once on Assumptions and every proceeds, pref, fee, IRR, PME and sensitivity formula follows.")
@@ -259,6 +275,8 @@ LABEL_RULES = [
     (re.compile(r"^(5|7|10)-Year Hold$"), lambda m: '=Hold_{t}&"-Year Hold"'),
     (re.compile(r"^(5|7|10)-yr Net IRR$"), lambda m: '=Hold_{t}&"-yr Net IRR"'),
     (re.compile(r"^Retention @ ?(5|7|10)yr$"), lambda m: '="Retention @ "&Hold_{t}&"yr"'),
+    (re.compile(r"^(5|7|10)-yr$"), lambda m: '=Hold_{t}&"-yr"'),
+    (re.compile(r"^(.{3,60}) (5|7|10)-YEAR (.+)$"), lambda m: f'="{m.group(1)} "&Hold_{{t}}&"-YEAR {m.group(3)}"'),
 ]
 TAG_OF = {"5": "Short", "7": "Mid", "10": "Long"}
 for ws in wb.worksheets:
@@ -267,8 +285,9 @@ for ws in wb.worksheets:
             if isinstance(c.value, str) and not c.value.startswith("="):
                 for pat, build in LABEL_RULES:
                     m = pat.match(c.value)
-                    if m:
-                        c.value = build(m).replace("{t}", TAG_OF[m.group(1)])
+                    if m and '"' not in c.value:
+                        hold = m.group(2) if pat.groups == 3 else m.group(1)
+                        c.value = build(m).replace("{t}", TAG_OF[hold])
                         n_lbl += 1
                         break
 S = wb["Scenario Summary"]
@@ -307,7 +326,7 @@ for rng in ("A18:F18",):
 H.row_dimensions[18].height = 15
 memo = [
     (16, "IQT-mirror (bottom-up, live)", "'Portfolio Returns'", 15),
-    (17, "Weapons (bottom-up, live)", "'Weapons Sleeve'", 30),
+    (17, "Weapons (bottom-up, live)", "'Weapons Sleeve'", 34),
     (18, "Consumer / Value (bottom-up, live)", "'Consumer Sleeve'", 34),
 ]
 for r, lab, sheet, srow in memo:
@@ -328,8 +347,8 @@ for base in (27, 48, 69):           # header rows of the three roll-up blocks
         H[f"F{r}"] = f"=B{r}*P_Base+C{r}*P_Bull+D{r}*P_Bear+E{r}*P_Shock"
 log("Holdco Summary", "F32:F37, F53:F58, F74:F79",
     "Expected column now probability-weights each NET waterfall line (same method as Fund Economics / Scenario Summary). "
-    "Previously the waterfall was run on expected GROSS proceeds, which overstated expected net (carry is convex in gross).",
-    "CHANGED: holdco Expected net proceeds / MOIC / IRR / PME move slightly lower")
+    "Rows F32/F33/F36 are constant across scenarios, F34/F35 were already weighted; the whole block is now written one way.",
+    "None in this version (F34/F35 were already weighted); block is now uniformly weighted")
 
 H["A2"] = ("Three sub-funds rolled up to a blended holdco return. Blue = lever. All three sleeves — IQT-mirror, Weapons, "
            "Consumer/Value — flow in bottom-up. Expected = probability-weighted net (consistent with Fund Economics).")
@@ -347,7 +366,7 @@ subtitle(SE, "A2", "Same European waterfall (return of capital -> pref -> carry,
 SE.column_dimensions["A"].width = 34
 SLEEVES = [
     ("IQT-MIRROR SLEEVE", "B", "IQT_Size", "'Portfolio Returns'", {"Short": 15, "Mid": 29, "Long": 43}, "Ret_IQT"),
-    ("WEAPONS SLEEVE", "H", "Wpn_Size", "'Weapons Sleeve'", {"Short": 30, "Mid": 42, "Long": 54}, "Ret_Wpn"),
+    ("WEAPONS SLEEVE", "H", "Wpn_Size", "'Weapons Sleeve'", {"Short": 34, "Mid": 48, "Long": 62}, "Ret_Wpn"),
     ("CONSUMER / VALUE SLEEVE", "N", "Con_Size", "'Consumer Sleeve'", {"Short": 34, "Mid": 48, "Long": 62}, "Ret_Con"),
 ]
 SCEN_COLS = "CFIL"  # Base/Bull/Bear/Shock gross-proceeds columns on the source tabs
@@ -472,7 +491,7 @@ head = [
     ("Fact sheet edition", "September 2026", None, "input"),
     ("Holdco committed capital ($M)", "=Holdco_Size", FMT_USD0, "link"),
     ("Number of sub-vehicles", "=COUNTA('Holdco Summary'!A6:A8)", "0", "link"),
-    ("Number of holdings", "=COUNTA(Assumptions!A18:A26)+COUNTA('Weapons Sleeve'!A12:A18)+COUNTA('Consumer Sleeve'!A12:A20)", "0", "link"),
+    ("Number of holdings", "=COUNTA(Assumptions!A18:A26)+COUNTA('Weapons Sleeve'!A12:A20)+COUNTA('Consumer Sleeve'!A12:A20)", "0", "link"),
     ("Headline hold (yrs)", "=Hold_Mid", "0", "link"),
     ("Expected net IRR (headline hold)", "='Holdco Summary'!F61", FMT_PCT, "link"),
     ("Expected net MOIC (headline hold)", "='Holdco Summary'!F59", FMT_X, "link"),
@@ -509,7 +528,7 @@ r += 1
 SV_ROW = {}
 mid0 = SE_BLOCK_ROWS["Mid"]
 sv = [
-    ("Defense (Weapons sleeve)", "Wpn_Size", "COUNTA('Weapons Sleeve'!A12:A18)", "H", "'Holdco Summary'!F7"),
+    ("Defense (Weapons sleeve)", "Wpn_Size", "COUNTA('Weapons Sleeve'!A12:A20)", "H", "'Holdco Summary'!F7"),
     ("IQT Semi / AI (IQT-mirror sleeve)", "IQT_Size", "COUNTA(Assumptions!A18:A26)", "B", "'Holdco Summary'!F6"),
     ("Consumer Discretionary (Consumer / Value sleeve)", "Con_Size", "COUNTA('Consumer Sleeve'!A12:A20)", "N", "'Holdco Summary'!F8"),
 ]
@@ -592,9 +611,11 @@ HOLDINGS = [
     ("Weapons Sleeve", 13, "Defense", "Directed Energy, EW & ISR", "North America", "Growth", "High-power microwave directed-energy counter-drone systems"),
     ("Weapons Sleeve", 14, "Defense", "Defense Primes & Services", "Israel", "Pre-IPO", "Israeli aerospace and defense prime; IPO attempt H2-26"),
     ("Weapons Sleeve", 15, "Defense", "Directed Energy, EW & ISR", "Israel", "Pre-IPO", "IAI subsidiary: radar, electronic warfare and ISR systems"),
-    ("Weapons Sleeve", 16, "Defense", "Munitions, Energetics & Small Arms", "Europe", "Public / Listed", "Listed small-arms manufacturer; closely held, block access"),
-    ("Weapons Sleeve", 17, "Defense", "Munitions, Energetics & Small Arms", "North America", "Growth", "Early-growth energetics and propellant chemistry"),
-    ("Weapons Sleeve", 18, "Defense", "Defense Primes & Services", "North America", "Late-stage Private", "Employee-owned defense R&D and engineering services"),
+    ("Weapons Sleeve", 16, "Defense", "Munitions, Energetics & Ordnance", "Europe", "Public / Listed", "Listed small-arms manufacturer; closely held, block access"),
+    ("Weapons Sleeve", 17, "Defense", "Munitions, Energetics & Ordnance", "North America", "Growth", "Early-growth energetics and propellant chemistry"),
+    ("Weapons Sleeve", 18, "Defense", "Munitions, Energetics & Ordnance", "North America", "Late-stage Private", "Family-owned forger of missile casings and naval open/closed-die forgings"),
+    ("Weapons Sleeve", 19, "Defense", "Munitions, Energetics & Ordnance", "North America", "Late-stage Private", "Private forger for missile-procurement metal forgings; placeholder mark"),
+    ("Weapons Sleeve", 20, "Defense", "Defense Primes & Services", "North America", "Late-stage Private", "Employee-owned defense R&D and engineering services"),
     ("Consumer Sleeve", 12, "Consumer Discretionary", "Consumer DTC & Wellness", "North America", "Late-stage Private", "Manufacturer-to-consumer apparel and home essentials; >$1B ARR"),
     ("Consumer Sleeve", 13, "Consumer Discretionary", "Consumer DTC & Wellness", "North America", "Pre-IPO", "Wearable health platform; IPO-track, medical-grade expansion"),
     ("Consumer Sleeve", 14, "Consumer Discretionary", "Consumer DTC & Wellness", "North America", "Late-stage Private", "Fresh pet-food subscription; Walmart.com omni-channel launch"),
@@ -633,7 +654,7 @@ BREAK = {}
 for key, col, members in [
     ("Sub-vehicle", "B", ["Defense", "IQT Semi / AI", "Consumer Discretionary"]),
     ("Sector", "H", ["Semiconductor Equipment", "Advanced Packaging & Materials", "Edge AI Silicon", "Quantum Computing",
-                     "Autonomy & Unmanned Systems", "Directed Energy, EW & ISR", "Munitions, Energetics & Small Arms",
+                     "Autonomy & Unmanned Systems", "Directed Energy, EW & ISR", "Munitions, Energetics & Ordnance",
                      "Defense Primes & Services", "Consumer DTC & Wellness", "Marketplaces, Payments & Fintech"]),
     ("Region", "I", ["North America", "Israel", "Europe", "Asia-Pacific"]),
     ("Stage / liquidity", "J", ["Public / Listed", "Pre-IPO", "Late-stage Private", "Growth", "Seed & Early"]),
@@ -698,14 +719,18 @@ CK.column_dimensions["D"].width = 60
 CK["A3"] = "OVERALL STATUS"
 CK["A3"].font = font(11, True, NAVY)
 CK["A5"] = "Holdco target size ($M)"; body(CK["A5"])
-CK["B5"] = 750; input_cell(CK["B5"], FMT_USD0)
+CK["B5"] = 840; input_cell(CK["B5"], FMT_USD0)
+IC = wb["IC Summary"]
+IC["C72"] = "=Checks!$B$5"; link_cell(IC["C72"], IC["B72"].number_format)
+IC["A72"] = '="Holdco size = "&TEXT(Checks!$B$5,"$#,##0")&"M"'
+log("IC Summary", "A72:C72", "Holdco size target now reads the single target input on the Checks tab instead of a hard-coded 840.")
 note(CK, "D5", "Sleeve sizes on Holdco Summary must add to this.")
 header_row(CK, 7, ["Check", "Value", "Status", "What it protects"], 1)
 iqt0, mid0, lng0 = SE_BLOCK_ROWS["Short"], SE_BLOCK_ROWS["Mid"], SE_BLOCK_ROWS["Long"]
 checks = [
     ("Holdco sleeve sizes sum to target", "=Holdco_Size-$B$5", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Holdco Summary B6:B9 vs target", FMT_USD1),
     ("IQT sleeve: checks sum to sleeve size", "=Assumptions!C27-IQT_Size", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Assumptions C18:C26", FMT_USD1),
-    ("Weapons sleeve: checks sum to sleeve size", "='Weapons Sleeve'!C19-Wpn_Size", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Weapons Sleeve C12:C18", FMT_USD1),
+    ("Weapons sleeve: checks sum to sleeve size", "='Weapons Sleeve'!C21-Wpn_Size", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Weapons Sleeve C12:C18", FMT_USD1),
     ("Consumer sleeve: checks sum to sleeve size", "='Consumer Sleeve'!C21-Con_Size", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Consumer Sleeve C12:C20", FMT_USD1),
     ("IQT: initial deployment + reserve = committed", "=Assumptions!B6+Assumptions!B7-IQT_Committed", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Assumptions B5:B7", FMT_USD1),
     ("Strategic axis weights sum to 100%", "='Defense Supercycle'!B10", '=IF(ABS(B{r}-1)<0.0001,"OK","ERROR")', "Defense Supercycle B5:B9", FMT_PCT),
@@ -725,8 +750,9 @@ checks = [
      '=IF(ABS(B{r})<0.01,"OK","ERROR")', "Roll-up links point at the right sleeve rows", FMT_USD1),
     ("Fact-sheet holdings register sums to holdco size", f"='Fact Sheet Data'!C{REG_TOTAL}-Holdco_Size", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Every holding is tagged exactly once", FMT_USD1),
     ("Fact-sheet breakdowns each sum to 100%", f"=ABS('Fact Sheet Data'!C{BREAK['Sub-vehicle'][2]}-1)+ABS('Fact Sheet Data'!C{BREAK['Sector'][2]}-1)+ABS('Fact Sheet Data'!C{BREAK['Region'][2]}-1)+ABS('Fact Sheet Data'!C{BREAK['Stage / liquidity'][2]}-1)", '=IF(ABS(B{r})<0.0001,"OK","ERROR")', "No untagged / mistyped sector, region or stage", FMT_PCT),
+    ("IC Summary integrity block reports ALL PASS", "='IC Summary'!D80", '=IF(B{r}="ALL PASS","OK","ERROR")', "The pre-existing 8-check block on IC Summary", None),
     ("No formula errors on output tabs",
-     f"=SUMPRODUCT(ISERROR('Holdco Summary'!B28:F86)*1)+SUMPRODUCT(ISERROR('Fund Economics'!B6:F49)*1)+SUMPRODUCT(ISERROR('Sleeve Economics'!B6:R{lng0+13})*1)+SUMPRODUCT(ISERROR('Scenario Summary'!B6:F22)*1)+SUMPRODUCT(ISERROR('PME, DPI & Sensitivity'!B13:F69)*1)+SUMPRODUCT(ISERROR('Fact Sheet Data'!B5:N{r})*1)",
+     f"=SUMPRODUCT(ISERROR('Holdco Summary'!B28:F86)*1)+SUMPRODUCT(ISERROR('Fund Economics'!B6:F49)*1)+SUMPRODUCT(ISERROR('Sleeve Economics'!B6:R{lng0+13})*1)+SUMPRODUCT(ISERROR('Scenario Summary'!B6:F22)*1)+SUMPRODUCT(ISERROR('PME, DPI & Sensitivity'!B13:F69)*1)+SUMPRODUCT(ISERROR('Fact Sheet Data'!B5:N{r})*1)+SUMPRODUCT(ISERROR('IC Summary'!B6:F81)*1)",
      '=IF(B{r}=0,"OK","ERROR")', "Count of #DIV/0!, #NUM!, #REF! etc. across all output ranges", "0"),
 ]
 r = 8
@@ -794,14 +820,14 @@ for i, (sheet, rng, change, impact) in enumerate(changelog, start=1):
 CL.freeze_panes = "A5"
 
 # Freeze panes + print setup + tab colours
-FREEZE = {"Holdco Summary": "B4", "Assumptions": "B4", "Defense Supercycle": "B4", "Allocation": "B5",
+FREEZE = {"IC Summary": "B6", "Holdco Summary": "B4", "Assumptions": "B4", "Defense Supercycle": "B4", "Allocation": "B5",
           "Portfolio Returns": "B6", "Fund Economics": "B6", "IQT Clusters": "B6", "Weapons Sleeve": "B12",
           "Consumer Sleeve": "B12", "PME, DPI & Sensitivity": "B4", "Scenario Summary": "B6", "Macro Overlay": "A4"}
 for name, cell in FREEZE.items():
     wb[name].freeze_panes = cell
 TAB_COLOURS = {
     "Read Me": "808080", "Change Log": "808080", "Checks": "C00000",
-    "Holdco Summary": "2E7D32", "Scenario Summary": "2E7D32", "Fact Sheet Data": "2E7D32",
+    "IC Summary": "2E7D32", "Holdco Summary": "2E7D32", "Scenario Summary": "2E7D32", "Fact Sheet Data": "2E7D32",
     "Assumptions": "0000FF", "Defense Supercycle": "0000FF", "Weapons Sleeve": "0000FF", "Consumer Sleeve": "0000FF",
     "Macro Overlay": "7F7F7F", "Allocation": "7F7F7F", "Portfolio Returns": "7F7F7F", "Fund Economics": "7F7F7F",
     "IQT Clusters": "7F7F7F", "Sleeve Economics": "7F7F7F", "PME, DPI & Sensitivity": "7F7F7F",

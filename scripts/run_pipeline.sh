@@ -6,5 +6,5 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"; ORIG="$1"; TMP="$(mktemp -d)"
 python3 "$HERE/optimize_model.py" "$ORIG" "$TMP/model_v3.xlsx"
 python3 "$HERE/compute_values.py" "$TMP/model_v3.xlsx" "$TMP/values.json"
-python3 "$HERE/inject_cached_values.py" "$TMP/model_v3.xlsx" "$TMP/values.json" "$HERE/../models/Leviathan_PE_HOLDCO_Model_v3_Optimized_Internal_Letalis.xlsx"
-python3 "$HERE/build_factsheet.py" "$HERE/../models/Leviathan_PE_HOLDCO_Model_v3_Optimized_Internal_Letalis.xlsx" "$HERE/../factsheet" "$HERE/fonts"
+python3 "$HERE/inject_cached_values.py" "$TMP/model_v3.xlsx" "$TMP/values.json" "$HERE/../models/Leviathan_PE_HOLDCO_Model_IC_VFinal_v3_Optimized_Letalis.xlsx"
+python3 "$HERE/build_factsheet.py" "$HERE/../models/Leviathan_PE_HOLDCO_Model_IC_VFinal_v3_Optimized_Letalis.xlsx" "$HERE/../factsheet" "$HERE/fonts"
