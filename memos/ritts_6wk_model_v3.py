@@ -25,18 +25,8 @@ EXIT_DTE  = 4       # Nov 16 -> Nov 20
 HOLD_DAYS = 42      # Oct 5 -> Nov 16
 T0 = ENTRY_DTE/365; T1 = EXIT_DTE/365; TH = HOLD_DAYS/365
 
-spot = {"BA":192.35,"MU":1091.89,"NVDA":231.59,"RTX":186.12,"LMT":506.50,"MRVL":269.30,"SKHY":191.40,"GDX":86.13}
+from candidates import spot, cands
 # (strike, mid, mid-IV, call OI)
-cands = {
- "MU":  [(1200,52.68,.549,2688),(1250,40.48,.559,2228),(1300,30.65,.570,3722),(1350,23.55,.577,7386)],
- "NVDA":[(245,6.90,.348,21327),(250,5.38,.344,36129),(255,4.15,.341,11600),(260,3.15,.341,24287)],
- "RTX": [(195,4.28,.288,392),(200,2.91,.286,1928),(210,1.29,.289,1786)],
- "LMT": [(540,9.30,.276,137),(545,8.85,.289,50),(550,7.60,.286,109),(555,6.55,.288,35)],
- "MRVL":[(300,14.63,.650,10309),(310,12.13,.651,8849),(320,10.08,.655,6063),(330,8.33,.661,965)],
- "SKHY":[(215,9.40,.586,973),(220,8.03,.584,1791),(225,6.90,.586,489),(230,6.10,.605,2222),(235,4.95,.588,327)],
- "BA":  [(205,6.38,.382,2036),(210,4.95,.382,3550),(215,3.78,.378,1096),(220,2.80,.380,7602),(225,2.19,.381,3381)],
- "GDX": [(93,3.05,.410,1095),(95,2.59,.420,1434),(96,2.31,.419,628),(98,1.92,.424,3000)],
-}
 
 screen = {}
 for tk, rows in cands.items():
@@ -50,17 +40,30 @@ for tk, rows in cands.items():
 import sys
 VARIANT = sys.argv[1] if len(sys.argv) > 1 else "v3"
 FLOOR = 0.20
-FLOOR_OVERRIDE = {"MU":0.18, "BA":0.18} if VARIANT == "v3b" else {}
+FLOOR_OVERRIDE = {"MU":0.18, "BA":0.18} if VARIANT == "v3b" else ({"AMD":0.18, "LITE":0.14} if VARIANT in ("v4","v4a","v4b") else {})
 pick = {}
 for tk, rows in screen.items():
     ok = [r for r in rows if r["delta"] >= FLOOR_OVERRIDE.get(tk, FLOOR)]
     pick[tk] = max(ok, key=lambda r: r["gpp"])
+if VARIANT in ("v4","v4a","v4b"):
+    # ITM rule for the DRAM anchor: delta >= 0.70 (in the money), then deepest open interest
+    itm = [r for r in screen["DRAM"] if r["delta"] >= 0.70]
+    pick["DRAM"] = max(itm, key=lambda r: r["oi"])
 
 # Book: MU 1 ctr (mandated), then remaining names by gamma/$ until $5,000 is spent; LMT + SKHY dropped (see memo)
 BOOK = 5000.0
 legs = [("MU",1),("NVDA",1),("RTX",1),("MRVL",1),("GDX",1)]
 if VARIANT == "v3b":
     legs = [("MU",1),("NVDA",1),("RTX",1),("BA",1),("MRVL",1),("SKHY",1),("GDX",1)]
+if VARIANT == "v4":
+    # INTC replaces LITE in the AMD book; INTC's low contract cost lets BA and MRVL return and GDX go back to two contracts
+    legs = [("DRAM",1),("NVDA",1),("AMD",1),("INTC",2),("BA",1),("MRVL",1),("GDX",2)]
+if VARIANT == "v4b":
+    # TER alternative in the same slot: one TER contract at the floor, BA restored, MRVL does not fit
+    legs = [("DRAM",1),("NVDA",1),("AMD",1),("TER",1),("BA",1),("GDX",2)]
+if VARIANT == "v4a":
+    # AMD-only alternative: AMD in the former VICR slot, all other V4 legs unchanged
+    legs = [("DRAM",2),("NVDA",1),("AMD",1),("BA",1),("MRVL",1),("GDX",1)]
 deployed = sum(pick[t]["cost"]*n for t,n in legs)
 cash = BOOK - deployed
 # use residual cash on cheapest-gamma legs in whole contracts
@@ -87,6 +90,40 @@ for name, mult in [("Flat",0),("Base",None),("Bull",1),("Gamma",2)]:
         tot += pnl
     scen[name] = dict(rows=rows, pnl=tot, end=BOOK+tot, ret=tot/BOOK)
 
+# ---- flat-spot vol re-rate: IV shift (points, uniform) needed for +5% / +10% book return at each exit mark
+def book_value(move, dte, dvol):
+    tot=0
+    for tk,n in legs:
+        q=pick[tk]; S1=spot[tk]*(1+move); iv=max(q["iv"]+dvol, 0.05)
+        tot += bs_call(S1, q["K"], dte/365, iv)*100*n
+    return tot
+flat_rerate = {}
+for lab,dte in [("Oct 23 (28 DTE)",28),("Oct 30 (21 DTE)",21),("Nov 6 (14 DTE)",14),("Nov 16 (4 DTE)",4)]:
+    row={"dte":dte,"flat_ret": (book_value(0,dte,0)-deployed)/BOOK}
+    for tgt in (0.05,0.10):
+        lo,hi=0.0,3.0; feasible = (book_value(0,dte,hi)-deployed)/BOOK >= tgt
+        if feasible:
+            for _ in range(60):
+                mid=(lo+hi)/2
+                if (book_value(0,dte,mid)-deployed)/BOOK < tgt: lo=mid
+                else: hi=mid
+            row[f"dvol_{int(tgt*100)}"]=(lo+hi)/2
+        else: row[f"dvol_{int(tgt*100)}"]=None
+    flat_rerate[lab]=row
+# per-leg values for the flat re-rate rows shown in the ladder (Oct 30 mark)
+def leg_rows(move, dte, dvol):
+    out={}
+    for tk,n in legs:
+        q=pick[tk]; S1=spot[tk]*(1+move); iv=max(q["iv"]+dvol,0.05); v=bs_call(S1,q["K"],dte/365,iv)*100*n
+        out[tk]=dict(move=move, pnl=v-q["cost"]*n, ret=(v-q["cost"]*n)/(q["cost"]*n))
+    return out
+r30=flat_rerate["Oct 30 (21 DTE)"]
+for tgt in (5,10):
+    dv=r30.get(f"dvol_{tgt}")
+    if dv is not None:
+        rows=leg_rows(0,21,dv); tot=sum(r["pnl"] for r in rows.values())
+        scen[f"Flat+{tgt}"]=dict(rows=rows, pnl=tot, end=BOOK+tot, ret=tot/BOOK, dvol=dv, dte=21)
+
 # ---- backtest: 6-week forward returns from 2y weekly closes (IBKR, through 9/28/26 bar)
 closes = json.load(open("/home/user/Default/memos/weekly_closes.json"))
 bt = {}
@@ -101,7 +138,7 @@ for tk, cl in closes.items():
                   hb=sum(r>=base for r in rets)/len(rets), hu=sum(r>=bull for r in rets)/len(rets),
                   hg=sum(r>=gam for r in rets)/len(rets), base=base, bull=bull, gam=gam)
 
-json.dump(dict(variant=VARIANT, floor=FLOOR, floor_override=FLOOR_OVERRIDE, screen=screen, pick=pick, legs=legs, cash=cash, deployed=deployed, scen=scen, bt=bt),
+json.dump(dict(variant=VARIANT, floor=FLOOR, floor_override=FLOOR_OVERRIDE, flat_rerate=flat_rerate, screen=screen, pick=pick, legs=legs, cash=cash, deployed=deployed, scen=scen, bt=bt),
           open(f"/home/user/Default/memos/model_out{'' if VARIANT=='v3' else '_'+VARIANT}.json","w"), indent=1, default=float)
 
 print("PICKS"); 
