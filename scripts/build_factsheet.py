@@ -98,7 +98,7 @@ def img64(fn):
     with open(os.path.join(FONTS, fn), "rb") as f:
         return "data:image/png;base64," + base64.b64encode(f.read()).decode()
 LOGO = img64("leviathan_logo.png")
-MARK = img64("leviathan_mark.png")
+SIG = img64("signature.png")
 FONT_CSS = "\n".join([
     font_face("LF", 400, "LibreFranklin-400.ttf"), font_face("LF", 500, "LibreFranklin-500.ttf"),
     font_face("LF", 600, "LibreFranklin-600.ttf"), font_face("LF", 700, "LibreFranklin-700.ttf"),
@@ -275,6 +275,16 @@ table.lastline tr:last-child td {{ border-bottom: 1.2px solid #000; }}
 .cover .t3 {{ font-size: 9pt; color: #7a7a7a; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 34px; }}
 .cover .rule2 {{ width: 1.2in; border-top: 3px solid #000; margin: 26px auto 0; }}
 .cover .bottom {{ position: absolute; bottom: 0.5in; left: 0.5in; right: 0.5in; font-size: 7.4pt; color: #555; text-align: left; line-height: 1.35; }}
+.memo {{ font-size: 9.6pt; line-height: 1.38; }}
+.memo h2 {{ border-top: 0; padding-top: 0; font-size: 17pt; margin-bottom: 2px; }}
+.memo .meta {{ font-size: 8.4pt; color: #555; margin-bottom: 10px; letter-spacing: 0.3px; }}
+.memo p {{ margin: 0 0 8px; text-align: justify; }}
+.memo h4 {{ font-family: 'SS', Georgia, serif; font-weight: 600; font-size: 11.5pt; margin: 10px 0 3px; color: #111; }}
+.memo h4 span {{ color: {RUST}; }}
+.memo .sig {{ margin-top: 10px; }}
+.memo .sig img {{ height: 0.75in; display: block; margin: 2px 0 0 -6px; }}
+.memo .sig .name {{ font-weight: 700; font-size: 9.6pt; margin-top: 2px; }}
+.memo .sig .title {{ font-size: 8.6pt; color: #444; }}
 .terms td {{ text-align: left; vertical-align: top; }}
 .terms td:first-child {{ font-weight: 700; width: 1.5in; }}
 .terms th {{ text-align: left; }}
@@ -527,9 +537,29 @@ cover = f"""
   <div class="t3">Internal investment-committee planning document &nbsp;·&nbsp; Highly confidential &amp; trade secret</div>
   <div class="bottom">Figures as of {asof}, from the Leviathan Core PE Holdco model (v3). Modelled outcomes are not forecasts and do not predict future returns. Not an offer, a solicitation or investment advice. Not for distribution to clients or the general public.</div>
 </div>"""
+d, q, c = svrow('Defense'), svrow('IQT Semi / AI'), svrow('Consumer Discretionary')
+defense_share = d[2] + q[2]
+memo = f"""
+<div class="page memo">
+{masthead_pn()}
+<h2>A Letter to Our Investors</h2>
+<div class="meta">{edition.upper()} &nbsp;·&nbsp; FROM THE DESK OF DONALD BRITTS III &nbsp;·&nbsp; {fund_name} (“{short}”)</div>
+<p>The world is re-industrialising around two imperatives: the United States must insulate its semiconductor and artificial-intelligence supply chain from a single point of failure in the Taiwan Strait, and the West must rebuild the capacity to produce weapons and munitions at scale. Those two imperatives are one trend viewed from two angles, and {short} is built to own both legs of it while a third sleeve compounds on the most durable force in any economy: the household balance sheet. Across {n_hold} holdings and {usd_m(holdco_size)} of committed capital, our model points to a {pct(exp_irr)} probability-weighted net IRR and a {mult(exp_moic)} net multiple over a {hold_mid}-year hold, beating the public defense-and-semiconductor basket on a public-market-equivalent basis in every scenario we underwrite.</p>
+<h4><span>I.</span> IQT Semi / AI — the sovereign chokepoints ({usd_m(q[1])}, {pct(q[2],0)})</h4>
+<p>Nine names, anchored by Substrate, mirror the In-Q-Tel playbook: own the nodes a nation cannot do without if Taiwan goes dark. Domestic X-ray lithography, at-wavelength EUV metrology, substrate materials that break a single-supplier monopoly, edge-AI silicon that works when the cloud is jammed, and quantum compute built on existing CMOS lines. Every name is scored on five strategic axes, and that score drives its re-rating in a TSMC-Shock. This is the convex leg of the book: it earns a {pct(q[6])} base-case net IRR and {pct(q[9])} in the shock case precisely because the names we hold are the ones Washington will pay any price for.</p>
+<h4><span>II.</span> Defense — the physical effectors ({usd_m(d[1])}, {pct(d[2],0)})</h4>
+<p>If the IQT sleeve is the brain, the Weapons sleeve is the hands. Naval autonomy, directed energy, energetics, missile forgings and the primes that integrate them are the beneficiaries of NATO's five-percent pledge and an American munitions base that has been drawn down to levels not seen in generations. Each position carries an explicit munitions-shortage and foreign-military-sales backlog score that lifts its growth path. The sleeve is the cash-generative core of the holdco: {pct(d[6])} base-case net, {pct(d[10])} expected, and a {mult(d[12])} public-market equivalent against the S&amp;P 500.</p>
+<h4><span>III.</span> Consumer Discretionary — the demographic engine ({usd_m(c[1])}, {pct(c[2],0)})</h4>
+<p>Our consumer sleeve is not a bet on the consumer; it is a bet on <i>which</i> consumer. Every name is scored on its addressable market across the cohorts in or entering their prime earning years, while deliberately retaining exposure to the baby boomers as they carry the largest wealth transfer in history into retirement. Direct-to-consumer essentials, wearable health, membership grocery, fresh pet food, payments and marketplaces: businesses that sell to every cohort and scale with the one that is spending. It is the sleeve that pays distributions first, at a {pct(c[6])} base-case net IRR, and the one that is uncorrelated with everything else we own.</p>
+<h4><span>IV.</span> Why the three belong together</h4>
+<p>The IQT and Defense sleeves are intentionally correlated. Semiconductor insulation and munitions scale are funded by the same appropriations, driven by the same adversary and accelerated by the same shock. Together they are {pct(defense_share,0)} of the holdco and move as one factor, which is the point: we want maximum exposure to the sovereign-capital supercycle, and we want the two legs to reinforce each other operationally. Edge-AI silicon from the first sleeve goes into the autonomous vessels and counter-drone systems of the second; the primes in the second are the natural acquirers of the first. The consumer sleeve sits apart from that factor by design. It provides early DPI, lowers dispersion, and in the one scenario that hurts it, a Taiwan shock, the other two sleeves more than compensate, which is why the holdco's expected net return rises in that case rather than falls. One factor for conviction, one ballast for durability, and a single waterfall that lets the strong sleeves carry the weak before any carry is charged. That is {short}.</p>
+<div class="sig"><img src="{SIG}" alt="signature"><div class="name">Donald Britts III</div><div class="title">Leviathan &nbsp;·&nbsp; Miami · London · Zurich · Tokyo</div></div>
+<div class="spacer"></div>
+<div class="footer"><div>{edition} {short} Update</div><div class="r">Leviathan</div></div>
+</div>"""
 html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>{short} Fact Sheet — {edition}</title><style>{CSS}</style></head>
-<body>{cover}{page1}{page2}{page3}{page4}{page5}{page6}</body></html>"""
+<body>{cover}{memo}{page1}{page2}{page3}{page4}{page5}{page6}</body></html>"""
 
 html_path = os.path.join(OUT, f"Leviathan_{short}_Fact_Sheet_{edition.replace(' ', '')}.html")
 pdf_path = html_path[:-5] + ".pdf"
