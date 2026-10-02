@@ -16,13 +16,16 @@ sched={s["label"]:s for s in P["schedule"]}
 
 doc = make_doc("Ritts_6_week_Wedding_Model_V6_Redesign.pdf", "RWS V6", "MYTHOS-RWS-V6-20261002", "October 2026 RWS Update", "Ritts Wedding Sleeve V6")
 S = title_block("OCTOBER 2026", "Ritts Wedding Sleeve &#8211; Version 6: Redesigned Book (&#8220;RWS V6&#8221;)",
-    "RWS V6 keeps the V3&#8211;V5 process (short-dated out-of-the-money calls ranked on gamma per dollar of premium, Black-Scholes scenario ladder, two-year backtest) and rebuilds the book around it: "
+    "RWS V6 opens with an explanation of the high-convexity, high-gamma strategy and its January 2026 precedent, then keeps the V3&#8211;V5 process (short-dated out-of-the-money calls ranked on gamma per dollar of premium, Black-Scholes scenario ladder, two-year backtest) and rebuilds the book around it: "
     "three dated tranches instead of one entry, five sleeves instead of two, a crash-convexity leg, and quantitative screens on volatility value, liquidity and ticket size. "
     f"Entry begins October 5; the last exit is November 25, the day before Thanksgiving<super><font size=7>(1)</font></super>")
 S.append(stats([(f"{sched['Oct 5 entry T1']['pct']:.0%}","of the book at risk in week one",f"{sched['Oct 22 entry T2']['pct']:.0%} after Oct 22, {sched['Nov 5 entry T3']['pct']:.0%} after Nov 5; a single Oct 5 entry would carry 92% from day one"),
                 (f"{ret(P,'Gamma'):+.0%}","Gamma Upside Case return on book",f"Base {ret(P,'Base'):+.0%}, Bull {ret(P,'Bull'):+.0%}; vol-normalized +1, +2, +3 s.d. per leg over its own hold<super>(3)</super>"),
                 (f"{ret(P,'Shock'):+.0%}","Shock Case return on book","every leg &#8722;2 s.d. with IV +10 points; the SPY put returns "+f"{[l for l in legs if l['tk']=='SPY'][0]['pnl']['Shock']:+,.0f}")]))
 
+from intro_v6 import intro
+_g=sorted(legs,key=lambda l:-l["pnl"]["Gamma"]*l["n"])[:4]
+S += intro("5", f"Gamma Upside: {', '.join(l['tk'] for l in _g)} produce {sum(l['pnl']['Gamma']*l['n'] for l in _g)/P['scen']['Gamma']['pnl']:.0%} of the {P['scen']['Gamma']['pnl']:+,.0f}")
 S.append(h1("How the Book Is Built","2")); S.append(sub("(the V3&#8211;V5 convexity process, re-applied with time, sleeve and volatility discipline)"))
 S += bullets([
  "<b>Same engine.</b> Every candidate is a listed call (or, for the hedge, a put) 15&#8211;35 delta at entry, ranked on gamma per $100 of premium and priced on the same Black-Scholes ladder and two-year weekly backtest as Versions 3&#8211;5. Nothing is sold; maximum loss on any leg is its premium.",
