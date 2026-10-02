@@ -895,10 +895,55 @@ for ws in wb.worksheets:
 log("All tabs", "sheet setup", "Freeze panes on every grid tab, landscape fit-to-width print setup with footers, tab colours "
     "(blue = inputs, grey = engines, green = outputs, red = checks), gridlines off, full recalculation forced on open.")
 
+# ----------------------------------------------------------------------------
+# 10. Cover sheet with the Leviathan logo and tab navigation
+# ----------------------------------------------------------------------------
+import os
+from openpyxl.drawing.image import Image as XLImage
+from openpyxl.worksheet.hyperlink import Hyperlink
+CV = wb.create_sheet("Cover", index=0)
+CV.sheet_view.showGridLines = False
+CV.sheet_view.zoomScale = 100
+for col, w in zip("ABCDEFGH", [3, 14, 14, 14, 14, 14, 14, 3]):
+    CV.column_dimensions[col].width = w
+for r in range(1, 40):
+    CV.row_dimensions[r].height = 15
+logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts", "leviathan_logo.png")
+if os.path.exists(logo_path):
+    img = XLImage(logo_path)
+    img.width, img.height = 360, int(360 * 1106 / 1312)
+    CV.add_image(img, "C3")
+CV.merge_cells("B25:G25"); CV["B25"] = "LEVIATHAN CORE PRIVATE EQUITY HOLDCO (“LPEH”)"
+CV["B25"].font = font(16, True, NAVY); CV["B25"].alignment = Alignment(horizontal="center")
+CV.row_dimensions[25].height = 24
+CV.merge_cells("B26:G26"); CV["B26"] = '="Internal IC planning model  ·  v3 optimised 02-Oct-2026  ·  "&TEXT(Holdco_Size,"$#,##0")&"M across three sub-vehicles  ·  USD millions"'
+CV["B26"].font = font(10, False, GRAY); CV["B26"].alignment = Alignment(horizontal="center")
+CV.merge_cells("B27:G27"); CV["B27"] = "=Checks!$B$3"
+CV["B27"].font = font(10, True, GREEN_OK); CV["B27"].alignment = Alignment(horizontal="center")
+CV.conditional_formatting.add("B27", FormulaRule(formula=['ISNUMBER(SEARCH("FAILING",B27))'], font=Font(color=RED, bold=True)))
+CV.merge_cells("B28:G28"); CV["B28"] = "HIGHLY CONFIDENTIAL & TRADE SECRET  ·  Miami · London · Zurich · Tokyo"
+CV["B28"].font = font(8, False, GRAY); CV["B28"].alignment = Alignment(horizontal="center")
+CV["B30"] = "NAVIGATION"; CV["B30"].font = font(10, True, NAVY)
+NAV = [("Read Me", "How the model is wired, caveats, v3 change summary"), ("Change Log", "Cell-level record of the optimisation pass"),
+       ("Checks", "Model integrity dashboard"), ("IC Summary", "One-page holdco dashboard"), ("Holdco Summary", "Tripartite roll-up and holdco waterfall"),
+       ("Assumptions", "Fund terms, hold levers, IQT-mirror entry marks"), ("Defense Supercycle", "Strategic scoring and shock engine"),
+       ("Weapons Sleeve", "Defense sub-vehicle with munitions / FMS overlay"), ("Consumer Sleeve", "Consumer sub-vehicle with cohort-exposure overlay"),
+       ("Sleeve Economics", "Gross-to-net by sub-vehicle and netting reconciliation"), ("PME, DPI & Sensitivity", "Public-market equivalents and shock pressure tests"),
+       ("Fact Sheet Data", "Every figure on the external fact sheet")]
+r = 31
+for tab, desc in NAV:
+    c = CV[f"B{r}"]; c.value = tab; c.hyperlink = Hyperlink(ref=f"B{r}", location=f"'{tab}'!A1", display=tab); c.font = Font(name="Arial", size=10, color=INPUT_BLUE, underline="single")
+    CV.merge_cells(f"D{r}:G{r}"); CV[f"D{r}"] = desc; CV[f"D{r}"].font = font(9, False, GRAY)
+    r += 1
+CV.sheet_properties.tabColor = "1E5A4D"
+CV.page_setup.orientation = "portrait"; CV.page_setup.fitToWidth = 1; CV.page_setup.fitToHeight = 1
+CV.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
+log("Cover", "whole tab", "NEW cover sheet: Leviathan logo, vehicle title, live integrity status and hyperlinked tab navigation.")
+
 wb.calculation.fullCalcOnLoad = True
-wb.active = wb.sheetnames.index("Holdco Summary")
+wb.active = 0
 for ws in wb.worksheets:
-    ws.sheet_view.tabSelected = (ws.title == "Holdco Summary")
+    ws.sheet_view.tabSelected = (ws.title == "Cover")
 
 # --- final safety scan: no hard-coded hold literals left in model formulas -----------
 left = []
@@ -912,5 +957,9 @@ if left:
     print("WARNING — hold literals still present:")
     print("\n".join(left))
 
+rr = 5 + len(changelog)
+CL[f"A{rr}"] = len(changelog); body(CL[f"A{rr}"], "0", align="center")
+CL[f"B{rr}"], CL[f"C{rr}"], CL[f"D{rr}"], CL[f"E{rr}"] = changelog[-1]
+for col in "BCDE": body(CL[f"{col}{rr}"])
 wb.save(DST)
 print(f"saved {DST}; subs={n_sub} self={n_self} hold={n_hold} labels={n_lbl} guards={n_guard} checks={len(checks)} changelog={len(changelog)}")
