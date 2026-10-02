@@ -357,6 +357,49 @@ H["A3"].font = font(10, True, GREEN_OK)
 log("Holdco Summary", "A3", "Live model-integrity status pulled from the new Checks tab.")
 
 # ----------------------------------------------------------------------------
+# 5b. Consumer sleeve: demographic cohort-exposure overlay (mirrors the Weapons munitions/FMS overlay)
+# ----------------------------------------------------------------------------
+CS = wb["Consumer Sleeve"]
+section(CS, "P4", "COHORT-EXPOSURE OVERLAY — CAGR UPLIFT PER EXPOSURE POINT (blue = lever)")
+for r, (lab, val) in enumerate([("Base uplift / pt", 0.005), ("Bull uplift / pt", 0.008),
+                                ("Bear uplift / pt (spend resilience)", 0.004), ("Shock uplift / pt", 0.003)], start=5):
+    CS[f"P{r}"] = lab; body(CS[f"P{r}"])
+    CS[f"Q{r}"] = val; input_cell(CS[f"Q{r}"], FMT_PCT)
+section(CS, "S4", "COHORT WEIGHTS (must sum to 100%)")
+for r, (lab, val) in enumerate([("Prime earning years (35-54)", 0.5), ("Entering prime (22-34)", 0.3), ("Boomers entering retirement (60+)", 0.2)], start=5):
+    CS[f"S{r}"] = lab; body(CS[f"S{r}"])
+    CS[f"T{r}"] = val; input_cell(CS[f"T{r}"], FMT_PCT)
+CS["S8"] = "Sum (check = 100%)"; body(CS["S8"], bold=True)
+CS["T8"] = "=SUM(T5:T7)"; body(CS["T8"], FMT_PCT, bold=True, align="right")
+header_row(CS, 11, ["Prime-earning TAM (0-5)", "Entering-prime TAM (0-5)", "Boomer / retiree TAM (0-5)", "Exposure score",
+                    "Adj. Base", "Adj. Bull", "Adj. Bear", "Adj. Shock"], 16)
+COHORT = {  # (prime, entering, boomer) — Leviathan judgment scores, blue inputs
+    12: (4, 5, 2), 13: (4, 4, 2), 14: (4, 3, 4), 15: (4, 2, 4), 16: (4, 3, 3), 17: (3, 4, 2), 18: (3, 5, 1), 19: (2, 5, 0), 20: (4, 4, 3)}
+for r, (p, q, b) in COHORT.items():
+    for col, val in zip("PQR", (p, q, b)):
+        CS[f"{col}{r}"] = val; input_cell(CS[f"{col}{r}"], "0")
+    CS[f"S{r}"] = f"=P{r}*$T$5+Q{r}*$T$6+R{r}*$T$7"; body(CS[f"S{r}"], "0.0", align="right")
+    for col, src, rate in zip("TUVW", "FGHI", (5, 6, 7, 8)):
+        CS[f"{col}{r}"] = f"={src}{r}+$S{r}*$Q${rate}"; body(CS[f"{col}{r}"], FMT_PCT, align="right")
+for col, w in zip("PQRSTUVW", [13, 13, 13, 11, 10, 10, 10, 10]):
+    CS.column_dimensions[col].width = w
+CS.row_dimensions[11].height = 40.5
+n_adj = 0
+for r0, r1 in ((25, 33), (39, 47), (53, 61)):
+    for row in CS.iter_rows(min_row=r0, max_row=r1):
+        for c in row:
+            if isinstance(c.value, str) and c.value.startswith("="):
+                new = re.sub(r"\(1\+([FGHI])(\d+)\)", lambda m: f"(1+{'FGHI TUVW'.split()[1]['FGHI'.index(m.group(1))]}{m.group(2)})", c.value)
+                if new != c.value:
+                    c.value = new; n_adj += 1
+CS["A2"] = ("Spending-cycle / DTC-value holdings. Blue = input. Proceeds use cohort-adjusted CAGRs (cols T:W): base CAGR + exposure score x "
+            "uplift per point, where the exposure score weights each name's TAM across prime-earning, entering-prime and retiring-boomer cohorts. "
+            "Quince & Whoop = confirmed 2026 primary rounds; Farmer's Dog, Thrive, Polymarket & Stripe = market-priced; Made In, Plunge & Goat remain estimates.")
+log("Consumer Sleeve", "P4:W20, hold blocks", f"NEW demographic cohort-exposure overlay: three 0-5 TAM scores per name (prime-earning, entering-prime, "
+    f"retiring boomers), cohort weights, and per-scenario uplift per exposure point, producing adjusted CAGRs in T:W. {n_adj} proceeds formulas "
+    "now read the adjusted CAGRs, mirroring the Weapons munitions/FMS overlay.", "CHANGED: Consumer gross/net returns rise by the cohort uplift")
+
+# ----------------------------------------------------------------------------
 # 6. Sleeve Economics tab — gross -> net for all three sub-vehicles
 # ----------------------------------------------------------------------------
 SE = wb.create_sheet("Sleeve Economics", index=wb.sheetnames.index("Consumer Sleeve") + 1)
@@ -692,6 +735,10 @@ for lab, val, nf in [
     ("S&P 500 benchmark CAGR", "=SPX_CAGR", FMT_PCT), ("Nasdaq-100 benchmark CAGR", "=NDX_CAGR", FMT_PCT),
     ("Defense+Semis basket CAGR (fwd)", "=Basket_CAGR", FMT_PCT),
     ("IQT follow-on reserve ($M)", "=Assumptions!B7", FMT_USD0),
+    ("Consumer cohort weights prime / entering / boomer", '=TEXT(\'Consumer Sleeve\'!T5,"0%")&" / "&TEXT(\'Consumer Sleeve\'!T6,"0%")&" / "&TEXT(\'Consumer Sleeve\'!T7,"0%")', None),
+    ("Consumer cohort uplift per point Base / Bull / Bear / Shock", '=TEXT(\'Consumer Sleeve\'!Q5,"0.0%")&" / "&TEXT(\'Consumer Sleeve\'!Q6,"0.0%")&" / "&TEXT(\'Consumer Sleeve\'!Q7,"0.0%")&" / "&TEXT(\'Consumer Sleeve\'!Q8,"0.0%")', None),
+    ("Consumer avg cohort exposure score", "=AVERAGE('Consumer Sleeve'!S12:S20)", "0.0"),
+    ("Weapons avg munitions/FMS exposure score", "=AVERAGE('Weapons Sleeve'!R12:R20)", "0.0"),
 ]:
     FS[f"A{r}"] = lab; body(FS[f"A{r}"])
     FS[f"B{r}"] = val
@@ -750,6 +797,7 @@ checks = [
      '=IF(ABS(B{r})<0.01,"OK","ERROR")', "Roll-up links point at the right sleeve rows", FMT_USD1),
     ("Fact-sheet holdings register sums to holdco size", f"='Fact Sheet Data'!C{REG_TOTAL}-Holdco_Size", '=IF(ABS(B{r})<0.5,"OK","ERROR")', "Every holding is tagged exactly once", FMT_USD1),
     ("Fact-sheet breakdowns each sum to 100%", f"=ABS('Fact Sheet Data'!C{BREAK['Sub-vehicle'][2]}-1)+ABS('Fact Sheet Data'!C{BREAK['Sector'][2]}-1)+ABS('Fact Sheet Data'!C{BREAK['Region'][2]}-1)+ABS('Fact Sheet Data'!C{BREAK['Stage / liquidity'][2]}-1)", '=IF(ABS(B{r})<0.0001,"OK","ERROR")', "No untagged / mistyped sector, region or stage", FMT_PCT),
+    ("Consumer cohort weights sum to 100%", "='Consumer Sleeve'!T8", '=IF(ABS(B{r}-1)<0.0001,"OK","ERROR")', "Consumer Sleeve T5:T7", FMT_PCT),
     ("IC Summary integrity block reports ALL PASS", "='IC Summary'!D80", '=IF(B{r}="ALL PASS","OK","ERROR")', "The pre-existing 8-check block on IC Summary", None),
     ("No formula errors on output tabs",
      f"=SUMPRODUCT(ISERROR('Holdco Summary'!B28:F86)*1)+SUMPRODUCT(ISERROR('Fund Economics'!B6:F49)*1)+SUMPRODUCT(ISERROR('Sleeve Economics'!B6:R{lng0+13})*1)+SUMPRODUCT(ISERROR('Scenario Summary'!B6:F22)*1)+SUMPRODUCT(ISERROR('PME, DPI & Sensitivity'!B13:F69)*1)+SUMPRODUCT(ISERROR('Fact Sheet Data'!B5:N{r})*1)+SUMPRODUCT(ISERROR('IC Summary'!B6:F81)*1)",

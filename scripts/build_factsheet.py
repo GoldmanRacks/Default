@@ -94,6 +94,11 @@ def font_face(family, weight, fn):
     with open(p, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
     return f"@font-face{{font-family:'{family}';font-weight:{weight};font-style:normal;src:url(data:font/ttf;base64,{b64}) format('truetype');}}"
+def img64(fn):
+    with open(os.path.join(FONTS, fn), "rb") as f:
+        return "data:image/png;base64," + base64.b64encode(f.read()).decode()
+LOGO = img64("leviathan_logo.png")
+MARK = img64("leviathan_mark.png")
 FONT_CSS = "\n".join([
     font_face("LF", 400, "LibreFranklin-400.ttf"), font_face("LF", 500, "LibreFranklin-500.ttf"),
     font_face("LF", 600, "LibreFranklin-600.ttf"), font_face("LF", 700, "LibreFranklin-700.ttf"),
@@ -190,7 +195,7 @@ def svrow(name): return sv_by[name]
 saronic = next(h for h in HOLD if h["name"] == "Saronic")
 substrate = next(h for h in HOLD if "Substrate" in h["name"])
 sv_colors = {"Defense": PAL[1], "IQT Semi / AI": PAL[0], "Consumer Discretionary": PAL[2]}
-sleeve_tag = {"Defense": "Physical-layer defense effectors", "IQT Semi / AI": "IQT-mirror deep-tech & semiconductors", "Consumer Discretionary": "DTC, wellness & marketplaces"}
+sleeve_tag = {"Defense": "Physical-layer defense effectors", "IQT Semi / AI": "IQT-mirror deep-tech & semiconductors", "Consumer Discretionary": "DTC, wellness & marketplaces · cohort-weighted TAM"}
 
 # ---- HTML -------------------------------------------------------------------
 CSS = f"""
@@ -263,6 +268,13 @@ table.lastline tr:last-child td {{ border-bottom: 1.2px solid #000; }}
 .dots li:nth-child(2):before {{ background: {PAL[3]}; }}
 .dots li:nth-child(3):before {{ background: {PAL[1]}; }}
 .sq {{ display: inline-block; width: 5px; height: 5px; background: {RUST}; margin: 0 7px 2px 0; }}
+.cover {{ justify-content: center; align-items: center; text-align: center; }}
+.cover img {{ width: 4.2in; }}
+.cover .t1 {{ font-family: 'SS', Georgia, serif; font-weight: 600; font-size: 22pt; margin-top: 30px; line-height: 1.15; }}
+.cover .t2 {{ font-size: 11.5pt; color: #333; margin-top: 8px; }}
+.cover .t3 {{ font-size: 9pt; color: #7a7a7a; letter-spacing: 1.2px; text-transform: uppercase; margin-top: 34px; }}
+.cover .rule2 {{ width: 1.2in; border-top: 3px solid #000; margin: 26px auto 0; }}
+.cover .bottom {{ position: absolute; bottom: 0.5in; left: 0.5in; right: 0.5in; font-size: 7.4pt; color: #555; text-align: left; line-height: 1.35; }}
 .terms td {{ text-align: left; vertical-align: top; }}
 .terms td:first-child {{ font-weight: 700; width: 1.5in; }}
 .terms th {{ text-align: left; }}
@@ -276,7 +288,7 @@ table.lastline tr:last-child td {{ border-bottom: 1.2px solid #000; }}
 def masthead_p1():
     return f"""
 <div class="masthead">
-  <div class="logo">Leviathan</div>
+  <img src="{LOGO}" alt="Leviathan" style="height:0.9in;margin-top:12px">
   <div>
     <div class="disc-top"><b>This is an internal investment-committee planning document.</b> It is a model-based illustration prepared for Leviathan's
     principals and advisers. Figures are modelled outcomes, not realised performance, and do not constitute an offer, a solicitation or investment advice.
@@ -332,7 +344,7 @@ defense supercycle, the In-Q-Tel-mirror semiconductor / AI stack and a consumer-
 <div class="fine">
 <p>Please reference page 4 for the full scenario tables. See “Modelled Returns” on page 6 for how net figures are derived. Sub-vehicle rows are stand-alone waterfalls; the holdco row nets the three sleeves under one preferred return and one carry.</p>
 <p><b>Modelled outcomes are not forecasts and do not predict future returns.</b> All figures are outputs of Leviathan's internal IC model as of {asof}. Six of the nine IQT-sleeve entry marks and most Weapons-sleeve marks are estimates pending primary cap-table access; the TSMC-Shock case is a deliberately low-probability tail. Investment examples are shown for illustration and may not be representative of the vehicle's eventual portfolio.</p>
-<p class="note">Note: Please refer to pages 5–6 for key terms, sourcing and endnotes 1–11. For a more detailed description of the model's wiring, assumptions and caveats, refer to the Read Me, Checks and Change Log tabs of the v3 workbook.</p>
+<p class="note">Note: Please refer to pages 5–6 for key terms, sourcing and endnotes 1–12. For a more detailed description of the model's wiring, assumptions and caveats, refer to the Read Me, Checks and Change Log tabs of the v3 workbook.</p>
 </div>
 {footer(1)}
 </div>"""
@@ -357,7 +369,7 @@ page2 = f"""
 <div class="spacer"></div>
 <div class="fine">
 <p>There can be no assurance that {short} will achieve its objectives, avoid substantial losses or source or execute transactions relating to the above themes. Several positions are access-constrained (employee-owned, closely held, IPO-pending or secondary-only) and the final allocation may differ materially from the modelled book. Diversification does not ensure a profit or protect against losses. Sector, regional and stage classifications are Leviathan's own and are made in its sole discretion.</p>
-<p class="note">Note: Financial data is modelled and unaudited. Please refer to pages 5–6 for key terms and endnotes 1–11. (i) Defense (Weapons sleeve), IQT Semi / AI (IQT-mirror sleeve) and Consumer Discretionary (Consumer / Value sleeve). (ii) {n_hold} named holdings across the three sleeves; checks sum to exactly {usd_m(holdco_size)}. (iii) Base, Bull, Bear and TSMC-Shock, weighted {KV['Scenario weights Base / Bull / Bear / Shock']} to form the Expected case.</p>
+<p class="note">Note: Financial data is modelled and unaudited. Please refer to pages 5–6 for key terms and endnotes 1–12. (i) Defense (Weapons sleeve), IQT Semi / AI (IQT-mirror sleeve) and Consumer Discretionary (Consumer / Value sleeve). (ii) {n_hold} named holdings across the three sleeves; checks sum to exactly {usd_m(holdco_size)}. (iii) Base, Bull, Bear and TSMC-Shock, weighted {KV['Scenario weights Base / Bull / Bear / Shock']} to form the Expected case.</p>
 </div>
 {footer(2)}
 </div>"""
@@ -459,6 +471,7 @@ page5 = f"""
 <tr><td>Hold periods</td><td><span class="sq"></span>{T['Hold periods modelled (yrs)']} years modelled; the {hold_mid}-year vehicle is the recommended underwriting case<br><span class="sq"></span>Follow-on reserve of {usd_m(T['IQT follow-on reserve ($M)'])} within the IQT sleeve, steered pro-rata to Substrate, EUV Tech and EdgeCortix</td></tr>
 <tr><td>Dilution / retention{sup(5)}</td><td><span class="sq"></span>Ownership retained at short / mid / long hold — IQT {T['IQT retention @ short / mid / long']}; Weapons {T['Weapons retention @ short / mid / long']}; Consumer {T['Consumer retention @ short / mid / long']}</td></tr>
 <tr><td>Scenario weights{sup(2)}</td><td><span class="sq"></span>Base / Bull / Bear / TSMC-Shock = {T['Scenario weights Base / Bull / Bear / Shock']}<br><span class="sq"></span>TSMC-Shock CAGRs for the IQT sleeve are derived from a five-axis strategic score (China-race criticality, Taiwan insulation, government embeddedness, CFIUS-clean sovereignty, chokepoint leverage)</td></tr>
+<tr><td>Cohort overlay{sup(12)}</td><td><span class="sq"></span>Consumer-sleeve CAGRs carry a demographic cohort-exposure uplift: TAM scored 0–5 per name across prime-earning (35–54), entering-prime (22–34) and retiring-boomer (60+) cohorts, weighted {T['Consumer cohort weights prime / entering / boomer']}, at {T['Consumer cohort uplift per point Base / Bull / Bear / Shock']} per point (Base / Bull / Bear / Shock); average exposure score {T['Consumer avg cohort exposure score']:.1f}</td></tr>
 <tr><td>Benchmarks</td><td><span class="sq"></span>S&amp;P 500 {pct(T['S&P 500 benchmark CAGR'])}, Nasdaq-100 {pct(T['Nasdaq-100 benchmark CAGR'])}, Defense+Semis thematic basket {pct(T['Defense+Semis basket CAGR (fwd)'])} forward (50/50 ITA/SOXX, tempered from a ~26% trailing five-year blend)</td></tr>
 <tr><td>Reference currency</td><td><span class="sq"></span>USD; all figures in USD millions unless noted</td></tr>
 </table>
@@ -497,6 +510,7 @@ page6 = f"""
 <p><span class="n">(9)</span>Represents {short}'s modelled committed capital of {usd_m(holdco_size)}; all breakdowns are percentages of that total and may not sum to 100% due to rounding.</p>
 <p><span class="n">(10)</span>“Thematic Pillar” is selected from the drivers set out on the model's Macro Overlay tab (NATO 5%-of-GDP pledge, US munitions and autonomy budgets, classified / black-budget growth, China decoupling and CHIPS reshoring). Saronic entry mark: Series D, March 2026, $9.25B post-money; 2025 revenue of approximately $200M. Weapons-sleeve CAGRs are the base assumptions plus an exposure-score uplift (average of munitions-shortage and FMS / export-backlog scores, 0–5) at per-point rates set on the Weapons Sleeve tab.</p>
 <p><span class="n">(11)</span>Top 10 positions are the ten largest modelled checks by committed capital and are listed in descending order of check size.</p>
+<p><span class="n">(12)</span>The cohort overlay mirrors the Weapons-sleeve munitions / FMS overlay. Scores reflect Leviathan's judgment of each name's addressable market across cohorts in or entering their prime earning years while retaining boomer TAM through retirement; they are levers, not facts. The two defense sleeves (IQT Semi / AI and Defense) are deliberately co-exposed to the same driver, US insulation of the semiconductor / AI supply chain and munitions production scale, so roughly {pct(svrow('Defense')[2]+svrow('IQT Semi / AI')[2],0)} of committed capital moves on one macro factor; the Consumer sleeve is the uncorrelated ballast.</p>
 <p><b>Modelled returns.</b> The model compounds a per-name CAGR over a single terminal exit; it does not model interim cash flows, recycling, credit facilities, FX, taxes or organisational expenses. Six of nine IQT-sleeve entry marks and most Weapons-sleeve marks are estimates pending primary cap-table access; two Consumer-sleeve marks (Made In Cookware, Plunge) have no market reference and Goat Group's last priced round is from June 2021. The TSMC-Shock case is a deliberately low-probability tail whose compounded CAGRs produce very large multiples by design; its weight should be kept honest.</p>
 <p><b>Important disclosure.</b> This material is prepared solely for Leviathan's investment committee and professional advisers and must not be reproduced or distributed to any other person. It is not an offer to sell or a solicitation of an offer to buy any security, and nothing herein is investment, legal or tax advice. Alternative investments are speculative, typically carry higher fees, are illiquid, may employ leverage and involve a high degree of risk, including the possible loss of the entire investment. Opinions expressed are those of Leviathan as of the date hereof and are subject to change without notice. Visual design of this document follows a conventional institutional fact-card layout; it is not affiliated with, endorsed by or derived from any third-party manager's materials.</p>
 </div>
@@ -504,9 +518,18 @@ page6 = f"""
 {footer(6)}
 </div>"""
 
+cover = f"""
+<div class="page cover">
+  <img src="{LOGO}" alt="Leviathan">
+  <div class="rule2"></div>
+  <div class="t1">{fund_name}<br>(“{short}”)</div>
+  <div class="t2">Fact Sheet &nbsp;·&nbsp; {edition} Update</div>
+  <div class="t3">Internal investment-committee planning document &nbsp;·&nbsp; Highly confidential &amp; trade secret</div>
+  <div class="bottom">Figures as of {asof}, from the Leviathan Core PE Holdco model (v3). Modelled outcomes are not forecasts and do not predict future returns. Not an offer, a solicitation or investment advice. Not for distribution to clients or the general public.</div>
+</div>"""
 html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>{short} Fact Sheet — {edition}</title><style>{CSS}</style></head>
-<body>{page1}{page2}{page3}{page4}{page5}{page6}</body></html>"""
+<body>{cover}{page1}{page2}{page3}{page4}{page5}{page6}</body></html>"""
 
 html_path = os.path.join(OUT, f"Leviathan_{short}_Fact_Sheet_{edition.replace(' ', '')}.html")
 pdf_path = html_path[:-5] + ".pdf"
