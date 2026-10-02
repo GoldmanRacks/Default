@@ -635,7 +635,7 @@ r += 1
 # D. Holdings register + breakdowns
 section(FS, f"A{r}", "D | HOLDINGS REGISTER & BREAKDOWNS (tags in blue are fact-sheet classifications)", True)
 r += 1
-REG_HDR = ["Holding", "Sub-vehicle", "Check ($M)", "% of Holdco", "Entry post ($M)", "Own %", "Base CAGR", "Sector", "Region", "Stage / liquidity", "Rank by check", "Description (fact sheet)"]
+REG_HDR = ["Holding", "Sub-vehicle", "Check ($M)", "% of Holdco", "Entry post ($M)", "Own %", "Base CAGR (as modelled, incl. overlays)", "Sector", "Region", "Stage / liquidity", "Rank by check", "Description (fact sheet)"]
 header_row(FS, r, REG_HDR, 1)
 r += 1
 REG0 = r
@@ -671,7 +671,7 @@ HOLDINGS = [
 ]
 for sheet, srow, subv, sector, region, stage, desc in HOLDINGS:
     q = f"'{sheet}'" if " " in sheet else sheet
-    cols = {"Assumptions": ("A", "C", "B", "D", "F"), "Weapons Sleeve": ("A", "C", "B", "D", "F"), "Consumer Sleeve": ("A", "C", "B", "D", "F")}[sheet]
+    cols = {"Assumptions": ("A", "C", "B", "D", "F"), "Weapons Sleeve": ("A", "C", "B", "D", "S"), "Consumer Sleeve": ("A", "C", "B", "D", "T")}[sheet]
     FS[f"A{r}"] = f"={q}!{cols[0]}{srow}"; link_cell(FS[f"A{r}"]); FS[f"A{r}"].alignment = Alignment(horizontal="left")
     FS[f"B{r}"] = subv; input_cell(FS[f"B{r}"]); FS[f"B{r}"].alignment = Alignment(horizontal="left")
     FS[f"C{r}"] = f"={q}!{cols[1]}{srow}"; link_cell(FS[f"C{r}"], FMT_USD1)
@@ -739,6 +739,7 @@ for lab, val, nf in [
     ("Consumer cohort uplift per point Base / Bull / Bear / Shock", '=TEXT(\'Consumer Sleeve\'!Q5,"0.0%")&" / "&TEXT(\'Consumer Sleeve\'!Q6,"0.0%")&" / "&TEXT(\'Consumer Sleeve\'!Q7,"0.0%")&" / "&TEXT(\'Consumer Sleeve\'!Q8,"0.0%")', None),
     ("Consumer avg cohort exposure score", "=AVERAGE('Consumer Sleeve'!S12:S20)", "0.0"),
     ("Weapons avg munitions/FMS exposure score", "=AVERAGE('Weapons Sleeve'!R12:R20)", "0.0"),
+    ("Weapons munitions/FMS uplift per point Base / Bull / Bear / Shock", '=TEXT(\'Weapons Sleeve\'!Q5,"0.0%")&" / "&TEXT(\'Weapons Sleeve\'!Q6,"0.0%")&" / "&TEXT(\'Weapons Sleeve\'!Q7,"0.0%")&" / "&TEXT(\'Weapons Sleeve\'!Q8,"0.0%")', None),
 ]:
     FS[f"A{r}"] = lab; body(FS[f"A{r}"])
     FS[f"B{r}"] = val
