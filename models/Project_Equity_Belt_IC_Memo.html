@@ -72,6 +72,10 @@ table.gantt th:first-child{width:14%}
 table.gantt td{padding:7px 8px;border-bottom:1px solid var(--rule);border-right:2px solid #FFF;vertical-align:top;line-height:1.35}
 table.gantt tbody tr:last-child td{border-bottom:1px solid var(--ink)}
 .g1{background:var(--d1t)}.g2{background:var(--d2t)}.g3{background:var(--d3t)}.g4{background:var(--d4t)}.g5{background:#D2E592}.g6{background:var(--d6)}
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px 18px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:10px 0}
+.team div{display:flex;flex-direction:column;gap:2px}
+.team .nm{font-size:13px;font-weight:500}
+.team .ti{font-size:11px;color:var(--graphite)}
 .ask{border:1px solid var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
 .ask .tag{color:var(--ink)}
 .tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
@@ -83,7 +87,7 @@ table.gantt tbody tr:last-child td{border-bottom:1px solid var(--ink)}
 .docid{font-family:var(--legal);font-size:9pt;letter-spacing:.02em}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline}
 @page{size:Letter;margin:0.8in 0.55in 0.75in}
-@media print{html,body{background:#fff}.page{padding:0;max-width:none}.sheet{padding:0;gap:22px}.pb{break-before:page}.mast-top,header .hr{display:none}.ask,.card,tr,.bar,.kf{break-inside:avoid}h2,h3{break-after:avoid}.kf{grid-template-columns:repeat(5,1fr)}.kf .v{font-size:24px}.three{grid-template-columns:repeat(3,1fr);gap:18px}.two{gap:22px}.tw{overflow:visible}table{font-size:10.5px}table.gantt{font-size:9.5px;min-width:0}table.gantt th span{font-size:9px}table.hd th{white-space:normal;padding:6px}table.hd td{padding:6px}td.r{white-space:nowrap}p,ul{font-size:12px}.card p{font-size:11.5px}.lead{font-size:15px}section{gap:12px}.pol{gap:10px}.pol .three{gap:12px 16px}.pol .card{gap:5px;padding-top:8px}.pol .card p{font-size:10.5px;line-height:1.42}.pol table.hd td,.pol table.hd th{padding:4px 6px}.pol .ask{padding:10px 14px;gap:6px}.pol .ask p{font-size:10.5px}}
+@media print{html,body{background:#fff}.page{padding:0;max-width:none}.sheet{padding:0;gap:22px}.pb{break-before:page}.mast-top,header .hr{display:none}.ask,.card,tr,.bar,.kf{break-inside:avoid}h2,h3{break-after:avoid}.kf{grid-template-columns:repeat(5,1fr)}.kf .v{font-size:24px}.three{grid-template-columns:repeat(3,1fr);gap:18px}.two{gap:22px}.tw{overflow:visible}table{font-size:10.5px}table.gantt{font-size:9.5px;min-width:0}table.gantt th span{font-size:9px}table.hd th{white-space:normal;padding:6px}table.hd td{padding:6px}td.r{white-space:nowrap}p,ul{font-size:12px}.card p{font-size:11.5px}.lead{font-size:15px}section{gap:12px}.team{grid-template-columns:repeat(4,1fr)}.pol{gap:10px}.pol .three{gap:12px 16px}.pol .card{gap:5px;padding-top:8px}.pol .card p{font-size:10.5px;line-height:1.42}.pol table.hd td,.pol table.hd th{padding:4px 6px}.pol .ask{padding:10px 14px;gap:6px}.pol .ask p{font-size:10.5px}}
 </style>
 </head>
 <body>
@@ -95,6 +99,12 @@ table.gantt tbody tr:last-child td{border-bottom:1px solid var(--ink)}
   <div class="eyebrow">October 5, 2026 · Investment Committee · Draft for Discussion</div>
   <h1>Project Equity Belt<br>Midwest Specialized Logistics Platform</h1>
   <p class="lead">A <b>$206M</b> distressed-for-control roll-up of Dayton–Springfield, Ohio heavy-haul and construction-logistics carriers. Every employee owns equity. The platform is anchored by dedicated freight to Arsenal-1 and Blackstone's QTS data center network. <b>Tactical Opportunities</b> leads the operating company; <b>Blackstone Infrastructure Partners</b> owns the fleet and terminal property company.</p>
+  <div class="team">
+    <div><span class="nm">Christopher James</span><span class="ti">Global Head</span></div>
+    <div><span class="nm">John Watson</span><span class="ti">Senior Managing Director</span></div>
+    <div><span class="nm">Joseph Cassanelli</span><span class="ti">Legal &amp; Compliance</span></div>
+    <div><span class="nm">Donald B Ritts III</span><span class="ti">Senior Associate</span></div>
+  </div>
 </header>
 
 <section>
