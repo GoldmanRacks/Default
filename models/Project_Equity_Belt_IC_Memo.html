@@ -64,6 +64,14 @@ li{margin:2px 0}
 .bar{display:grid;grid-template-columns:minmax(120px,210px) minmax(0,1fr) 56px;gap:10px;align-items:center}
 .track{height:14px;background:var(--fill);position:relative}
 .track span{position:absolute;top:0;height:100%}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+table.gantt{font-size:12px;table-layout:fixed;min-width:760px}
+table.gantt th{background:var(--d1);color:#FFF;font-weight:500;padding:8px;text-align:left;vertical-align:bottom}
+table.gantt th span{font-weight:300;font-size:11px}
+table.gantt th:first-child{width:14%}
+table.gantt td{padding:7px 8px;border-bottom:1px solid var(--rule);border-right:2px solid #FFF;vertical-align:top;line-height:1.35}
+table.gantt tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+.g1{background:var(--d1t)}.g2{background:var(--d2t)}.g3{background:var(--d3t)}.g4{background:var(--d4t)}.g5{background:#D2E592}.g6{background:var(--d6)}
 .ask{border:1px solid var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
 .ask .tag{color:var(--ink)}
 .tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
@@ -74,8 +82,8 @@ li{margin:2px 0}
 .notes{font-size:11px;line-height:1.5;display:flex;flex-direction:column;gap:3px}
 .docid{font-family:var(--legal);font-size:9pt;letter-spacing:.02em}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline}
-@page{size:Letter;margin:0.55in 0.5in}
-@media print{html,body{background:#fff}.page{padding:0;max-width:none}.sheet{padding:0;gap:26px}.ask,.card,tr,.bar,.tl div,.kf{break-inside:avoid}h2,h3{break-after:avoid}.kf{grid-template-columns:repeat(5,1fr)}.kf .v{font-size:24px}.tw{overflow:visible}table{font-size:10.5px}table.hd th{white-space:normal;padding:6px 6px}table.hd td{padding:6px 6px}td.r{white-space:nowrap}p,ul{font-size:12.5px}.lead{font-size:15px}}
+@page{size:Letter;margin:0.8in 0.55in 0.75in}
+@media print{html,body{background:#fff}.page{padding:0;max-width:none}.sheet{padding:0;gap:22px}.pb{break-before:page}.mast-top,header .hr{display:none}.ask,.card,tr,.bar,.kf{break-inside:avoid}h2,h3{break-after:avoid}.kf{grid-template-columns:repeat(5,1fr)}.kf .v{font-size:24px}.three{grid-template-columns:repeat(3,1fr);gap:18px}.two{gap:22px}.tw{overflow:visible}table{font-size:10.5px}table.gantt{font-size:9.5px;min-width:0}table.gantt th span{font-size:9px}table.hd th{white-space:normal;padding:6px}table.hd td{padding:6px}td.r{white-space:nowrap}p,ul{font-size:12px}.card p{font-size:11.5px}.lead{font-size:15px}section{gap:12px}.pol{gap:10px}.pol .three{gap:12px 16px}.pol .card{gap:5px;padding-top:8px}.pol .card p{font-size:10.5px;line-height:1.42}.pol table.hd td,.pol table.hd th{padding:4px 6px}.pol .ask{padding:10px 14px;gap:6px}.pol .ask p{font-size:10.5px}}
 </style>
 </head>
 <body>
@@ -106,14 +114,14 @@ li{margin:2px 0}
 
 <section>
   <h2><span class="n">I</span>Situation</h2>
-  <div class="two">
+  <div class="three">
     <div class="card"><span class="tag">Labor dislocation</span><p>Nearly <b>1,400 workers</b> were laid off at the Navistar truck plant in Springfield, OH, enough to erase a year of job growth in greater Dayton. The plant transferred to Roshel on Oct 2, and rehiring is uncertain.<sup>(1)</sup> That leaves a trained pool of assembly workers, technicians and drivers available within 25 miles.</p></div>
     <div class="card"><span class="tag">Carrier distress</span><p>At least <b>16 U.S. carriers</b> filed for bankruptcy from late August through September as diesel reached a record <b>$6.37/gal</b>. Eight were midsize-or-larger Chapter 11s; the rest were mostly 1–6 truck Chapter 7 liquidations.<sup>(2)</sup> Ohio filings in 2026 include Platinum Express (Chapter 11, May) and TJ Trucking (Chapter 11, July).<sup>(9)</sup></p></div>
     <div class="card"><span class="tag">Demand anchors</span><p><b>Arsenal-1</b> (Anduril, Pickaway County) is producing from Building 1. Building 2 (more than 924k sq ft) is under construction, and the site has a phased buildout to 2035 with 4,008 jobs.<sup>(3)</sup> The Central Ohio data center corridor needs oversize freight: transformers, switchgear and modular electrical rooms. QTS is co-owned by BIP and BREIT.<sup>(4)</sup></p></div>
   </div>
 </section>
 
-<section>
+<section class="pb">
   <h2><span class="n">II</span>Investment thesis</h2>
   <ul>
     <li><b>Buy below replacement cost at a late-cycle low.</b> A Dalio-style late-cycle energy shock is forcing leveraged small operators to sell. Bankruptcy routes acquire carriers at 2.5–3.5x normalized EBITDA and fleets at 50–65% of replacement cost.</li>
@@ -147,7 +155,7 @@ li{margin:2px 0}
   </div>
 </section>
 
-<section>
+<section class="pb">
   <h2><span class="n">IV</span>Sources &amp; uses<sup>(8)</sup></h2>
   <div class="two">
     <div class="tw"><table class="ln">
@@ -200,7 +208,7 @@ li{margin:2px 0}
   <p style="font-size:12px;color:var(--graphite)">Retention: about 1,500 drivers; turnover falling from 60% to 20% means 600 fewer replacement hires at about $12k each to recruit, onboard and cover lost utilization.</p>
 </section>
 
-<section>
+<section class="pb">
   <h2><span class="n">VII</span>Returns<sup>(8)</sup></h2>
   <h3>OpCo: Exit A, sale to a strategic or sponsor, 4-year hold</h3>
   <div class="tw"><table class="hd">
@@ -243,18 +251,60 @@ li{margin:2px 0}
     </tbody></table></div>
 </section>
 
-<section>
-  <h2><span class="n">IX</span>Execution plan: October 5 – November 3</h2>
-  <div class="tl">
-    <div><span class="w">Week 1 · Deploy</span><ul><li>Deal team on site in Dayton / Springfield</li><li>Screen court filings (PACER) for OH, IN, KY and MI carriers; contact trustees</li><li>Coordinate with Ohio Rapid Response on the Navistar workforce</li><li>Sign an Ownership Works partnership</li></ul></div>
-    <div><span class="w">Week 2 · Capital</span><ul><li>Send rescue (DIP) term sheets to 2–3 carriers</li><li>Bid at Chapter 7 fleet auctions (BIP)</li><li>Place the diesel hedge</li><li>Begin outreach to retiring owners (route E)</li></ul></div>
-    <div><span class="w">Week 3 · People</span><ul><li>Open the Springfield hiring center</li><li>Start the first CDL cohort (WIOA / TechCred funding)</li><li>Hold the first open-book session</li><li>File the stalking-horse purchase agreement</li></ul></div>
-    <div><span class="w">Week 4 · Announce</span><ul><li>"$200M+ committed; every driver and technician an owner"</li><li>Arsenal-1 contractor and QTS LOIs in hand</li><li>Publish the payout target</li><li>Site visit for EEIA sponsors</li></ul></div>
+<section class="pb pol">
+  <h2><span class="n">IX</span>Political necessity: why before November 3</h2>
+  <p>The Springfield layoffs were announced days before a presidential rally in the area. That put a blue-collar job loss at the center of the last month of the midterm campaign.<sup>(1)(10)</sup> The internal research paper behind this deal argues that broad-based employee ownership is the policy answer both parties are now competing to own.<sup>(5)</sup> For Blackstone, announcing before November 3 turns a cyclical distressed trade into the reference case for that debate.</p>
+  <div class="three">
+    <div class="card"><span class="tag">1 · The window closes on Nov 3</span><p>Public attention on the layoffs and the bankruptcy wave peaks before Election Day. After it, the story moves on and the 120th Congress sets its agenda in January 2027. A live Ohio platform with employee-owners on payroll gives that agenda a ready-made proof point.</p></div>
+    <div class="card"><span class="tag">2 · Both parties want the same voter</span><p>Non-college, working-class voters decide Rust Belt races. The paper describes a "policy vacuum": loyalty that is cultural but not yet economic. Employee ownership is one of the few positions with cross-party support: 72% of Republicans and 74% of Democrats prefer to work for an employee-owned company.<sup>(5)</sup></p></div>
+    <div class="card"><span class="tag">3 · Reversing the "vulture capital" story</span><p>Private equity is usually cast as the cause of plant closures and layoffs. This deal reverses that: Blackstone capital arrives after the layoffs and makes drivers and technicians owners. Following the C.H.I. template, it becomes "PE that turns workers into owners," which reduces political and regulatory pressure on the asset class.<sup>(5)(6)</sup></p></div>
+    <div class="card"><span class="tag">4 · Dalio's internal-conflict risk</span><p>A record wealth gap plus a downturn (the diesel shock and freight recession) is Dalio's setup for rising populism. Capital that visibly shares the gains with workers is a hedge for the franchise: it shows market mechanisms closing the gap without redistribution.<sup>(5)</sup></p></div>
+    <div class="card"><span class="tag">5 · Legislative leverage</span><p>The EEIA (Rubio / Moore / Van Hollen) and the Empowering Small-Business Ownership Act (Mills) are pending. A working Ohio case before the new Congress improves their odds. Passage would cut the cost of the ESOP exit (Exit B) and of buying from retiring owners (route E), and open Defense Department contracting.<sup>(5)(7)</sup></p></div>
+    <div class="card"><span class="tag">6 · Workforce timing</span><p>Roshel's ramp-up at the former Navistar plant will rehire some of the laid-off workforce. Hiring and training offers made in October capture the best technicians and drivers first. After the election, that pool shrinks.<sup>(1)</sup></p></div>
   </div>
+  <div class="tw"><table class="hd">
+    <thead><tr><th>Stakeholder</th><th>Engagement before Nov 3</th><th>Objective</th></tr></thead>
+    <tbody>
+      <tr><td class="b">Federal</td><td>Site visit for EEIA and ESBOA sponsors; briefing for the Ohio congressional delegation (both parties)</td><td>Bipartisan ownership of the proof point</td></tr>
+      <tr><td class="b">State</td><td>Governor's office, JobsOhio, ODJFS Rapid Response</td><td>Co-announcement; WIOA / TechCred training funds</td></tr>
+      <tr><td class="b">Local</td><td>Springfield, Clark County and Dayton officials; regional workforce board</td><td>Hiring center site; local hiring commitments</td></tr>
+      <tr><td class="b">Workforce</td><td>Former Navistar employees; Roshel</td><td>First-wave hires; agree not to compete for the same workers</td></tr>
+      <tr><td class="b">Ownership ecosystem</td><td>Ownership Works, NCEO</td><td>Third-party validation of the program design</td></tr>
+    </tbody></table></div>
+  <div class="ask"><span class="tag">Guardrails</span><p>Nonpartisan posture: officials of both parties are invited to every event. No campaign events, endorsements or political contributions are tied to the transaction. Employee contributions remain subject to SEC pay-to-play rules (Rule 206(4)-5) given public pension LP relationships. All communications are cleared by Legal &amp; Compliance and Blackstone Public Affairs.</p></div>
 </section>
 
-<section>
-  <h2><span class="n">X</span>Key risks &amp; mitigants</h2>
+<section class="pb">
+  <h2><span class="n">X</span>Execution timeline</h2>
+  <p class="sub" style="margin-top:-6px">Phase 1 runs from committee approval to Election Day; Phase 2 runs from Q1 2027.</p>
+  <div class="tw"><table class="gantt">
+    <thead><tr><th>Workstream</th><th>Wk 1<br><span>Oct 5–11</span></th><th>Wk 2<br><span>Oct 12–18</span></th><th>Wk 3<br><span>Oct 19–25</span></th><th>Wk 4<br><span>Oct 26–Nov 3</span></th><th>Phase 2<br><span>Nov 2026–Q2 2027</span></th></tr></thead>
+    <tbody>
+      <tr><td class="b">Governance</td><td class="g1">IC Phase 1 approval ($48M); Tac Opps / BIP allocation memo</td><td class="g1">Inter-fund agreement drafted</td><td></td><td class="g1">Conflicts committee: master lease terms</td><td class="g1">Phase 2 IC ($158M), Q1 2027</td></tr>
+      <tr><td class="b">Capital · Tac Opps</td><td class="g2">Court-filing (PACER) screen OH / IN / KY / MI; trustee calls</td><td class="g2">DIP term sheets to 2–3 carriers</td><td class="g2">Interim DIP orders; stalking-horse purchase agreement filed</td><td class="g2">First DIP funding; route E LOIs</td><td class="g2">363 sales close (30–60 days); platform signing and close</td></tr>
+      <tr><td class="b">Capital · BIP</td><td class="g3">PropCo formed; lender outreach</td><td class="g3">Chapter 7 auction bids; diesel hedge placed</td><td class="g3">First fleet and yard purchases close</td><td class="g3">$20M Chapter 7 deployed</td><td class="g3">Platform sale-leaseback; asset-backed debt facility</td></tr>
+      <tr><td class="b">People &amp; ownership</td><td class="g4">Ohio Rapid Response; Ownership Works partnership</td><td class="g4">Hiring center lease (Springfield)</td><td class="g4">Hiring center opens; CDL cohort 1; first open-book session</td><td class="g4">First equity grants issued</td><td class="g4">Driver councils at every terminal; cohorts 2–4</td></tr>
+      <tr><td class="b">Commercial</td><td class="g5">Outreach to Arsenal-1 GC and QTS</td><td class="g5">Roshel meeting</td><td class="g5">Dedicated-capacity terms</td><td class="g5">Arsenal-1 GC and QTS LOIs signed</td><td class="g5">Multi-year dedicated contracts executed</td></tr>
+      <tr><td class="b">Public affairs</td><td class="g6">Stakeholder map; Legal &amp; Compliance review</td><td class="g6">Briefings: state, local, delegation</td><td class="g6">Site-visit invitations</td><td class="g6">Announcement and site visit (target Oct 29)</td><td class="g6">Ongoing reporting: hires, grants, turnover</td></tr>
+    </tbody></table></div>
+  <h3>Key dates</h3>
+  <div class="tw"><table class="ln">
+    <thead><tr><th>Date</th><th>Milestone</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td class="b">Oct 7</td><td>IC Phase 1 approval</td><td>Tac Opps / BIP</td></tr>
+      <tr><td class="b">Oct 14</td><td>DIP term sheets out; Chapter 7 bids submitted</td><td>Tac Opps / BIP</td></tr>
+      <tr><td class="b">Oct 16</td><td>Diesel hedge placed (50–70% of 12-month volume)</td><td>BIP / Treasury</td></tr>
+      <tr><td class="b">Oct 21</td><td>Springfield hiring center opens; CDL cohort 1 starts</td><td>OpCo / Ownership Works</td></tr>
+      <tr><td class="b">Oct 23</td><td>Stalking-horse purchase agreement filed; interim DIP orders</td><td>Tac Opps</td></tr>
+      <tr><td class="b">Oct 27</td><td>First employee equity grants issued</td><td>OpCo</td></tr>
+      <tr><td class="b">Oct 29</td><td>Public announcement and site visit</td><td>Public Affairs</td></tr>
+      <tr><td class="b">Nov 3</td><td>Election Day</td><td>—</td></tr>
+      <tr><td class="b">Q1 2027</td><td>Phase 2 IC; platform close; 363 closings</td><td>Tac Opps / BIP</td></tr>
+    </tbody></table></div>
+</section>
+
+<section class="pb">
+  <h2><span class="n">XI</span>Key risks &amp; mitigants</h2>
   <div class="tw"><table class="hd">
     <thead><tr><th>Risk</th><th>Exposure</th><th>Mitigant</th></tr></thead>
     <tbody>
@@ -267,7 +317,7 @@ li{margin:2px 0}
 </section>
 
 <section>
-  <h2><span class="n">XI</span>Cross-fund governance</h2>
+  <h2><span class="n">XII</span>Cross-fund governance</h2>
   <ul>
     <li>The OpCo–PropCo master lease is priced at arm's length and benchmarked against third-party sale-leaseback quotes. It is reviewed by the conflicts committee before Phase 2.</li>
     <li>QTS contracts with the platform on market terms, with no preferential pricing between BIP-owned entities.</li>
@@ -287,6 +337,7 @@ li{margin:2px 0}
     <span>(7) <a href="https://www.nceo.org/employee-ownership-blog/employee-equity-investment-act-introduced-both-houses-bipartisan-support">NCEO, Employee Equity Investment Act (H.R. 3383 / S. 1618)</a>. Pending legislation; not in base case.</span>
     <span>(8) Deal team model. Illustrative assumptions: about 1,500 employees, $65k average salary, 4-year hold, gross returns before fees and carry.</span>
     <span>(9) <a href="https://www.thestreet.com/retail/mast-newkirk-bee-g-file-chapter-11-bankruptcy">TheStreet</a>; <a href="https://www.indexbox.io/blog/trucking-bankruptcy-wave-continues-in-may-2026-as-carriers-face-weak-demand/">IndexBox</a>.</span>
+    <span>(10) <a href="https://www.newsweek.com/trump-at-ohio-rally-layoffs-12521219">Newsweek, "Trump rallies near Ohio truck factory where 1,400 workers lost jobs"</a>, Oct 2026.</span>
   </div>
   <div class="disc">FOR INVESTMENT COMMITTEE DISCUSSION ONLY. DRAFT. FINANCIAL DATA ARE ESTIMATED, UNAUDITED AND ILLUSTRATIVE. NOT FOR DISTRIBUTION.</div>
   <div class="foot"><p style="font-size:11px"><b>Note:</b> Figures are model outputs from deal team assumptions (8); the full Excel model follows.</p><span class="docid">BX-TACOPPS-BIP-EQBELT-IC-20261005</span></div>
