@@ -52,9 +52,9 @@ def quote(tk,K,exp,cp=1):
         if k==K: return b,a,oi
     raise KeyError((tk,K,exp,cp))
 
-def make_leg(tk,K,tranche,n_=1,cp=1,sleeve="",why="",entry_override=None):
+def make_leg(tk,K,tranche,n_=1,cp=1,sleeve="",why="",entry_override=None,qdate=None):
     t=TR[tranche]; b,a,oi=quote(tk,K,t["exp"],cp); mid=(a+b)/2; S=spot[tk]
-    T_today=days(TODAY,t["exp"])/365; iv=implied(S,K,T_today,mid,cp)
+    T_today=days(qdate or TODAY,t["exp"])/365; iv=implied(S,K,T_today,mid,cp)
     entry=entry_override or t["entry"]; Te=days(entry,t["exp"])/365; Tx=days(t["exit"],t["exp"])/365; hold=days(entry,t["exit"])
     px=bs(S,K,Te,iv,cp); d,g,v,th=greeks(S,K,Te,iv,cp); sig=iv*sqrt(hold/365)
     moves={"Flat":(0.0,0.0),"Base":(sig,0.0),"Bull":(2*sig,0.0),"Gamma":(3*sig,0.0),"Shock":(-2*sig,0.10)}
@@ -80,16 +80,17 @@ PRIMARY=[
 ]
 MU_VARIANT=[PRIMARY[0],PRIMARY[1],PRIMARY[2],PRIMARY[3],PRIMARY[5],("MU",1350,"T3",1,1,"Memory / AI compute","Single MU anchor, single-name cap waived; bought after FOMC and the midterms, three weeks before the December print")]
 
-def build(spec, front=False):
+def build(spec, front=False, book=BOOK):
     legs=[]
-    for tk,K,tr,nn,cp,sl,why in spec:
-        legs.append(make_leg(tk,K,tr,nn,cp,sl,why, entry_override=(TR["T1"]["entry"] if front else None)))
+    for sp in spec:
+        tk,K,tr,nn,cp,sl,why=sp[:7]; qd=sp[7] if len(sp)>7 else None
+        legs.append(make_leg(tk,K,tr,nn,cp,sl,why, entry_override=(TR["T1"]["entry"] if front else None), qdate=qd))
     dep=sum(l["cost"]*l["n"] for l in legs)
-    out=dict(legs=legs,deployed=dep,cash=BOOK-dep,scen={},stand={})
+    out=dict(legs=legs,deployed=dep,cash=book-dep,book=book,scen={},stand={})
     for c in CASES:
-        p=sum(l["pnl"][c]*l["n"] for l in legs); out["scen"][c]=dict(pnl=p,end=BOOK+p,ret=p/BOOK)
+        p=sum(l["pnl"][c]*l["n"] for l in legs); out["scen"][c]=dict(pnl=p,end=book+p,ret=p/book)
     for c in ["Flat","Base","Bull","Gamma"]:
-        p=sum(l["spnl"][c]*l["n"] for l in legs); out["stand"][c]=dict(pnl=p,ret=p/BOOK)
+        p=sum(l["spnl"][c]*l["n"] for l in legs); out["stand"][c]=dict(pnl=p,ret=p/book)
     # sleeves
     sl={}
     for l in legs: sl[l["sleeve"]]=sl.get(l["sleeve"],0)+l["cost"]*l["n"]
@@ -101,20 +102,20 @@ def build(spec, front=False):
         held=[l for l in legs if date.fromisoformat(l["entry"])<=d<=date.fromisoformat(l["exit"])]
         prem=sum(l["cost"]*l["n"] for l in held)
         th=sum(greeks(l["spot"],l["K"],max(days(d,date.fromisoformat(l["exp"])),1)/365,l["iv"],1 if l["cp"]=="C" else -1)[3]*100*l["n"] for l in held)
-        sched.append(dict(label=lab,date=d.isoformat(),premium=prem,pct=prem/BOOK,theta=th,n=len(held)))
+        sched.append(dict(label=lab,date=d.isoformat(),premium=prem,pct=prem/book,theta=th,n=len(held)))
     out["schedule"]=sched
     # flat re-rate at the two exit marks
     rr={}
     for lab,d in [("Nov 16",date(2026,11,16)),("Nov 25",date(2026,11,25))]:
         held=[l for l in legs if date.fromisoformat(l["exit"])>=d]
         def bv(dv): return sum(bs(l["spot"],l["K"],max(days(d,date.fromisoformat(l["exp"])),0)/365,l["iv"]+dv,1 if l["cp"]=="C" else -1)*100*l["n"] for l in held)
-        depd=sum(l["cost"]*l["n"] for l in held); row=dict(flat_ret=(bv(0)-depd)/BOOK, held=len(held), deployed=depd)
+        depd=sum(l["cost"]*l["n"] for l in held); row=dict(flat_ret=(bv(0)-depd)/book, held=len(held), deployed=depd)
         for tgt in (0.05,0.10):
             lo,hi=0.0,3.0
-            if (bv(hi)-depd)/BOOK<tgt: row[f"dvol_{int(tgt*100)}"]=None; continue
+            if (bv(hi)-depd)/book<tgt: row[f"dvol_{int(tgt*100)}"]=None; continue
             for _ in range(60):
                 m=(lo+hi)/2
-                if (bv(m)-depd)/BOOK<tgt: lo=m
+                if (bv(m)-depd)/book<tgt: lo=m
                 else: hi=m
             row[f"dvol_{int(tgt*100)}"]=(lo+hi)/2
         rr[lab]=row
