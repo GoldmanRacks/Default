@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Equity Belt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#000;--paper:#FFF;--graphite:#727272;--rule:#BFBFBF;--fill:#E4E4E4;--band:#F2F2F2;--ground:#F4F4F2;--rust:#A95228;
+  --d1:#1B5E5C;--d1t:#8DAEAD;--d2:#4C9F8B;--d2t:#A5CFC5;--d3:#006492;--d3t:#80B1C8;--d4:#C39D78;--d4t:#E0CEBB;--d5:#A5CD24;--d6:#CACED7;
+  --serif:'Source Serif 4',Georgia,serif;--sans:'Public Sans',Helvetica,Arial,sans-serif;--legal:'Times New Roman',Georgia,serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+a{color:var(--d3);text-decoration:none}
+a:hover{text-decoration:underline}
+b,strong{font-weight:500}
+sup{font-size:9px;font-weight:500;line-height:0}
+.page{max-width:1000px;margin:0 auto;padding:40px 16px 80px}
+.sheet{background:var(--paper);padding:40px clamp(16px,5vw,56px);display:flex;flex-direction:column;gap:44px}
+.mast-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.mast-top .firm{font-weight:500}
+.hr{height:1px;background:var(--ink)}
+.eyebrow{font-size:10pt;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+h1{margin:0;font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,44px);line-height:1.08;letter-spacing:-.01em}
+h2{margin:0;font-family:var(--serif);font-weight:600;font-size:22px;display:flex;gap:14px;align-items:baseline}
+h2 .n{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--graphite);min-width:22px}
+h3{margin:0;font-family:var(--serif);font-weight:600;font-size:16px}
+.lead{margin:0;font-size:17px;line-height:1.5;max-width:780px}
+p{margin:0;font-size:14px;line-height:1.55}
+section{display:flex;flex-direction:column;gap:16px}
+.sub{font-size:12px;color:var(--ink);margin-top:-10px}
+.kf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
+.kf div{display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--d1);padding-top:10px}
+.kf .v{font-family:var(--serif);font-weight:600;font-size:30px;line-height:1}
+.kf .l{font-size:12px;line-height:1.35;font-weight:400}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+table.hd thead tr{background:var(--d1);color:#FFF}
+table.hd th{font-weight:500;padding:8px 10px;text-align:left;white-space:nowrap}
+table.hd td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+table.hd tbody tr:nth-child(even){background:var(--band)}
+table.hd tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+table.ln th{font-weight:500;padding:6px 8px 6px 0;text-align:left;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+table.ln td{padding:6px 8px 6px 0;border-bottom:1px solid var(--fill);vertical-align:top}
+table.ln tbody tr:last-child td{border-bottom:1px solid var(--ink)}
+.r{text-align:right !important}
+.b{font-weight:500}
+tr.tot td{font-weight:500;border-top:1px solid var(--ink)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px}
+.card{border-top:3px solid var(--d1);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.card.alt{border-top-color:var(--d3)}
+.tag{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+ul{margin:0;padding-left:18px;font-size:14px;line-height:1.55}
+li{margin:2px 0}
+.stack{display:flex;height:22px;gap:2px}
+.legend{display:flex;flex-direction:column;font-size:13px}
+.legend div{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:10px;align-items:center;padding:5px 0;border-bottom:1px solid var(--fill)}
+.legend div:last-child{border-bottom:0}
+.sw{width:10px;height:10px;display:inline-block}
+.bars{display:flex;flex-direction:column;gap:9px;font-size:13px}
+.bar{display:grid;grid-template-columns:minmax(120px,210px) minmax(0,1fr) 56px;gap:10px;align-items:center}
+.track{height:14px;background:var(--fill);position:relative}
+.track span{position:absolute;top:0;height:100%}
+.ask{border:1px solid var(--ink);padding:18px 20px;display:flex;flex-direction:column;gap:10px}
+.ask .tag{color:var(--ink)}
+.tl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.tl div{border-top:2px solid var(--d2);padding-top:10px;display:flex;flex-direction:column;gap:6px}
+.tl .w{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.tl ul{font-size:13px}
+.disc{border:1px solid var(--ink);padding:10px 12px;font-size:10px;font-weight:500;line-height:1.45;letter-spacing:.01em}
+.notes{font-size:11px;line-height:1.5;display:flex;flex-direction:column;gap:3px}
+.docid{font-family:var(--legal);font-size:9pt;letter-spacing:.02em}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:baseline}
+@media print{html,body{background:#fff}.page{padding:0}.sheet{padding:24px}}
+</style>
+</head>
+<body>
+<div class="page"><article class="sheet">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+  <div class="mast-top"><span class="firm">Blackstone · Tactical Opportunities × Infrastructure Partners</span><span>Highly Confidential &amp; Trade Secret</span></div>
+  <div class="hr"></div>
+  <div class="eyebrow">October 5, 2026 · Investment Committee · Draft for Discussion</div>
+  <h1>Project Equity Belt<br>Midwest Specialized Logistics Platform</h1>
+  <p class="lead">A <b>$206M</b> distressed-for-control roll-up of Dayton–Springfield, Ohio heavy-haul and construction-logistics carriers. Every employee owns equity. The platform is anchored by dedicated freight to Arsenal-1 and Blackstone's QTS data center network. <b>Tactical Opportunities</b> leads the operating company; <b>Blackstone Infrastructure Partners</b> owns the fleet and terminal property company.</p>
+</header>
+
+<section>
+  <div class="kf">
+    <div><span class="v">$206M</span><span class="l">total capitalization<sup>(8)</sup></span></div>
+    <div><span class="v">$106M</span><span class="l">Blackstone equity: Tac Opps $61M, BIP $45M<sup>(8)</sup></span></div>
+    <div><span class="v">52.7%</span><span class="l">OpCo gross IRR, base case (5.4x)<sup>(8)</sup></span></div>
+    <div><span class="v">13.7%</span><span class="l">PropCo gross IRR, contracted (1.6x)<sup>(8)</sup></span></div>
+    <div><span class="v">$48k</span><span class="l">average employee payout, about 9 months' pay<sup>(5)(8)</sup></span></div>
+  </div>
+</section>
+
+<section class="ask">
+  <span class="tag">Committee ask: Phase 1 approval before November 3</span>
+  <p><b>$48M</b> of immediate deployment to establish the platform while carrier distress and the Springfield layoffs are front of mind: (i) <b>$25M</b> of rescue (DIP) loans across 2–3 Midwest Chapter 11 carriers, with the right to credit-bid the loans as purchase price (Tac Opps); (ii) <b>$20M</b> of Chapter 7 fleet and yard purchases from trustees (BIP PropCo); (iii) <b>$3M</b> for diligence, the diesel hedge program and Ownership Works program setup. Phase 2 (the platform acquisition, stalking-horse bids and add-ons; the remaining $158M) returns to committee in Q1 2027.</p>
+</section>
+
+<section>
+  <h2><span class="n">I</span>Situation</h2>
+  <div class="two">
+    <div class="card"><span class="tag">Labor dislocation</span><p>Nearly <b>1,400 workers</b> were laid off at the Navistar truck plant in Springfield, OH, enough to erase a year of job growth in greater Dayton. The plant transferred to Roshel on Oct 2, and rehiring is uncertain.<sup>(1)</sup> That leaves a trained pool of assembly workers, technicians and drivers available within 25 miles.</p></div>
+    <div class="card"><span class="tag">Carrier distress</span><p>At least <b>16 U.S. carriers</b> filed for bankruptcy from late August through September as diesel reached a record <b>$6.37/gal</b>. Eight were midsize-or-larger Chapter 11s; the rest were mostly 1–6 truck Chapter 7 liquidations.<sup>(2)</sup> Ohio filings in 2026 include Platinum Express (Chapter 11, May) and TJ Trucking (Chapter 11, July).<sup>(9)</sup></p></div>
+    <div class="card"><span class="tag">Demand anchors</span><p><b>Arsenal-1</b> (Anduril, Pickaway County) is producing from Building 1. Building 2 (more than 924k sq ft) is under construction, and the site has a phased buildout to 2035 with 4,008 jobs.<sup>(3)</sup> The Central Ohio data center corridor needs oversize freight: transformers, switchgear and modular electrical rooms. QTS is co-owned by BIP and BREIT.<sup>(4)</sup></p></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">II</span>Investment thesis</h2>
+  <ul>
+    <li><b>Buy below replacement cost at a late-cycle low.</b> A Dalio-style late-cycle energy shock is forcing leveraged small operators to sell. Bankruptcy routes acquire carriers at 2.5–3.5x normalized EBITDA and fleets at 50–65% of replacement cost.</li>
+    <li><b>Specialized, contracted freight, not commodity dry van.</b> Dedicated contracts with Arsenal-1 contractors and QTS carry fuel-surcharge pass-through and multi-year terms, which reduces exposure to the spot-rate cycle.</li>
+    <li><b>Employee ownership as the operating lever.</b> Under the Ownership Works model, all ~1,500 employees receive equity. At KKR's C.H.I. Overhead Doors, the same model accompanied a 4x EBITDA increase and an average $175k payout to hourly workers.<sup>(5)(6)</sup> The main value driver in trucking is retention: we underwrite driver turnover falling from 60% to 20%.</li>
+    <li><b>Cross-platform synergy within Blackstone.</b> BIP's QTS ownership provides a captive anchor customer. BIP's long-duration capital is suited to the hard assets and to an eventual sale to an employee stock ownership plan (ESOP).</li>
+    <li><b>Policy tailwinds.</b> The bipartisan Employee Equity Investment Act (Rubio / Moore / Van Hollen) and the Empowering Small-Business Ownership Act would lower the cost of ESOP conversion and open Defense Department contracting to ESOPs. Neither is in the base case.<sup>(5)(7)</sup></li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="n">III</span>Transaction structure: why Tac Opps and BIP together</h2>
+  <p>Tac Opps capacity is constrained, so the deal is split along asset lines. BIP takes the hard, contracted, long-lived assets. Tac Opps takes the operating turnaround and the equity upside. This cuts the Tac Opps check from $111M (single-fund structure) to <b>$61M</b>.</p>
+  <div class="two">
+    <div class="card"><span class="tag">OpCo · Tactical Opportunities</span>
+      <ul>
+        <li>Carrier operations, contracts, dispatch, CDL school, maintenance shops</li>
+        <li>Rescue (DIP) loans, credit bids and stalking-horse bids</li>
+        <li>Employee equity pool: 18% of exit equity value</li>
+        <li>$45M senior debt (about 2.0x Y0 EBITDA); $61M equity</li>
+        <li>Exit: sale to a strategic or sponsor (Exit A), or a 100% S-corp ESOP (Exit B)</li>
+      </ul></div>
+    <div class="card alt"><span class="tag">PropCo / FleetCo · Infrastructure Partners</span>
+      <ul>
+        <li>$70M of tractors and trailers (including Chapter 7 purchases) and $30M of terminals, yards, a transload facility and the training campus</li>
+        <li>Triple-net master lease to OpCo: 13% of asset value, 2.5% annual escalator</li>
+        <li>Lease payments backed by the Arsenal-1 and QTS dedicated contracts</li>
+        <li>$55M asset-backed debt at 7.0%; $45M equity; 6% fleet replacement reserve</li>
+        <li>Long hold; can provide acquisition debt for an Exit B ESOP buyout</li>
+      </ul></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">IV</span>Sources &amp; uses<sup>(8)</sup></h2>
+  <div class="two">
+    <div class="tw"><table class="ln">
+      <thead><tr><th>Uses</th><th class="r">$M</th><th class="r">Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Specialized platform carrier</td><td class="r">98</td><td class="r">$15M EBITDA × 6.5x</td></tr>
+        <tr><td>6 distressed carriers (Chapter 11 / 363 sales)</td><td class="r">63</td><td class="r">$21M norm. × 3.0x</td></tr>
+        <tr><td>Chapter 7 fleet &amp; yards</td><td class="r">20</td><td class="r">50–65% of replacement</td></tr>
+        <tr><td>Turnaround working capital &amp; capex</td><td class="r">15</td><td class="r"></td></tr>
+        <tr><td>Fees &amp; expenses</td><td class="r">10</td><td class="r"></td></tr>
+        <tr class="tot"><td>Total</td><td class="r">206</td><td class="r">5.7x all-in</td></tr>
+      </tbody></table></div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h3>Sources</h3>
+      <div class="stack"><div style="flex:61;background:var(--d1)"></div><div style="flex:45;background:var(--d2)"></div><div style="flex:55;background:var(--d3)"></div><div style="flex:45;background:var(--d6)"></div></div>
+      <div class="legend">
+        <div><span class="sw" style="background:var(--d1)"></span><span>Tac Opps equity (OpCo)</span><span class="b">$61M · 30%</span></div>
+        <div><span class="sw" style="background:var(--d2)"></span><span>BIP equity (PropCo)</span><span class="b">$45M · 22%</span></div>
+        <div><span class="sw" style="background:var(--d3)"></span><span>PropCo asset-backed debt</span><span class="b">$55M · 27%</span></div>
+        <div><span class="sw" style="background:var(--d6)"></span><span>OpCo senior debt</span><span class="b">$45M · 22%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">V</span>Acquisition pathways</h2>
+  <div class="tw"><table class="hd">
+    <thead><tr><th>Route</th><th>Mechanism</th><th>Entry</th><th>Fund</th><th>Before Nov 3?</th></tr></thead>
+    <tbody>
+      <tr><td class="b">A. Rescue (DIP) loans</td><td>$5–15M per Chapter 11 carrier at 12–14% plus fees; the loan can be credit-bid as purchase price</td><td>Par or ownership via credit bid</td><td>Tac Opps</td><td class="b">Yes: interim court orders</td></tr>
+      <tr><td class="b">B. Stalking-horse bids</td><td>Opening bid in a court-supervised (363) sale, with break-up fee</td><td>2.5–3.5x</td><td>Tac Opps</td><td>Agreement filed; closes in 30–60 days</td></tr>
+      <tr><td class="b">C. Chapter 7 assets</td><td>Fleet and yards bought from trustees</td><td>50–65% of replacement</td><td>BIP</td><td class="b">Yes</td></tr>
+      <tr><td class="b">D. Platform</td><td>Healthy flatbed / heavy-haul carrier</td><td>6–7x</td><td>Tac Opps + BIP sale-leaseback</td><td>LOI only</td></tr>
+      <tr><td class="b">E. "Silver Tsunami"</td><td>Retiring owner-operators selling to their own drivers through an employee-ownership conversion</td><td>3.5–4.5x</td><td>Tac Opps</td><td>Outreach begins</td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <h2><span class="n">VI</span>Value creation: Y0 to Y4 EBITDAR<sup>(8)</sup></h2>
+  <div class="bars">
+    <div class="bar"><span>Normalized EBITDAR</span><div class="track"><span style="left:0;width:40%;background:var(--d1)"></span></div><span class="b r">$36M</span></div>
+    <div class="bar"><span>Fuel &amp; procurement</span><div class="track"><span style="left:40%;width:8.9%;background:var(--d2)"></span></div><span class="b r">+$8M</span></div>
+    <div class="bar"><span>Retention (employee ownership)</span><div class="track"><span style="left:48.9%;width:7.8%;background:var(--d3)"></span></div><span class="b r">+$7M</span></div>
+    <div class="bar"><span>Arsenal-1 / QTS dedicated</span><div class="track"><span style="left:56.7%;width:17.8%;background:var(--d4)"></span></div><span class="b r">+$16M</span></div>
+    <div class="bar"><span class="b">Y4 EBITDAR</span><div class="track"><span style="left:0;width:74.4%;background:var(--d1)"></span></div><span class="b r">$67M</span></div>
+    <div class="bar"><span>Less PropCo lease (Y4)</span><div class="track"><span style="left:58.9%;width:15.5%;background:var(--d6)"></span></div><span class="b r">−$14M</span></div>
+    <div class="bar"><span class="b">Y4 OpCo EBITDA</span><div class="track"><span style="left:0;width:58.9%;background:var(--d1)"></span></div><span class="b r">$53M</span></div>
+  </div>
+  <p style="font-size:12px;color:var(--graphite)">Retention: about 1,500 drivers; turnover falling from 60% to 20% means 600 fewer replacement hires at about $12k each to recruit, onboard and cover lost utilization.</p>
+</section>
+
+<section>
+  <h2><span class="n">VII</span>Returns<sup>(8)</sup></h2>
+  <h3>OpCo: Exit A, sale to a strategic or sponsor, 4-year hold</h3>
+  <div class="tw"><table class="hd">
+    <thead><tr><th>Case</th><th class="r">Y4 EBITDAR</th><th class="r">OpCo EBITDA</th><th class="r">Multiple</th><th class="r">Equity value</th><th class="r">Employee pool (18%)</th><th class="r">Avg / employee</th><th class="r">Tac Opps MOIC</th><th class="r">IRR</th></tr></thead>
+    <tbody>
+      <tr><td class="b">Downside</td><td class="r">$45M</td><td class="r">$31M</td><td class="r">6.5x</td><td class="r">$167M</td><td class="r">$30M</td><td class="r">$20k · 4 mo.</td><td class="r">2.2x</td><td class="r b">22%</td></tr>
+      <tr><td class="b">Base</td><td class="r">$67M</td><td class="r">$53M</td><td class="r">8.0x</td><td class="r">$404M</td><td class="r">$73M</td><td class="r">$48k · 9 mo.</td><td class="r">5.4x</td><td class="r b">53%</td></tr>
+      <tr><td class="b">C.H.I.-style upside</td><td class="r">$90M</td><td class="r">$76M</td><td class="r">9.0x</td><td class="r">$669M</td><td class="r">$120M</td><td class="r">$80k · 15 mo.</td><td class="r">9.0x</td><td class="r b">73%</td></tr>
+    </tbody></table></div>
+  <div class="two">
+    <div class="tw"><h3 style="margin-bottom:8px">PropCo (BIP)</h3><table class="ln">
+      <tbody>
+        <tr><td>Y1 lease income</td><td class="r">$13.0M</td></tr>
+        <tr><td>Less interest and fleet replacement reserve</td><td class="r">($8.1M)</td></tr>
+        <tr><td>Y1 cash yield on equity</td><td class="r b">11.0%</td></tr>
+        <tr><td>Y4 equity (fleet held, real estate +3%/yr)</td><td class="r">$48.8M</td></tr>
+        <tr><td>Gross MOIC / IRR</td><td class="r b">1.6x / 13.7%</td></tr>
+      </tbody></table></div>
+    <div class="tw"><h3 style="margin-bottom:8px">Combined Blackstone and Exit B</h3><table class="ln">
+      <tbody>
+        <tr><td>Combined BX equity in</td><td class="r">$106M</td></tr>
+        <tr><td>Combined value out (base)</td><td class="r">$402M</td></tr>
+        <tr><td>Combined MOIC / IRR</td><td class="r b">3.8x / 41%</td></tr>
+        <tr><td>Exit B: 100% ESOP at 7.0x (60% cash at close, 40% note over 5 years at 8%)</td><td class="r">$351M</td></tr>
+        <tr><td>Exit B Tac Opps MOIC / IRR</td><td class="r b">6.3x / 46%</td></tr>
+      </tbody></table></div>
+  </div>
+  <p style="font-size:12px;color:var(--graphite)">Under Exit B, employees own 100% of the company and no separate pool is paid. Because a 100% ESOP S-corp pays no federal income tax, the note is serviced from untaxed cash flow. BIP can provide the ESOP's senior acquisition debt.</p>
+</section>
+
+<section>
+  <h2><span class="n">VIII</span>Employee ownership program<sup>(5)(6)</sup></h2>
+  <div class="tw"><table class="hd">
+    <thead><tr><th>Ownership Works pillar</th><th>Implementation at the platform</th></tr></thead>
+    <tbody>
+      <tr><td class="b">Broad-based equity</td><td>Day-one grants to every driver, technician, dispatcher and yard worker; free; no wage or 401(k) trade-off</td></tr>
+      <tr><td class="b">Financial literacy</td><td>Quarterly open-book sessions covering cost per mile, hedge P&amp;L, debt paydown and the value of each share</td></tr>
+      <tr><td class="b">Voice</td><td>Terminal-level driver councils with input on routing, maintenance and safety priorities</td></tr>
+      <tr><td class="b">Shared success</td><td>Pool sized to pay 6–12 months of salary at exit; base case about 9 months on a $65k average salary</td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <h2><span class="n">IX</span>Execution plan: October 5 – November 3</h2>
+  <div class="tl">
+    <div><span class="w">Week 1 · Deploy</span><ul><li>Deal team on site in Dayton / Springfield</li><li>Screen court filings (PACER) for OH, IN, KY and MI carriers; contact trustees</li><li>Coordinate with Ohio Rapid Response on the Navistar workforce</li><li>Sign an Ownership Works partnership</li></ul></div>
+    <div><span class="w">Week 2 · Capital</span><ul><li>Send rescue (DIP) term sheets to 2–3 carriers</li><li>Bid at Chapter 7 fleet auctions (BIP)</li><li>Place the diesel hedge</li><li>Begin outreach to retiring owners (route E)</li></ul></div>
+    <div><span class="w">Week 3 · People</span><ul><li>Open the Springfield hiring center</li><li>Start the first CDL cohort (WIOA / TechCred funding)</li><li>Hold the first open-book session</li><li>File the stalking-horse purchase agreement</li></ul></div>
+    <div><span class="w">Week 4 · Announce</span><ul><li>"$200M+ committed; every driver and technician an owner"</li><li>Arsenal-1 contractor and QTS LOIs in hand</li><li>Publish the payout target</li><li>Site visit for EEIA sponsors</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">X</span>Key risks &amp; mitigants</h2>
+  <div class="tw"><table class="hd">
+    <thead><tr><th>Risk</th><th>Exposure</th><th>Mitigant</th></tr></thead>
+    <tbody>
+      <tr><td class="b">Diesel</td><td>About 23M gal/yr; each $1/gal move is about $23M of EBITDA unhedged</td><td>Fuel-surcharge pass-through in all dedicated contracts; hedge 50–70% of 12-month volume. Net exposure about $5–7M per $1/gal</td></tr>
+      <tr><td class="b">Anchor freight</td><td>Without Arsenal-1 / QTS volume, this is a commodity roll-up at 5–6x</td><td>LOIs required before Phase 2; QTS relationship sits within BIP</td></tr>
+      <tr><td class="b">Retention</td><td>The $7M retention line funds the 18% pool</td><td>Quarterly turnover KPI; vesting tied to tenure</td></tr>
+      <tr><td class="b">Integration</td><td>Six or more carriers acquired out of bankruptcy</td><td>Single dispatch, telematics and safety platform; operating partner placed by Week 4</td></tr>
+      <tr><td class="b">Exit multiple</td><td>At 7.0x or below, LP returns compress toward the downside case</td><td>Exit B (ESOP) provides a buyer at 7.0x</td></tr>
+    </tbody></table></div>
+</section>
+
+<section>
+  <h2><span class="n">XI</span>Cross-fund governance</h2>
+  <ul>
+    <li>The OpCo–PropCo master lease is priced at arm's length and benchmarked against third-party sale-leaseback quotes. It is reviewed by the conflicts committee before Phase 2.</li>
+    <li>QTS contracts with the platform on market terms, with no preferential pricing between BIP-owned entities.</li>
+    <li>Allocation between Tac Opps and BIP follows the asset split in Section III and is documented in an inter-fund agreement.</li>
+  </ul>
+</section>
+
+<footer style="display:flex;flex-direction:column;gap:14px">
+  <div class="hr"></div>
+  <div class="notes">
+    <span>(1) AP, "A gut punch in Ohio: Nearly 1,400 laid off at truck factory," Oct 3, 2026 — <a href="https://www.usnews.com/news/best-states/ohio/articles/2026-10-03/a-gut-punch-in-ohio-nearly-1-400-laid-off-at-truck-factory-just-days-before-trump-rally">US News</a>.</span>
+    <span>(2) <a href="https://www.freightwaves.com/news/small-trucking-firms-file-wave-of-bankruptcies-across-u-s">FreightWaves</a>; <a href="https://www.newsweek.com/trucker-firms-hit-by-bankruptcies-layoffs-amid-diesel-shock-12512597">Newsweek</a>, Sep–Oct 2026.</span>
+    <span>(3) <a href="https://www.nbc4i.com/news/local-news/central-ohio-news/one-year-of-arsenal-1-anduril-offers-new-look-at-ohio-project/">NBC4, "One year of Arsenal-1"</a>; <a href="https://www.ohiotechnews.com/inside-arsenal-1-andurils-ohio-mega-factory-goes-live-in-days-photos/">Ohio Tech News</a>.</span>
+    <span>(4) <a href="https://www.blackstone.com/news/press/qts-realty-trust-to-be-acquired-by-blackstone-funds-in-10-billion-transaction/">Blackstone press release, QTS acquisition by BIP and BREIT</a>, 2021.</span>
+    <span>(5) "The Ownership Realignment: The Strategic Convergence of Dalio's Macroeconomics and Stavros's Microeconomics," internal research paper.</span>
+    <span>(6) <a href="https://ownershipworks.org/chi-overhead-doors/">Ownership Works, C.H.I. Overhead Doors case study</a>.</span>
+    <span>(7) <a href="https://www.nceo.org/employee-ownership-blog/employee-equity-investment-act-introduced-both-houses-bipartisan-support">NCEO, Employee Equity Investment Act (H.R. 3383 / S. 1618)</a>. Pending legislation; not in base case.</span>
+    <span>(8) Deal team model. Illustrative assumptions: about 1,500 employees, $65k average salary, 4-year hold, gross returns before fees and carry.</span>
+    <span>(9) <a href="https://www.thestreet.com/retail/mast-newkirk-bee-g-file-chapter-11-bankruptcy">TheStreet</a>; <a href="https://www.indexbox.io/blog/trucking-bankruptcy-wave-continues-in-may-2026-as-carriers-face-weak-demand/">IndexBox</a>.</span>
+  </div>
+  <div class="disc">FOR INVESTMENT COMMITTEE DISCUSSION ONLY. DRAFT. FINANCIAL DATA ARE ESTIMATED, UNAUDITED AND ILLUSTRATIVE. NOT FOR DISTRIBUTION.</div>
+  <div class="foot"><p style="font-size:11px"><b>Note:</b> Figures are model outputs from deal team assumptions (8); the full Excel model follows.</p><span class="docid">BX-TACOPPS-BIP-EQBELT-IC-20261005</span></div>
+</footer>
+
+</article></div>
+</body>
+</html>
