@@ -270,27 +270,50 @@ Rule-of-thumb ranges, net to LP.
 | Private credit | 9–13% | 1.3–1.5x | 3–5 years |
 | <span class="xref">▸</span> Leviathan holdco (7-year, Expected) | 19.4% | 3.46x | 7 years |
 
-## 13. Founder / GP Economics: 5-, 7- and 10-Year Holds
+## 13. Founder / GP Economics: Worked Example for One Vehicle
 
-Illustrative total economics to the General Partner and Management Company under the Leviathan terms, based on the **PE holdco vehicle file only ($1,406M)**. Figures are reverse-engineered from that file’s net MOICs; the other three vehicles are excluded, and additional capital could be raised.
+This section works through GP economics for **one of the four Leviathan vehicles**: the core PE holdco, as modeled in the January 2027 internal model (**$1,406M** committed: IQT-mirror $250M, Weapons $956M, Consumer / Value $200M). The other three vehicles also contribute to GP and founder compensation; they are excluded here and their contribution is not stated.
 
 | Assumption | Basis |
 |---|---|
 | Fund terms | 2% management fee on committed capital for the full hold; 20% carry; 8% compounded preferred return |
 | Waterfall | Whole-fund European, hard hurdle, no GP catch-up: carry only on profit above return of capital plus pref |
-| GP ownership | Blackstone modeled as a 50% silent GP underwriter (no operational role); the remaining 50% split equally between the two operating founders, Donald B Ritts III and Peter McCarthy |
-| Cases | (i) the model’s probability-weighted Expected; (ii) a simple arithmetic blend of Base, Bull and Expected net MOICs |
+| GP ownership | Blackstone as a 50% silent GP underwriter (no operational role); the remaining 50% split equally between the two operating founders, Donald B Ritts III and Peter McCarthy |
+| Case used | **Blend**: simple average of the model’s Base, Bull and probability-weighted Expected cases |
+
+### 13.1 Net returns to LPs by case
+
+| Case | 5-year | 7-year | 10-year |
+|---|---|---|---|
+| Base net MOIC | 2.42x | 3.56x | 6.54x |
+| Bull net MOIC | 4.16x | 7.79x | 20.71x |
+| Expected net MOIC | 2.79x | 4.63x | 10.63x |
+| **Blend net MOIC** | **3.12x** | **5.33x** | **12.63x** |
+
+### 13.2 The 2 and 20 on the blend
 
 | Item | 5-year | 7-year | 10-year |
 |---|---|---|---|
-| Expected net MOIC | 2.79x | 4.63x | 10.63x |
-| Blend MOIC (Base + Bull + Exp) ÷ 3 | 3.12x | 5.33x | 12.63x |
-| Cumulative management fees (2%) | $141M | $197M | $281M |
-| **Total GP pool: Expected** | **~$641M** | **~$1,271M** | **~$3,330M** |
-| Blackstone 50% (Expected) | ~$320M | ~$635M | ~$1,665M |
-| Each founder 25% (Expected) | ~$160M | ~$318M | ~$832M |
-| **Total GP pool: Blend** | **~$757M** | **~$1,516M** | **~$4,032M** |
-| Blackstone 50% (Blend) | ~$378M | ~$758M | ~$2,016M |
-| Each founder 25% (Blend) | ~$189M | ~$379M | ~$1,008M |
+| Management fees (2% × $1,406M × years) | $141M | $197M | $281M |
+| Carried interest (20%, blend of model waterfalls) | $623M | $1,328M | $3,765M |
+| **Total GP pool (blend)** | **$763M** | **$1,525M** | **$4,047M** |
+| Blackstone 50% (silent GP) | $382M | $763M | $2,023M |
+| **Each founder 25%** | **$191M** | **$381M** | **$1,012M** |
+| of which management fees | $35M | $49M | $70M |
+| of which carried interest | $156M | $332M | $941M |
 
-<p class="note">Actual results will vary with realized exits, recycling, NAV loans and scenario outcomes. The holdco size and MOICs in this section come from the $1,406M PE holdco file and differ from the $855M model figures cross-referenced elsewhere in this document.</p>
+<p class="note">Carry comes directly from the model’s waterfall for each case (return of capital, then the 8% compounded pref of $660M / $1,004M / $1,629M, then 20% of the remaining profit), averaged across Base, Bull and Expected. Management fees are gross revenue to the management company before operating costs (team, service providers), not distributable profit. Actual results will vary with realized exits, recycling, NAV loans and scenario outcomes.</p>
+
+### 13.3 More capital, not more GP stakes
+
+**More money can be raised.** This example is sized at the modeled $1,406M; it is not a cap. Additional LP commitments, into this vehicle or the other three, scale both fee and carry dollars, and because LP capital carries no GP ownership, every dollar raised accrues to the existing GP split. At the same returns, each additional **$100M** of commitments adds roughly **$108M** to the 7-year blend GP pool, about **$27M per founder**.
+
+**No further GP stakes are being considered.** Selling GP equity is a permanent claim on every future fee and carry dollar across all four vehicles and any successor funds. Blackstone’s 50% silent stake already provides GP capital and sponsorship; growth should come from LP capital, which does not dilute ownership.
+
+| Additional GP stake sold (pro rata) | Each founder’s share | 7-year blend, per founder | Cost per founder |
+|---|---|---|---|
+| None (current structure) | 25.0% | $381M | — |
+| 10% | 22.5% | $343M | −$38M |
+| 20% | 20.0% | $305M | −$76M |
+
+<p class="note">Sections 1–12 cross-reference the earlier $855M model; this section uses the January 2027 holdco model ($1,406M). The holdco’s own title row reads $1,161M, but its sleeve totals and waterfall use $1,406M, which is the figure used here.</p>

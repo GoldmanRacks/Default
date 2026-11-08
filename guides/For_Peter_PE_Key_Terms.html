@@ -103,7 +103,7 @@ h3 { break-after:avoid; }
 <div class="keyfigs" style="grid-template-columns:repeat(4,1fr)"><div class="kf"><div class="v">10 + 2</div><div class="l">typical fund term (years)</div></div><div class="kf"><div class="v">20%</div><div class="l">standard carried interest</div></div><div class="kf"><div class="v">8%</div><div class="l">preferred return (hurdle)</div></div><div class="kf"><div class="v">1.5–2.0%</div><div class="l">management fee on commitments</div></div></div>
 <div class="pull">The GP controls investment decisions and earns carry; LPs supply the overwhelming majority of capital under limited liability. Everything else in private equity hangs off that relationship.</div>
 <div class="eyebrow" style="margin-bottom:2pt">Contents</div>
-<ul class="toc"><li><span>01</span>Players and Fund Structure</li><li><span>02</span>Fund Lifecycle</li><li><span>03</span>Fund Economics</li><li><span>04</span>Performance Metrics</li><li><span>05</span>Strategies</li><li><span>06</span>Deal Process</li><li><span>07</span>Valuation</li><li><span>08</span>Capital Structure and LBO Mechanics</li><li><span>09</span>Equity Terms (Venture, Growth, Minority)</li><li><span>10</span>Exits and Regulatory Considerations</li><li><span>11</span>Formula Cheat Sheet</li><li><span>12</span>Quick-Reference Return Targets</li><li><span>13</span>Founder / GP Economics: 5-, 7- and 10-Year Holds</li></ul>
+<ul class="toc"><li><span>01</span>Players and Fund Structure</li><li><span>02</span>Fund Lifecycle</li><li><span>03</span>Fund Economics</li><li><span>04</span>Performance Metrics</li><li><span>05</span>Strategies</li><li><span>06</span>Deal Process</li><li><span>07</span>Valuation</li><li><span>08</span>Capital Structure and LBO Mechanics</li><li><span>09</span>Equity Terms (Venture, Growth, Minority)</li><li><span>10</span>Exits and Regulatory Considerations</li><li><span>11</span>Formula Cheat Sheet</li><li><span>12</span>Quick-Reference Return Targets</li><li><span>13</span>Founder / GP Economics: Worked Example for One Vehicle</li></ul>
 </section><section class="sec"><div class="sec-head"><span class="n">01</span><h2>Players and Fund Structure</h2></div><p>The private equity ecosystem is organized around a small number of entities whose relationships are defined in the Limited Partnership Agreement. The GP controls investment decisions and earns carry; LPs supply the overwhelming majority of capital under limited liability.</p>
 <table>
 <thead>
@@ -902,7 +902,7 @@ h3 { break-after:avoid; }
 <td>7 years</td>
 </tr>
 </tbody>
-</table></div></section><section class="sec"><div style="break-inside:avoid"><div class="sec-head"><span class="n">13</span><h2>Founder / GP Economics: 5-, 7- and 10-Year Holds</h2></div><p>Illustrative total economics to the General Partner and Management Company under the Leviathan terms, based on the <strong>PE holdco vehicle file only ($1,406M)</strong>. Figures are reverse-engineered from that file’s net MOICs; the other three vehicles are excluded, and additional capital could be raised.</p>
+</table></div></section><section class="sec"><div style="break-inside:avoid"><div class="sec-head"><span class="n">13</span><h2>Founder / GP Economics: Worked Example for One Vehicle</h2></div><p>This section works through GP economics for <strong>one of the four Leviathan vehicles</strong>: the core PE holdco, as modeled in the January 2027 internal model (<strong>$1,406M</strong> committed: IQT-mirror $250M, Weapons $956M, Consumer / Value $200M). The other three vehicles also contribute to GP and founder compensation; they are excluded here and their contribution is not stated.</p>
 <table style="break-inside:avoid">
 <thead>
 <tr>
@@ -921,14 +921,52 @@ h3 { break-after:avoid; }
 </tr>
 <tr>
 <td>GP ownership</td>
-<td>Blackstone modeled as a 50% silent GP underwriter (no operational role); the remaining 50% split equally between the two operating founders, Donald B Ritts III and Peter McCarthy</td>
+<td>Blackstone as a 50% silent GP underwriter (no operational role); the remaining 50% split equally between the two operating founders, Donald B Ritts III and Peter McCarthy</td>
 </tr>
 <tr>
-<td>Cases</td>
-<td>(i) the model’s probability-weighted Expected; (ii) a simple arithmetic blend of Base, Bull and Expected net MOICs</td>
+<td>Case used</td>
+<td><strong>Blend</strong>: simple average of the model’s Base, Bull and probability-weighted Expected cases</td>
 </tr>
 </tbody>
 </table></div>
+<div style="break-inside:avoid"><h3>13.1 Net returns to LPs by case</h3>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Case</th>
+<th>5-year</th>
+<th>7-year</th>
+<th>10-year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base net MOIC</td>
+<td>2.42x</td>
+<td>3.56x</td>
+<td>6.54x</td>
+</tr>
+<tr>
+<td>Bull net MOIC</td>
+<td>4.16x</td>
+<td>7.79x</td>
+<td>20.71x</td>
+</tr>
+<tr>
+<td>Expected net MOIC</td>
+<td>2.79x</td>
+<td>4.63x</td>
+<td>10.63x</td>
+</tr>
+<tr>
+<td><strong>Blend net MOIC</strong></td>
+<td><strong>3.12x</strong></td>
+<td><strong>5.33x</strong></td>
+<td><strong>12.63x</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div style="break-inside:avoid"><h3>13.2 The 2 and 20 on the blend</h3>
 <table style="break-inside:avoid">
 <thead>
 <tr>
@@ -940,60 +978,83 @@ h3 { break-after:avoid; }
 </thead>
 <tbody>
 <tr>
-<td>Expected net MOIC</td>
-<td>2.79x</td>
-<td>4.63x</td>
-<td>10.63x</td>
-</tr>
-<tr>
-<td>Blend MOIC (Base + Bull + Exp) ÷ 3</td>
-<td>3.12x</td>
-<td>5.33x</td>
-<td>12.63x</td>
-</tr>
-<tr>
-<td>Cumulative management fees (2%)</td>
+<td>Management fees (2% × $1,406M × years)</td>
 <td>$141M</td>
 <td>$197M</td>
 <td>$281M</td>
 </tr>
 <tr>
-<td><strong>Total GP pool: Expected</strong></td>
-<td><strong>~$641M</strong></td>
-<td><strong>~$1,271M</strong></td>
-<td><strong>~$3,330M</strong></td>
+<td>Carried interest (20%, blend of model waterfalls)</td>
+<td>$623M</td>
+<td>$1,328M</td>
+<td>$3,765M</td>
 </tr>
 <tr>
-<td>Blackstone 50% (Expected)</td>
-<td>~$320M</td>
-<td>~$635M</td>
-<td>~$1,665M</td>
+<td><strong>Total GP pool (blend)</strong></td>
+<td><strong>$763M</strong></td>
+<td><strong>$1,525M</strong></td>
+<td><strong>$4,047M</strong></td>
 </tr>
 <tr>
-<td>Each founder 25% (Expected)</td>
-<td>~$160M</td>
-<td>~$318M</td>
-<td>~$832M</td>
+<td>Blackstone 50% (silent GP)</td>
+<td>$382M</td>
+<td>$763M</td>
+<td>$2,023M</td>
 </tr>
 <tr>
-<td><strong>Total GP pool: Blend</strong></td>
-<td><strong>~$757M</strong></td>
-<td><strong>~$1,516M</strong></td>
-<td><strong>~$4,032M</strong></td>
+<td><strong>Each founder 25%</strong></td>
+<td><strong>$191M</strong></td>
+<td><strong>$381M</strong></td>
+<td><strong>$1,012M</strong></td>
 </tr>
 <tr>
-<td>Blackstone 50% (Blend)</td>
-<td>~$378M</td>
-<td>~$758M</td>
-<td>~$2,016M</td>
+<td>of which management fees</td>
+<td>$35M</td>
+<td>$49M</td>
+<td>$70M</td>
 </tr>
 <tr>
-<td>Each founder 25% (Blend)</td>
-<td>~$189M</td>
-<td>~$379M</td>
-<td>~$1,008M</td>
+<td>of which carried interest</td>
+<td>$156M</td>
+<td>$332M</td>
+<td>$941M</td>
 </tr>
 </tbody>
-</table>
-<p class="note">Actual results will vary with realized exits, recycling, NAV loans and scenario outcomes. The holdco size and MOICs in this section come from the $1,406M PE holdco file and differ from the $855M model figures cross-referenced elsewhere in this document.</p></section><div style="break-inside:avoid;margin-top:14pt"><div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
+</table></div>
+<p class="note">Carry comes directly from the model’s waterfall for each case (return of capital, then the 8% compounded pref of $660M / $1,004M / $1,629M, then 20% of the remaining profit), averaged across Base, Bull and Expected. Management fees are gross revenue to the management company before operating costs (team, service providers), not distributable profit. Actual results will vary with realized exits, recycling, NAV loans and scenario outcomes.</p>
+
+<div style="break-inside:avoid"><h3>13.3 More capital, not more GP stakes</h3>
+<p><strong>More money can be raised.</strong> This example is sized at the modeled $1,406M; it is not a cap. Additional LP commitments, into this vehicle or the other three, scale both fee and carry dollars, and because LP capital carries no GP ownership, every dollar raised accrues to the existing GP split. At the same returns, each additional <strong>$100M</strong> of commitments adds roughly <strong>$108M</strong> to the 7-year blend GP pool, about <strong>$27M per founder</strong>.</p>
+<p><strong>No further GP stakes are being considered.</strong> Selling GP equity is a permanent claim on every future fee and carry dollar across all four vehicles and any successor funds. Blackstone’s 50% silent stake already provides GP capital and sponsorship; growth should come from LP capital, which does not dilute ownership.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Additional GP stake sold (pro rata)</th>
+<th>Each founder’s share</th>
+<th>7-year blend, per founder</th>
+<th>Cost per founder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None (current structure)</td>
+<td>25.0%</td>
+<td>$381M</td>
+<td>—</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>22.5%</td>
+<td>$343M</td>
+<td>−$38M</td>
+</tr>
+<tr>
+<td>20%</td>
+<td>20.0%</td>
+<td>$305M</td>
+<td>−$76M</td>
+</tr>
+</tbody>
+</table></div>
+<p class="note">Sections 1–12 cross-reference the earlier $855M model; this section uses the January 2027 holdco model ($1,406M). The holdco’s own title row reads $1,161M, but its sleeve totals and waterfall use $1,406M, which is the figure used here.</p></section><div style="break-inside:avoid;margin-top:14pt"><div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
 <p style="font-size:8pt"><b>Note:</b> Financial data is estimated and unaudited. Formulas use round numbers for illustration. Cross-references marked ▸ relate to the Leviathan model.</p></div></body></html>
