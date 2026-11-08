@@ -226,7 +226,7 @@ ch.category_axis.tick_label_position = XL_TICK_LABEL_POSITION.LOW
 txt(s, 0.5, 5.25, 6.3, 0.6, "Early fees and write-downs push cumulative cash flow negative; value creation and exits turn it up. A subscription line flattens the trough artificially.", size=9.3, color=MUTED)
 band(s, 7.0, 1.45, 5.83, 0.32, "KS-PME (Kaplan–Schoar)")
 rect(s, 7.0, 1.77, 5.83, 1.75, fill=NAVY)
-txt(s, 7.15, 1.82, 5.55, 1.65, [[("Σ Distₜ·(Iₜ/Iₜ) + NAVₜ  ÷  Σ Callₜ·(Iₜ/Iₜ)", {"font": SERIF, "size": 13})],
+txt(s, 7.15, 1.82, 5.55, 1.65, [[("\u03a3 Dist_t \u00b7 (I_T / I_t) + NAV_T   \u00f7   \u03a3 Call_t \u00b7 (I_T / I_t)", {"font": SERIF, "size": 12.5})],
     "Each flow is compounded at the index return to the measurement date. Single in / out: MOIC ÷ (1 + r_index)^T.",
     [("▸ Leviathan 5-yr Base: 2.068x ÷ 1.09⁵ = 1.34x vs. SPX", {"bold": True, "color": GOLD})]], size=9.5, color=WHITE, spacing=5, anchor="m")
 table(s, 7.0, 3.65, 5.83, 2.2, [["Measure", "What it tells you"],
