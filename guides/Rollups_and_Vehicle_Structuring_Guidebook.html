@@ -1,0 +1,970 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Roll-ups and Vehicle Structuring Guidebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+@page { size: Letter; margin: 0.85in 0.7in 0.95in 0.7in; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin:0; font-family:'Public Sans',Helvetica,Arial,sans-serif; font-weight:300; color:#000;
+       font-size:9.5pt; line-height:1.4; -webkit-font-smoothing:antialiased; }
+.serif { font-family:'Source Serif 4',Georgia,serif; font-weight:600; }
+b, strong { font-weight:500; }
+em { font-style:normal; font-weight:500; }
+sup.en { font-size:7pt; font-weight:500; margin-left:1px; }
+.xref { color:#A95228; font-weight:500; }
+p { margin:0 0 7pt; }
+/* masthead / cover */
+.mast-top { display:flex; justify-content:space-between; font-size:8pt; font-weight:300; letter-spacing:.04em; text-transform:uppercase; }
+.mast-top b { font-weight:500; }
+.rule-ink { height:1px; background:#000; margin:8pt 0 18pt; }
+.eyebrow { font-size:10pt; font-weight:500; letter-spacing:.04em; text-transform:uppercase; }
+h1.title { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:27pt; line-height:1.08; margin:8pt 0 12pt; letter-spacing:-.01em; }
+.lead { font-size:12pt; line-height:1.35; font-weight:300; max-width:6.1in; margin-bottom:14pt; }
+.keyfigs { display:grid; grid-template-columns:repeat(3,1fr); gap:14pt; margin:6pt 0 20pt; }
+.kf { border-top:2px solid #1B5E5C; padding-top:7pt; }
+.kf .v { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:26pt; line-height:1; }
+.kf .l { font-size:9pt; font-weight:400; margin-top:4pt; line-height:1.3; }
+.disc-box { border:1px solid #000; padding:7pt 9pt; font-size:7.5pt; font-weight:500; line-height:1.4; letter-spacing:.01em; margin:14pt 0 8pt; }
+/* sections */
+.sec { break-before: page; }
+.sec.flow { break-before: auto; margin-top:22pt; }
+.sec-head { display:flex; align-items:baseline; gap:10pt; border-bottom:1px solid #000; padding-bottom:6pt; margin-bottom:10pt; break-after:avoid; }
+.sec-head .n { font-size:9pt; font-weight:500; color:#727272; }
+.sec-head h2 { margin:0; font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:20pt; line-height:1.1; }
+h3 { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:13pt; margin:14pt 0 6pt; break-after:avoid; }
+.sub { font-size:9pt; font-weight:300; margin:-3pt 0 8pt; }
+/* tables (4.3 performance table pattern) */
+table { width:100%; border-collapse:collapse; font-size:8.1pt; font-weight:300; margin:4pt 0 10pt; }
+thead { display:table-header-group; }
+th { background:#1B5E5C; color:#FFF; font-weight:500; text-align:left; padding:4pt 6pt; vertical-align:bottom; }
+td { padding:3.4pt 6pt; border-bottom:1px solid #BFBFBF; vertical-align:top; }
+tbody tr:nth-child(even) td { background:#F2F2F2; }
+tbody tr:last-child td { border-bottom:1px solid #000; }
+td:first-child { font-weight:500; }
+tr { break-inside:avoid; }
+/* formula block */
+.formula { border-top:1px solid #000; border-bottom:1px solid #000; padding:9pt 0; margin:6pt 0 12pt;
+           font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:11.5pt; text-align:center; }
+/* lists */
+ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
+/* components */
+.panel { background:#FFF; border:1px solid #E4E4E4; padding:10pt 12pt; margin:6pt 0 12pt; break-inside:avoid; }
+.panel-title { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:12pt; margin-bottom:2pt; }
+.grid-map { display:grid; grid-template-columns:repeat(2,1fr); gap:6pt; margin:6pt 0 8pt; }
+.dom { border-top:3px solid #000; background:#F4F4F2; padding:5pt 9pt; break-inside:avoid; }
+.dom .k { font-size:8pt; font-weight:500; color:#727272; }
+.dom .h { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:11pt; margin:0 0 2pt; }
+.dom .d { font-size:8.3pt; line-height:1.35; }
+.track { display:grid; gap:4pt; margin:8pt 0 12pt; }
+.step { border-top:3px solid #1B5E5C; background:#F4F4F2; padding:7pt 8pt; font-size:8pt; line-height:1.3; break-inside:avoid; }
+.step .h { font-weight:500; font-size:8.6pt; margin-bottom:2pt; }
+.step .y { color:#727272; font-size:7.6pt; margin-bottom:3pt; }
+.step.hl { border-top-color:#A95228; }
+.legend { display:flex; flex-wrap:wrap; gap:4pt 14pt; font-size:8pt; margin-top:6pt; }
+.legend span.sw { display:inline-block; width:9px; height:9px; margin-right:5px; vertical-align:-1px; }
+.stack { display:flex; height:20px; gap:2px; margin:3pt 0; }
+.barrow { display:grid; grid-template-columns:1.55in 1fr 0.75in; gap:8pt; align-items:center; font-size:8.3pt; padding:3pt 0; }
+.barrow .track2 { height:13px; background:#E4E4E4; position:relative; }
+.barrow .fill { position:absolute; top:0; bottom:0; }
+.barrow .val { text-align:right; font-weight:500; }
+.note { font-size:7.8pt; color:#727272; line-height:1.4; margin-top:4pt; }
+.struct { display:grid; grid-template-columns:repeat(4,1fr); gap:6pt; margin:8pt 0 4pt; font-size:8pt; text-align:center; }
+.box { border:1px solid #000; padding:6pt 4pt; background:#FFF; line-height:1.25; }
+.box b { display:block; font-size:8.6pt; }
+.box.ink { background:#1B5E5C; color:#FFF; border-color:#1B5E5C; }
+.arrowline { text-align:center; font-size:9pt; color:#727272; margin:2pt 0; letter-spacing:.04em; }
+.notes ol { padding-left:16pt; font-size:8pt; line-height:1.45; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:14pt; }
+
+.lead2 { font-size:11.5pt; line-height:1.4; font-weight:300; margin:2pt 0 12pt; }
+.habits { display:grid; grid-template-columns:1fr 1fr; gap:6pt 14pt; margin:6pt 0 12pt; }
+.hb { border-top:1px solid #BFBFBF; padding-top:5pt; font-size:8.6pt; line-height:1.38; break-inside:avoid; }
+.hb span { display:block; font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:13pt; line-height:1; margin-bottom:3pt; }
+.case { border-top:3px solid #000; background:#F4F4F2; padding:9pt 12pt 4pt; margin:6pt 0 12pt; break-inside:avoid; }
+.case p { font-size:9pt; margin:0 0 6pt; }
+.case-tag { font-size:8pt; font-weight:500; letter-spacing:.05em; text-transform:uppercase; margin-bottom:5pt; }
+.two .case { margin-top:0; }
+.track5 { display:grid; grid-template-columns:repeat(5,1fr); gap:4pt; margin:6pt 0 10pt; }
+.st { border-top:3px solid #1B5E5C; background:#F4F4F2; padding:6pt 7pt; font-size:8pt; line-height:1.3; break-inside:avoid; }
+.st b { display:block; font-size:8.6pt; margin-bottom:2pt; }
+.st.dark { border-top-color:#000; }
+.toc { columns:2; column-gap:20pt; font-size:9pt; margin:6pt 0 0; padding:0; list-style:none; }
+.toc li { display:flex; gap:8pt; border-bottom:1px solid #E4E4E4; padding:4pt 0; break-inside:avoid; }
+.toc li span { color:#727272; font-weight:500; width:16pt; }
+.pull { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:14pt; line-height:1.3; border-top:1px solid #000; border-bottom:1px solid #000; padding:10pt 0; margin:4pt 0 16pt; }
+</style></head><body><section>
+<div class="rule-ink" style="margin-top:0"></div>
+<div class="eyebrow">November 2026 · D. B. Ritts III</div>
+<h1 class="title">Roll-ups, SICAVs and<br>Vehicle Structuring</h1>
+<p class="lead">A guidebook to two things that turn a good thesis into realized returns: <b>buy-and-build roll-ups</b>, which manufacture value through consolidation and operational restoration, and <b>the vehicles that hold capital</b> (Luxembourg SICAVs, partnerships, holdcos and long-dated funds), chosen so that investor liquidity, regulation and tax fit the assets.</p>
+<div class="keyfigs"><div class="kf"><div class="v">1.55x</div><div class="l">EV uplift from multiple arbitrage alone, 5.8x entry to 9.0x exit</div></div><div class="kf"><div class="v">4</div><div class="l">vehicles in the architecture, each matched to its assets’ liquidity</div></div><div class="kf"><div class="v">6</div><div class="l">Luxembourg regimes compared, from UCITS to unregulated SCSp</div></div></div>
+<div class="pull">Structure is strategy. The right asset in the wrong wrapper loses to forced selling, tax leakage or distribution limits, however good the thesis.</div>
+<div class="eyebrow" style="margin-bottom:2pt">Contents</div>
+<ul class="toc"><li><span>01</span>Why Structure Is Strategy</li><li><span>02</span>Roll-ups: How Buy-and-Build Creates Value</li><li><span>03</span>Integration Models</li><li><span>04</span>Structuring and Financing the Roll-up</li><li><span>05</span>Worked Example: a Five-Site Marina Platform</li><li><span>06</span>Roll-up Risks and Diligence</li><li><span>07</span>The Luxembourg Toolkit</li><li><span>08</span>Running a SICAV</li><li><span>09</span>Options Overlays Inside a SICAV</li><li><span>10</span>Beyond Luxembourg: Other Wrappers and Cross-Border Issues</li><li><span>11</span>Long-Dated Vehicles</li><li><span>12</span>Choosing the Vehicle</li></ul>
+</section><section class="sec"><div class="sec-head"><span class="n">01</span><h2>Why Structure Is Strategy</h2></div><p class="lead2">Most investment failures that aren’t thesis failures are structure failures: a liquid book trapped in an illiquid wrapper, an illiquid asset in a vehicle that promises monthly redemptions, a tax-exempt LP hit with unrelated business income, a fund that can’t legally be marketed to the investors who want it. This guide covers two levers: <b>roll-ups</b>, which create value inside the asset, and <b>vehicles</b>, which decide whether that value reaches investors intact.</p>
+
+<h3>1.1 Four principles</h3>
+<div class="habits">
+<div class="hb"><span>01</span><b>Match liquidity both ways.</b> Investor redemption terms must never be more generous than the assets can support. Daily or monthly dealing is for listed instruments; private stakes need committed, locked capital.</div>
+<div class="hb"><span>02</span><b>Wrap for the investor, not the manager.</b> Domicile, legal form and regime are chosen by who must be able to buy (professional, semi-professional or retail; EU or US; taxable or tax-exempt).</div>
+<div class="hb"><span>03</span><b>Separate what fails differently.</b> Different risk, liquidity and tax profiles go in different vehicles or compartments, so one can’t contaminate another.</div>
+<div class="hb"><span>04</span><b>Buy the platform, not just the asset.</b> In roll-ups, value comes from what the platform does to each acquisition: cost of capital, procurement, systems and the exit multiple a scaled business commands.</div>
+</div>
+
+<h3>1.2 The Leviathan architecture as a worked example</h3>
+<p>Leviathan is planned as four vehicles, each built for a different asset liquidity profile.<sup class="en">(2)</sup></p>
+<table>
+<thead>
+<tr>
+<th>Vehicle</th>
+<th>Assets</th>
+<th>Investor liquidity</th>
+<th>Planned wrapper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Liquid SICAV</strong></td>
+<td>Listed equities with a monthly options overlay</td>
+<td>Periodic (monthly) dealing</td>
+<td>Luxembourg Part II SICAV via a third-party (white-label) ManCo; separate prime brokerage for the overlay</td>
+</tr>
+<tr>
+<td><strong>2. Core PE holdco</strong></td>
+<td>Private minority and pre-IPO stakes across three sleeves</td>
+<td>Locked; 5 / 7 / 10-year holds</td>
+<td>Holding company with sub-fund sleeves</td>
+</tr>
+<tr>
+<td><strong>3. Infrastructure vehicle</strong></td>
+<td>Long-duration real assets and contracted cash flows</td>
+<td>Locked, ~10-year term</td>
+<td>Closed-ended long-dated vehicle</td>
+</tr>
+<tr>
+<td><strong>4. Fourth vehicle</strong></td>
+<td>To be defined</td>
+<td>Matched to assets once defined</td>
+<td>Open</td>
+</tr>
+</tbody>
+</table>
+<div class="panel"><div class="panel-title">Liquidity ladder: asset liquidity sets the wrapper</div><div class="sub">indicative time for an investor to exit at fair value</div>
+<div class="barrow"><span>Liquid SICAV</span><div class="track2"><div class="fill" style="width:6%;background:#1B5E5C"></div></div><span class="val">~1 month</span></div>
+<div class="barrow"><span>Roll-up platform</span><div class="track2"><div class="fill" style="width:45%;background:#4C9F8B"></div></div><span class="val">~5 years</span></div>
+<div class="barrow"><span>Core PE holdco</span><div class="track2"><div class="fill" style="width:63%;background:#006492"></div></div><span class="val">5–10 years</span></div>
+<div class="barrow"><span>Infrastructure</span><div class="track2"><div class="fill" style="width:91%;background:#C39D78"></div></div><span class="val">~10 years</span></div>
+</div></section><section class="sec"><div class="sec-head"><span class="n">02</span><h2>Roll-ups: How Buy-and-Build Creates Value</h2></div><p>A roll-up buys a <strong>platform</strong>, then acquires and integrates smaller <strong>add-ons</strong>. It works because small businesses sell at lower multiples than scaled platforms, and a platform runs each business better than its founder could alone.</p>
+<h3>2.1 The five value levers</h3>
+<table>
+<thead>
+<tr>
+<th>Lever</th>
+<th>Mechanism</th>
+<th>Durability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Multiple arbitrage</strong></td>
+<td>Buy add-ons at small-business multiples; the combined EBITDA is valued at a platform multiple on exit</td>
+<td>Real but cyclical: it depends on exit markets and shrinks as competition for add-ons rises</td>
+</tr>
+<tr>
+<td><strong>Cost synergies</strong></td>
+<td>Shared procurement, insurance, finance, HR, IT, marketing; better terms from scale</td>
+<td>High if executed; easiest to verify</td>
+</tr>
+<tr>
+<td><strong>Revenue synergies</strong></td>
+<td>Cross-selling, pricing discipline, cross-site memberships, filling capacity</td>
+<td>Valuable but slow; underwrite conservatively</td>
+</tr>
+<tr>
+<td><strong>Cost of capital</strong></td>
+<td>Platform borrows cheaper and longer than a single site; can unlock real estate value (OpCo / PropCo)</td>
+<td>High once scale is reached</td>
+</tr>
+<tr>
+<td><strong>Operational restoration</strong></td>
+<td>Professional management, systems and capex in businesses starved of both</td>
+<td>The deepest moat, and the core of my approach</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 The arithmetic of arbitrage</h3>
+<div class="formula">Arbitrage value = Acquired EBITDA × (Exit multiple − Entry multiple)</div>
+
+<p>On the marina platform model, a 5.8x entry and 9.0x base-case exit mean <strong>each $1 of acquired EBITDA adds $3.20 of enterprise value at exit before any improvement</strong>, a 1.55x uplift on price. The exit multiple is therefore the most important roll-up assumption, so I always show returns with the arbitrage stripped out (§5).</p>
+<h3>2.3 What makes a good roll-up market</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>What I look for</th>
+<th>Marina / fitness application</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fragmentation</strong></td>
+<td>Many small owner-operators, no dominant consolidator</td>
+<td>Single-site marinas and independent gyms</td>
+</tr>
+<tr>
+<td><strong>Succession pressure</strong></td>
+<td>Founders near retirement without heirs or a buyer</td>
+<td>Long-tenured family operators</td>
+</tr>
+<tr>
+<td><strong>Durable demand node</strong></td>
+<td>Demand anchored by something that doesn’t move</td>
+<td>Defense corridor: NAVAIR Patuxent River, the Hampton Roads naval cluster</td>
+</tr>
+<tr>
+<td><strong>Local moat</strong></td>
+<td>Licenses, scarce sites or permits that can’t easily be replicated</td>
+<td>Waterfront slips and zoning are scarce by nature</td>
+</tr>
+<tr>
+<td><strong>Repeatable unit economics</strong></td>
+<td>Each site has a similar P&amp;L that systems can improve</td>
+<td>Slip rental, storage, fuel, service; memberships plus add-ons</td>
+</tr>
+<tr>
+<td><strong>Platform exit buyers</strong></td>
+<td>Larger sponsors or strategics who pay up for scale</td>
+<td>Institutional marina and leisure platforms; fitness franchisors</td>
+</tr>
+</tbody>
+</table></section><section class="sec"><div class="sec-head"><span class="n">03</span><h2>Integration Models</h2></div><p>The decision that most often separates successful roll-ups from failed ones is how much to integrate.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>What changes</th>
+<th>Strengths</th>
+<th>Risks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Full integration</strong></td>
+<td>One brand, one P&amp;L, one system; sites become branches</td>
+<td>Maximum cost synergy; clean story for buyers</td>
+<td>Destroys local goodwill; founder and staff attrition; slow and costly</td>
+</tr>
+<tr>
+<td><strong>Federated / rebrand-light</strong></td>
+<td>Sites keep names and local identity; platform centralizes the back office</td>
+<td>Preserves goodwill and staff; faster close; founders stay engaged</td>
+<td>Lower headline synergy; needs strong central reporting</td>
+</tr>
+<tr>
+<td><strong>Holding-company</strong></td>
+<td>Minimal integration; capital allocation only</td>
+<td>Fast and cheap</td>
+<td>Little operational value created; weakest exit multiple</td>
+</tr>
+</tbody>
+</table>
+<p><strong>My default is federated.</strong> In the marina platform, sites such as Desoto’s Landing, Vera’s Beach Club and Stoney’s Broomes Island keep their names and roots; the roll-up is a rebrand-light platform. In the fitness vertical, local gym owners keep their platform and the deal is a rebrand. Local goodwill is the asset a strategic buyer ultimately pays for, so preserving it is value-maximizing, not sentimental.</p>
+<h3>3.1 What to centralize, what to leave local</h3>
+<table>
+<thead>
+<tr>
+<th>Centralize</th>
+<th>Leave local</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finance, treasury, financing and insurance</td>
+<td>Customer relationships and site management</td>
+</tr>
+<tr>
+<td>Procurement (fuel, parts, equipment, consumables)</td>
+<td>Brand name, community presence, events</td>
+</tr>
+<tr>
+<td>Technology: booking, POS, CRM, reporting</td>
+<td>Day-to-day staffing and service culture</td>
+</tr>
+<tr>
+<td>Pricing analytics and revenue management</td>
+<td>Local pricing within platform guardrails</td>
+</tr>
+<tr>
+<td>Capex planning and real estate strategy</td>
+<td>Operating hours, seasonal programming</td>
+</tr>
+</tbody>
+</table></section><section class="sec"><div class="sec-head"><span class="n">04</span><h2>Structuring and Financing the Roll-up</h2></div><h3>4.1 Deal structures for small targets</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+<th>When I use it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Rollover equity</strong></td>
+<td>Seller reinvests part of proceeds into the platform</td>
+<td>Aligns founders who stay; bridges price gaps</td>
+</tr>
+<tr>
+<td><strong>Earn-out</strong></td>
+<td>Part of the price depends on future performance</td>
+<td>When seller projections exceed my underwriting</td>
+</tr>
+<tr>
+<td><strong>Seller note</strong></td>
+<td>Seller finances part of the price, subordinated to senior debt</td>
+<td>Lowers cash at close; signals seller confidence</td>
+</tr>
+<tr>
+<td><strong>Management equity / MIP</strong></td>
+<td>Equity for site and platform managers</td>
+<td>Retaining key operators through integration</td>
+</tr>
+<tr>
+<td><strong>Asset vs stock purchase</strong></td>
+<td>Asset deals give a tax basis step-up and leave liabilities behind</td>
+<td>Default for small targets where feasible</td>
+</tr>
+</tbody>
+</table>
+<p><strong>US tax notes:</strong> for S-corporation targets, an <strong>F reorganization</strong> or a <strong>§338(h)(10)</strong> election can deliver an asset-style basis step-up while preserving contracts and licenses. Confirm with tax counsel.</p>
+<h3>4.2 Financing the platform</h3>
+<ul>
+<li><strong>Acquisition and delayed-draw term loans (DDTL)</strong> pre-commit debt for future add-ons, so each deal doesn’t need fresh financing.</li>
+<li><strong>Leverage on pro forma EBITDA</strong>: lenders size on platform EBITDA including acquired sites. Scrutinize the add-backs, because inflated "adjusted EBITDA" is the classic roll-up failure point.</li>
+<li><strong>OpCo / PropCo split</strong>: where the business owns valuable real estate (waterfront land, buildings), separating property from operations can release capital through a sale-leaseback or property-level financing, at the cost of rent and reduced control.</li>
+<li><strong>Equity cadence</strong>: commit enough equity for the platform plus the first wave of add-ons; avoid funding add-ons purely with debt into a rising-rate environment.</li>
+</ul></section><section class="sec"><div class="sec-head"><span class="n">05</span><h2>Worked Example: a Five-Site Marina Platform</h2></div><p>An illustrative platform built from five sites, each with $2.0M EBITDA, bought at the platform model’s 5.8x blended multiple and exited after five years at the model’s 9.0x base case.<sup class="en">(1)</sup></p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Assumption</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Entry</td>
+<td>5 sites × $2.0M EBITDA × 5.8x</td>
+<td><strong>$58.0M EV</strong></td>
+</tr>
+<tr>
+<td>Funding</td>
+<td>50% debt / 50% equity</td>
+<td>$29.0M debt · <strong>$29.0M equity</strong></td>
+</tr>
+<tr>
+<td>Synergies</td>
+<td>Procurement, insurance, financing, systems</td>
+<td>+$1.5M EBITDA</td>
+</tr>
+<tr>
+<td>Organic growth</td>
+<td>4% a year for 5 years on $11.5M</td>
+<td>Year-5 EBITDA <strong>$14.0M</strong></td>
+</tr>
+<tr>
+<td>Debt paydown</td>
+<td>Free cash flow over 5 years</td>
+<td>Net debt $29.0M → $19.0M</td>
+</tr>
+<tr>
+<td>Exit</td>
+<td>$14.0M × 9.0x</td>
+<td><strong>$126.0M EV · $107.0M equity</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="keyfigs">
+ <div class="kf"><div class="v">3.69x</div><div class="l">equity MOIC over five years</div></div>
+ <div class="kf"><div class="v">29.8%</div><div class="l">equity IRR</div></div>
+ <div class="kf"><div class="v">41%</div><div class="l">of equity gain from multiple arbitrage alone</div></div>
+</div>
+
+<div class="panel"><div class="panel-title">Where the $78M equity gain comes from<sup class="en">(1)</sup></div><div class="sub">$M; illustrative</div>
+<div class="barrow"><span>Multiple arbitrage (10.0 × 3.2x)</span><div class="track2"><div class="fill" style="width:94%;background:#1B5E5C"></div></div><span class="val">$32.0M</span></div>
+<div class="barrow"><span>Organic growth (2.5 × 9.0x)</span><div class="track2"><div class="fill" style="width:66%;background:#4C9F8B"></div></div><span class="val">$22.4M</span></div>
+<div class="barrow"><span>Synergies (1.5 × 9.0x)</span><div class="track2"><div class="fill" style="width:40%;background:#006492"></div></div><span class="val">$13.5M</span></div>
+<div class="barrow"><span>Debt paydown</span><div class="track2"><div class="fill" style="width:29%;background:#C39D78"></div></div><span class="val">$10.0M</span></div>
+</div>
+
+<h3>5.1 Strip out the arbitrage</h3>
+<p>The test I apply to every roll-up: <strong>does it still work if the exit multiple doesn’t expand?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Exit multiple</th>
+<th>Exit EV</th>
+<th>Exit equity</th>
+<th>MOIC</th>
+<th>IRR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9.0x (base)</td>
+<td>$126.0M</td>
+<td>$107.0M</td>
+<td>3.69x</td>
+<td>29.8%</td>
+</tr>
+<tr>
+<td>7.0x (half the expansion)</td>
+<td>$97.9M</td>
+<td>$78.9M</td>
+<td>2.72x</td>
+<td>22.2%</td>
+</tr>
+<tr>
+<td>5.8x (no expansion)</td>
+<td>$81.1M</td>
+<td>$62.1M</td>
+<td>2.14x</td>
+<td>16.4%</td>
+</tr>
+</tbody>
+</table>
+<p>At no expansion the platform still clears a ~15% hurdle on synergies, growth and paydown alone. <strong>That is the standard: arbitrage is upside, not the thesis.</strong> A roll-up that only works at a higher exit multiple is a bet on markets, not a business plan.</p></section><section class="sec"><div class="sec-head"><span class="n">06</span><h2>Roll-up Risks and Diligence</h2></div><h3>6.1 Where roll-ups fail</h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Early warning</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Add-back inflation</strong></td>
+<td>Adjusted EBITDA far above reported; "run-rate" synergies counted before they’re achieved</td>
+<td>QoE on every material add-on; lend and price on achieved synergies only</td>
+</tr>
+<tr>
+<td><strong>Overpaying as competition rises</strong></td>
+<td>Add-on multiples creeping toward the platform multiple</td>
+<td>Walk-away multiple per deal; proprietary sourcing</td>
+</tr>
+<tr>
+<td><strong>Integration overload</strong></td>
+<td>Reporting delays, staff turnover, customer complaints</td>
+<td>Pace acquisitions to integration capacity; central team built first</td>
+</tr>
+<tr>
+<td><strong>Founder and key-person loss</strong></td>
+<td>Founders disengage after cash-out</td>
+<td>Rollover equity, earn-outs, management equity</td>
+</tr>
+<tr>
+<td><strong>Leverage into a downturn</strong></td>
+<td>Covenant headroom thinning</td>
+<td>Conservative leverage; DDTL headroom; equity reserve</td>
+</tr>
+<tr>
+<td><strong>Exit multiple compression</strong></td>
+<td>Platform buyers retreat; rates rise</td>
+<td>Underwrite to no expansion (§5.1)</td>
+</tr>
+<tr>
+<td><strong>Local political and land-use risk</strong></td>
+<td>Zoning, permits, major local projects</td>
+<td>Treat key local decisions as scheduled re-underwrite dates</td>
+</tr>
+</tbody>
+</table>
+<p>For the marina platform, the Calvert County data-center process (land swap and park proposal, an AWS application withdrawn in August 2026, the state impact analysis and the November 2026 election) is exactly that kind of re-underwrite date: it can move land values, traffic and household income around the sites. A dark-fiber corridor to NAVAIR Patuxent River makes dual-use compute near Calvert Cliffs an upside scenario worth tracking.</p>
+<h3>6.2 Small-target diligence checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Financial</strong></td>
+<td>Three years of statements and tax returns; cash vs reported revenue; seasonality; customer deposits; deferred maintenance</td>
+</tr>
+<tr>
+<td><strong>Operational</strong></td>
+<td>Occupancy and slip / membership utilization; pricing vs local comps; staff tenure; service revenue mix</td>
+</tr>
+<tr>
+<td><strong>Real estate</strong></td>
+<td>Owned vs leased; lease terms and renewal rights; riparian rights and dredging obligations (marinas); environmental condition</td>
+</tr>
+<tr>
+<td><strong>Regulatory</strong></td>
+<td>Permits and licenses; transferability on change of control; environmental compliance</td>
+</tr>
+<tr>
+<td><strong>Commercial</strong></td>
+<td>Customer concentration; waitlists; competitor sites planned nearby</td>
+</tr>
+<tr>
+<td><strong>People</strong></td>
+<td>Who actually runs the site; will they stay; compensation and incentives</td>
+</tr>
+</tbody>
+</table>
+<h3>6.3 The fitness vertical</h3>
+<p>An Equinox-style experience at Planet-Fitness-level pricing (~$40–80 a month), with sauna, cold plunge and spa therapies as high-margin add-ons. The metrics that matter differ from marinas: <strong>member churn, cost to acquire a member, lifetime value, ancillary revenue per member, and utilization by hour.</strong> The same federated model applies: partner with local gyms, let owners keep their platform, rebrand, and centralize the back office.</p></section><section class="sec"><div class="sec-head"><span class="n">07</span><h2>The Luxembourg Toolkit</h2></div><p>Luxembourg is the default EU domicile for cross-border funds because it offers every regime on one menu, a deep service-provider ecosystem, and EU marketing passports.<sup class="en">(3)</sup></p>
+<h3>7.1 Regimes</h3>
+<table>
+<thead>
+<tr>
+<th>Regime</th>
+<th>Who can invest</th>
+<th>CSSF authorization</th>
+<th>Key constraints</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UCITS (Part I, 2010 Law)</strong></td>
+<td>Retail, EU passport</td>
+<td>Yes, product-level</td>
+<td>5 / 10 / 40 diversification; global exposure capped (commitment ≤100% NAV, or VaR limits); dealing at least twice a month; eligible assets only</td>
+<td>Liquid retail funds</td>
+</tr>
+<tr>
+<td><strong>Part II UCI (2010 Law)</strong></td>
+<td>Retail in Luxembourg; an AIF under AIFMD</td>
+<td>Yes, product-level</td>
+<td>Flexible risk-spreading set by CSSF circulars; alternative strategies permitted</td>
+<td>Liquid and semi-liquid alternatives, options strategies</td>
+</tr>
+<tr>
+<td><strong>SIF (2007 Law)</strong></td>
+<td>Well-informed investors</td>
+<td>Yes</td>
+<td>Risk-spreading principle (generally ≤30% in one issuer)</td>
+<td>Professional funds needing a regulated label</td>
+</tr>
+<tr>
+<td><strong>SICAR (2004 Law)</strong></td>
+<td>Well-informed investors</td>
+<td>Yes</td>
+<td>Must invest in risk capital; no diversification rule</td>
+<td>Private equity and venture</td>
+</tr>
+<tr>
+<td><strong>RAIF (2016 Law)</strong></td>
+<td>Well-informed investors</td>
+<td><strong>No</strong>: must appoint an authorized external AIFM</td>
+<td>Flexible; can opt into the SICAR-style regime</td>
+<td>Fast-to-market alternative funds</td>
+</tr>
+<tr>
+<td><strong>Unregulated SCSp / SCS</strong></td>
+<td>Professional investors (via AIFM if AIFMD applies)</td>
+<td>No</td>
+<td>Contractual freedom; partnership agreement governs</td>
+<td>Private equity, infrastructure, co-invest</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subscription tax (taxe d’abonnement):</strong> 0.05% a year of NAV for UCITS and Part II funds; 0.01% for SIFs and RAIFs (with exemptions for some classes); SICARs and SICAR-style RAIFs are exempt. Minimum capital for regulated funds is €1.25M, reached within the period the law sets for each regime.</p>
+<h3>7.2 Legal forms</h3>
+<table>
+<thead>
+<tr>
+<th>Form</th>
+<th>What it is</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SICAV</strong></td>
+<td>Company with variable capital: shares issued and redeemed at NAV</td>
+<td>The standard open-ended corporate form; has legal personality</td>
+</tr>
+<tr>
+<td><strong>SICAF</strong></td>
+<td>Company with fixed capital</td>
+<td>Closed-ended corporate form</td>
+</tr>
+<tr>
+<td><strong>FCP</strong></td>
+<td>Contractual co-ownership managed by a ManCo</td>
+<td>No legal personality; tax-transparent in many jurisdictions</td>
+</tr>
+<tr>
+<td><strong>SCSp</strong></td>
+<td>Special limited partnership</td>
+<td>No legal personality; tax-transparent; the PE workhorse</td>
+</tr>
+</tbody>
+</table>
+<p>A regime and a form combine: a fund can be a <strong>Part II SICAV</strong>, a <strong>SIF-SCSp</strong>, a <strong>RAIF-SICAV</strong> and so on. <strong>Umbrella structures</strong> hold several compartments (sub-funds) with legally segregated assets and liabilities, each with its own strategy, investors and NAV.</p></section><section class="sec"><div class="sec-head"><span class="n">08</span><h2>Running a SICAV</h2></div><h3>8.1 The service-provider map</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Responsibility</th>
+<th>Leviathan liquid SICAV (planned)<sup class="en">(2)</sup></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Management company / AIFM</strong></td>
+<td>Regulatory substance, risk management, compliance, valuation oversight, distribution oversight</td>
+<td>Third-party ManCo under a white-label arrangement</td>
+</tr>
+<tr>
+<td><strong>Investment manager / sponsor</strong></td>
+<td>Portfolio decisions, under delegation from the ManCo</td>
+<td>Leviathan retains investment discretion as sponsor</td>
+</tr>
+<tr>
+<td><strong>Depositary</strong></td>
+<td>Safekeeping, cash monitoring, oversight of NAV and dealing</td>
+<td>Luxembourg credit institution</td>
+</tr>
+<tr>
+<td><strong>Central administration / TA</strong></td>
+<td>NAV calculation, shareholder register, subscriptions and redemptions</td>
+<td>Appointed through the platform</td>
+</tr>
+<tr>
+<td><strong>Prime broker</strong></td>
+<td>Financing, margin and execution for the derivatives overlay</td>
+<td>Separate, independently negotiated mandate</td>
+</tr>
+<tr>
+<td><strong>Auditor</strong></td>
+<td>Annual audit</td>
+<td>Luxembourg-approved auditor</td>
+</tr>
+<tr>
+<td><strong>Board of directors</strong></td>
+<td>Governance and oversight of all delegates</td>
+<td>Including independent directors</td>
+</tr>
+</tbody>
+</table>
+<h3>8.2 Why white-label</h3>
+<p>A white-label (third-party ManCo) platform lets a new sponsor launch a regulated Luxembourg fund without building its own authorized ManCo: substance, compliance, risk and regulatory reporting are rented, and the sponsor keeps the portfolio decisions. <strong>Trade-offs:</strong> platform fees and less control over operational choices; the ManCo has oversight rights and can veto activity outside the risk framework. <strong>When to graduate:</strong> once AUM and product count justify building a Chapter 15 ManCo or an authorized AIFM of one’s own.</p>
+<h3>8.3 Launch sequence</h3>
+<div class="track5">
+<div class="st dark"><b>1. Design</b>Strategy, regime, form, share classes, dealing terms, fees</div>
+<div class="st"><b>2. Providers</b>ManCo / AIFM, depositary, administrator, auditor, prime broker</div>
+<div class="st"><b>3. Documents</b>Prospectus, articles, KID where needed, delegation and service agreements</div>
+<div class="st"><b>4. Authorization</b>CSSF filing and review (not needed for a RAIF)</div>
+<div class="st"><b>5. Launch</b>Seed capital, initial NAV, marketing notifications</div>
+</div></section><section class="sec"><div class="sec-head"><span class="n">09</span><h2>Options Overlays Inside a SICAV</h2></div><p>Vehicle 1 is planned as a liquid book with a <strong>monthly rolling options overlay</strong>. The wrapper decides which overlays are allowed.</p>
+<h3>9.1 Overlay strategies</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Mechanics</th>
+<th>Payoff effect</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Covered calls</strong></td>
+<td>Sell out-of-the-money calls against long positions, rolled monthly</td>
+<td>Income; caps upside on the covered shares</td>
+<td>Range-bound or high implied-volatility regimes</td>
+</tr>
+<tr>
+<td><strong>Protective puts / put spreads</strong></td>
+<td>Buy puts (or put spreads to cut cost)</td>
+<td>Defined downside; costs premium</td>
+<td>Event risk; tail protection</td>
+</tr>
+<tr>
+<td><strong>Collars</strong></td>
+<td>Long put financed by a short call</td>
+<td>Bounded range; low or zero net premium</td>
+<td>Protecting gains in concentrated positions</td>
+</tr>
+<tr>
+<td><strong>Long calls / LEAPS</strong></td>
+<td>Buy in-the-money or long-dated calls instead of stock</td>
+<td>Leveraged upside, limited theta when ITM</td>
+<td>Expressing high-conviction theses capital-efficiently</td>
+</tr>
+</tbody>
+</table>
+<h3>9.2 UCITS versus Part II for an overlay</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>UCITS</th>
+<th>Part II</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Global exposure</td>
+<td>Commitment approach ≤100% of NAV, or VaR (absolute ≤20%; relative ≤2× benchmark)</td>
+<td>Set by prospectus within CSSF risk-spreading guidance</td>
+</tr>
+<tr>
+<td>Cover rules</td>
+<td>Every derivative must be covered by the underlying or liquid assets</td>
+<td>More flexibility, including uncovered or leveraged positions within stated limits</td>
+</tr>
+<tr>
+<td>Counterparty limits (OTC)</td>
+<td>10% of NAV for credit institutions, 5% otherwise</td>
+<td>Set by risk framework</td>
+</tr>
+<tr>
+<td>Short exposure</td>
+<td>Synthetic only (no physical short sales)</td>
+<td>Wider latitude</td>
+</tr>
+<tr>
+<td>Dealing</td>
+<td>At least twice a month</td>
+<td>As the prospectus sets: monthly suits a monthly roll</td>
+</tr>
+<tr>
+<td>Distribution</td>
+<td>Retail passport across the EU</td>
+<td>Retail in Luxembourg; professional marketing in the EU under the AIFMD passport</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why Part II for this book:</strong> a monthly roll and leveraged LEAPS-style expressions fit Part II flexibility better than UCITS cover and exposure rules, while monthly dealing aligns investor liquidity with the overlay cycle.</p>
+<h3>9.3 Operational pitfalls</h3>
+<ul>
+<li><strong>Assignment and pin risk</strong> on short calls near expiry: roll before expiry week.</li>
+<li><strong>Gap risk</strong>: covered calls don’t protect the downside, so make an explicit tail-risk decision.</li>
+<li><strong>Margin</strong>: prime-broker haircuts can force sales in volatile markets; keep a liquidity buffer.</li>
+<li><strong>NAV timing and tax</strong>: agree option pricing with the administrator; premium is taxed differently by investor jurisdiction.</li>
+<li><strong>Behavioral drift</strong>: income-seeking overwriting can quietly become a short-volatility fund. Keep a stated volatility policy.</li>
+</ul></section><section class="sec"><div class="sec-head"><span class="n">10</span><h2>Beyond Luxembourg: Other Wrappers and Cross-Border Issues</h2></div><h3>10.1 Domicile comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Domicile / wrapper</th>
+<th>Strengths</th>
+<th>Typical investors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Luxembourg (SICAV, RAIF, SCSp)</strong></td>
+<td>Full regime menu; EU passports; deep provider base</td>
+<td>EU and global institutions, private banks, wealth platforms</td>
+</tr>
+<tr>
+<td><strong>Ireland (ICAV, QIAIF)</strong></td>
+<td>Fast QIAIF authorization; US check-the-box friendly ICAV</td>
+<td>Institutional and hedge-fund-style products</td>
+</tr>
+<tr>
+<td><strong>Cayman Islands</strong></td>
+<td>Familiar to US and Asian investors; flexible; tax-neutral</td>
+<td>Hedge funds, master-feeder structures</td>
+</tr>
+<tr>
+<td><strong>Delaware LP</strong></td>
+<td>Standard for US investors; tax-transparent</td>
+<td>US taxable investors and the US side of master-feeders</td>
+</tr>
+</tbody>
+</table>
+<h3>10.2 Cross-border issues to solve up front</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>What happens</th>
+<th>Usual fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>US taxable investors in a non-US corporate fund</strong></td>
+<td>A SICAV is generally a <strong>PFIC</strong> for US tax purposes: punitive tax unless a QEF or mark-to-market election is available</td>
+<td>Delaware feeder or parallel vehicle; provide QEF statements</td>
+</tr>
+<tr>
+<td><strong>US tax-exempt investors</strong></td>
+<td>Leverage and operating businesses create <strong>UBTI</strong></td>
+<td>Offshore corporate blocker or feeder</td>
+</tr>
+<tr>
+<td><strong>Non-US investors in US operating assets</strong></td>
+<td><strong>ECI</strong> exposure</td>
+<td>Blocker corporations</td>
+</tr>
+<tr>
+<td><strong>ERISA plans</strong></td>
+<td>25% plan-asset test</td>
+<td>Monitor benefit-plan percentage; VCOC structures</td>
+</tr>
+<tr>
+<td><strong>EU marketing</strong></td>
+<td>AIFMD passport for authorized AIFMs to EU professional investors; national private placement for others</td>
+<td>Choose an AIFM with passport rights; register before marketing</td>
+</tr>
+<tr>
+<td><strong>Retail access to illiquid assets</strong></td>
+<td>Retail rules restrict illiquid funds</td>
+<td><strong>ELTIF 2.0</strong> (applies from January 2024): long-term assets with retail access and liquidity tools</td>
+</tr>
+</tbody>
+</table>
+<p><strong>AIFMD II</strong> (transposition deadline April 2026) adds loan-origination rules, tighter delegation oversight and mandatory liquidity-management tools for open-ended AIFs, which is relevant for any semi-liquid vehicle.</p></section><section class="sec"><div class="sec-head"><span class="n">11</span><h2>Long-Dated Vehicles</h2></div><h3>11.1 Holdco versus fund versus evergreen</h3>
+<table>
+<thead>
+<tr>
+<th>Vehicle type</th>
+<th>Capital</th>
+<th>Life</th>
+<th>Fits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Closed-end fund (SCSp / SICAR)</strong></td>
+<td>Committed, called over time</td>
+<td>~10 years + extensions</td>
+<td>Private equity with a harvest cycle</td>
+</tr>
+<tr>
+<td><strong>Holding company</strong></td>
+<td>Permanent capital on the balance sheet</td>
+<td>Indefinite</td>
+<td>Long holds, sleeves, flexible recycling (the Leviathan core PE model)</td>
+</tr>
+<tr>
+<td><strong>Evergreen / semi-liquid</strong></td>
+<td>Periodic subscriptions and capped redemptions</td>
+<td>Indefinite</td>
+<td>Wealth channels; requires liquidity tools and a cash sleeve</td>
+</tr>
+<tr>
+<td><strong>Infrastructure vehicle</strong></td>
+<td>Committed, long-dated</td>
+<td>~10–15+ years</td>
+<td>Contracted, inflation-linked cash flows</td>
+</tr>
+<tr>
+<td><strong>Continuation vehicle</strong></td>
+<td>Rolled assets from an earlier vehicle</td>
+<td>New term</td>
+<td>Extending the hold on winners</td>
+</tr>
+<tr>
+<td><strong>Co-invest SPV</strong></td>
+<td>Deal-specific</td>
+<td>Life of the deal</td>
+<td>Larger checks; low-fee LP exposure</td>
+</tr>
+</tbody>
+</table>
+<h3>11.2 The infrastructure vehicle</h3>
+<p>A ~10-year vehicle suits assets whose value accrues slowly and predictably: contracted revenue, real estate and digital infrastructure. Structure it as a closed-ended partnership (typically an SCSp, regulated as a RAIF or SIF if investors require it) with a long investment period, distribution-focused economics and inflation linkage. Defense-corridor digital infrastructure (dark fiber and dual-use compute near government nodes) connects it to the roll-up thesis.</p></section><section class="sec"><div class="sec-head"><span class="n">12</span><h2>Choosing the Vehicle</h2></div><table>
+<thead>
+<tr>
+<th>If the assets are…</th>
+<th>And investors are…</th>
+<th>Default choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Listed, liquid, with derivatives overlays</td>
+<td>Professional and private-bank, EU-centric</td>
+<td><strong>Part II SICAV</strong> (white-label to start)</td>
+</tr>
+<tr>
+<td>Listed, liquid, plain</td>
+<td>EU retail</td>
+<td><strong>UCITS</strong></td>
+</tr>
+<tr>
+<td>Private equity, harvest cycle</td>
+<td>Professional, institutional</td>
+<td><strong>SCSp</strong> (unregulated or RAIF), or SICAR</td>
+</tr>
+<tr>
+<td>Private stakes, long and flexible holds</td>
+<td>Sponsor and close network</td>
+<td><strong>Holdco</strong> with sleeves</td>
+</tr>
+<tr>
+<td>Long-dated real assets</td>
+<td>Institutional, yield-seeking</td>
+<td><strong>SCSp / RAIF infrastructure vehicle</strong></td>
+</tr>
+<tr>
+<td>Any of the above</td>
+<td>US taxable</td>
+<td>Add a <strong>Delaware feeder or parallel</strong></td>
+</tr>
+<tr>
+<td>Any of the above</td>
+<td>US tax-exempt or non-US into US assets</td>
+<td>Add a <strong>blocker</strong></td>
+</tr>
+<tr>
+<td>Illiquid, but needs retail reach</td>
+<td>EU retail</td>
+<td><strong>ELTIF 2.0</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>12.1 Checklist before committing to a structure</h3>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does investor liquidity ever exceed asset liquidity?</td>
+<td>The first cause of forced selling and gated funds</td>
+</tr>
+<tr>
+<td>Who must be able to buy, and from where?</td>
+<td>Drives regime, passport and feeders</td>
+</tr>
+<tr>
+<td>What tax profile do the main investors have?</td>
+<td>PFIC, UBTI and ECI fixes are cheaper at launch than later</td>
+</tr>
+<tr>
+<td>What leverage and derivatives will the strategy use?</td>
+<td>Decides UCITS vs Part II vs unregulated</td>
+</tr>
+<tr>
+<td>Who holds the regulatory license, and what can they veto?</td>
+<td>White-label trade-offs</td>
+</tr>
+<tr>
+<td>What does it cost per year at target AUM?</td>
+<td>Fees, subscription tax, providers, board</td>
+</tr>
+<tr>
+<td>How does each vehicle end?</td>
+<td>Term, extensions, continuation options, wind-down</td>
+</tr>
+</tbody>
+</table></section><section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol><li>Roll-up worked example (§5) is illustrative: round numbers chosen to show the mechanics, not output of the marina platform model. Entry and exit multiples (5.8x / 9.0x) are taken from the platform model.</li><li>Leviathan vehicle architecture is drawn from the author’s planning records, May–November 2026. Structures, counterparties and timelines were under negotiation at the time of writing and may change.</li><li>Regulatory summaries reflect Luxembourg and EU rules as understood at November 2026 (2010 Law Parts I and II, SIF Law 2007, SICAR Law 2004, RAIF Law 2016, AIFMD and AIFMD II, ELTIF Regulation as amended). Limits are summarized; confirm against current law, CSSF circulars and counsel before structuring.</li><li>US tax points (PFIC, F reorganization, §338(h)(10), UBTI / ECI) are summaries for orientation, not tax advice.</li></ol>
+<div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
+<p style="font-size:8pt"><b>Note:</b> Illustrative figures are not forecasts. Regulatory and tax summaries require confirmation by counsel.</p></section></body></html>

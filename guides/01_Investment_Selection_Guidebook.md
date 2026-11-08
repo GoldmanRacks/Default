@@ -1,6 +1,19 @@
 ---
-title: How I Find, Judge and Select Investments
-subtitle: A guidebook to my research process and selection discipline
+out: Investment_Selection_Guidebook
+html_title: Investment Selection Guidebook
+header_label: Selection Guidebook
+doc_id: LEVIATHAN-GB01-20261108
+eyebrow: November 2026 · D. B. Ritts III
+title_html: How I Find, Judge and<br>Select Investments
+lead_html: A guidebook to my research process and selection discipline across <b>private stakes, operational roll-ups, public equity books and the macro overlay</b>, with the frameworks, evidence standards, case studies and kill rules behind each decision.
+kf: 4|arenas run on one selection process
+kf: 5|factors in the selection equation, multiplied, not added
+kf: 8|selection lenses, each with live examples
+pull: Follow the shift down through budgets, contracts and production lines until you find the constraint that has to be paid. Then own it at a price the public market won’t offer twice.
+note: Evidence-tier weights are the author’s framework weights for conviction decisions, not empirical measurements.
+note: Leviathan Core PE Holdco IC model, v2 (Faxon / MSL / Golden Dome), September 2026. Holdco size, sleeve structure, scores, entry marks, scenario returns and KS-PME are model outputs, estimated and unaudited; several entry marks are estimates pending cap-table confirmation.
+note: Roll-up, public-book and macro material is drawn from the author’s research records and position notes, May–November 2026. Positions are described as recorded at the time and are not a current holdings statement. Marina platform multiples come from the platform’s 5-year model.
+closing_note: Model figures are estimated and unaudited. Defense-book material is restricted from LP distribution.
 ---
 
 ## 1. How I Think

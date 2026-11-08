@@ -1,16 +1,18 @@
-"""Render Guide #1, the investment selection guidebook, as a designed PDF
+"""Render a guidebook Markdown file as a designed PDF
 (Fund Communications Design System v2, marketing register).
 
-Usage: python3 tools/build_guidebook_pdf.py  ->  guides/Investment_Selection_Guidebook.pdf
+Cover text, header label, doc ID, output name and endnotes come from the
+Markdown front matter (one `key: value` per line; `kf` and `note` repeat).
+
+Usage:
+  python3 tools/build_guidebook_pdf.py                      # Guide #1
+  python3 tools/build_guidebook_pdf.py guides/03_....md     # any guidebook
 """
-import os, re, subprocess, json, html
+import os, re, subprocess, json, html, sys
 import markdown
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-SRC = os.path.join(ROOT, "guides", "01_Investment_Selection_Guidebook.md")
-HTML_OUT = os.path.join(ROOT, "guides", "Investment_Selection_Guidebook.html")
-PDF_OUT = os.path.join(ROOT, "guides", "Investment_Selection_Guidebook.pdf")
-DOC_ID = "LEVIATHAN-GB01-20261108"
+SRC = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(ROOT, "guides", "01_Investment_Selection_Guidebook.md")
 
 CSS = """
 @page { size: Letter; margin: 0.85in 0.7in 0.95in 0.7in; }
@@ -110,8 +112,19 @@ EXTRA_CSS = """
 
 def esc(s): return html.escape(s, quote=False)
 
-src = open(SRC, encoding="utf-8").read()
-src = re.sub(r"^---.*?---\s*", "", src, flags=re.S)
+raw = open(SRC, encoding="utf-8").read()
+fm_match = re.match(r"^---\n(.*?)\n---\s*", raw, flags=re.S)
+meta = {}
+for line in (fm_match.group(1).splitlines() if fm_match else []):
+    if ":" in line:
+        k, v = line.split(":", 1)
+        meta.setdefault(k.strip(), []).append(v.strip())
+M = lambda k, d="": meta.get(k, [d])[0]
+src = raw[fm_match.end():] if fm_match else raw
+OUT_STEM = M("out", "Guidebook")
+HTML_OUT = os.path.join(ROOT, "guides", OUT_STEM + ".html")
+PDF_OUT = os.path.join(ROOT, "guides", OUT_STEM + ".pdf")
+DOC_ID = M("doc_id", "LEVIATHAN-GB")
 src = src.replace("▸", '<span class="xref">▸</span>')
 md = markdown.Markdown(extensions=["tables"])
 
@@ -121,46 +134,38 @@ for part in re.split(r"^## ", src, flags=re.M)[1:]:
     m = re.match(r"(\d+)\.\s+(.*)", head.strip())
     sections.append((int(m.group(1)), m.group(2), body.strip()))
 
-FLOW = set()
 out = []
 for n, title, body in sections:
     md.reset()
     h = md.convert(body)
-    cls = "sec flow" if n in FLOW else "sec"
-    out.append(f'<section class="{cls}"><div class="sec-head"><span class="n">{n:02d}</span><h2>{esc(title)}</h2></div>{h}</section>')
+    out.append(f'<section class="sec"><div class="sec-head"><span class="n">{n:02d}</span><h2>{esc(title)}</h2></div>{h}</section>')
 
 toc = "".join(f"<li><span>{n:02d}</span>{esc(t)}</li>" for n, t, _ in sections)
+kfs = "".join(f'<div class="kf"><div class="v">{v.split("|",1)[0]}</div><div class="l">{v.split("|",1)[1]}</div></div>' for v in meta.get("kf", []))
 COVER = f"""<section>
 <div class="rule-ink" style="margin-top:0"></div>
-<div class="eyebrow">November 2026 · D. B. Ritts III</div>
-<h1 class="title">How I Find, Judge and<br>Select Investments</h1>
-<p class="lead">A guidebook to my research process and selection discipline across <b>private stakes, operational roll-ups, public equity books and the macro overlay</b>, with the frameworks, evidence standards, case studies and kill rules behind each decision.</p>
-<div class="keyfigs">
- <div class="kf"><div class="v">4</div><div class="l">arenas run on one selection process</div></div>
- <div class="kf"><div class="v">5</div><div class="l">factors in the selection equation, multiplied, not added</div></div>
- <div class="kf"><div class="v">8</div><div class="l">selection lenses, each with live examples</div></div>
-</div>
-<div class="pull">Follow the shift down through budgets, contracts and production lines until you find the constraint that has to be paid. Then own it at a price the public market won’t offer twice.</div>
+<div class="eyebrow">{M("eyebrow")}</div>
+<h1 class="title">{M("title_html")}</h1>
+<p class="lead">{M("lead_html")}</p>
+<div class="keyfigs">{kfs}</div>
+<div class="pull">{M("pull")}</div>
 <div class="eyebrow" style="margin-bottom:2pt">Contents</div>
 <ul class="toc">{toc}</ul>
 </section>"""
 
-NOTES = """<section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol>
-<li>Evidence-tier weights are the author’s framework weights for conviction decisions, not empirical measurements.</li>
-<li>Leviathan Core PE Holdco IC model, v2 (Faxon / MSL / Golden Dome), September 2026. Holdco size, sleeve structure, scores, entry marks, scenario returns and KS-PME are model outputs, estimated and unaudited; several entry marks are estimates pending cap-table confirmation.</li>
-<li>Roll-up, public-book and macro material is drawn from the author’s research records and position notes, May–November 2026. Positions are described as recorded at the time and are not a current holdings statement. Marina platform multiples come from the platform’s 5-year model.</li>
-</ol>
+notes = "".join(f"<li>{n}</li>" for n in meta.get("note", []))
+NOTES = f"""<section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol>{notes}</ol>
 <div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
-<p style="font-size:8pt"><b>Note:</b> Model figures are estimated and unaudited. Defense-book material is restricted from LP distribution.</p></section>"""
+<p style="font-size:8pt"><b>Note:</b> {M("closing_note", "Model figures are estimated and unaudited.")}</p></section>"""
 
-doc = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>Investment Selection Guidebook</title>
+doc = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>{M("html_title", "Guidebook")}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>{CSS}{EXTRA_CSS}</style></head><body>{COVER}{''.join(out)}{NOTES}</body></html>"""
 open(HTML_OUT, "w", encoding="utf-8").write(doc)
 
-HEADER = """<div style="width:100%;font-family:Helvetica,Arial,sans-serif;font-size:7px;letter-spacing:.05em;text-transform:uppercase;padding:0 0.7in;display:flex;justify-content:space-between;color:#000;">
-<span style="font-weight:600">D. B. Ritts III · Selection Guidebook</span><span>Confidential — internal reference · not for LP distribution</span></div>"""
+HEADER = f"""<div style="width:100%;font-family:Helvetica,Arial,sans-serif;font-size:7px;letter-spacing:.05em;text-transform:uppercase;padding:0 0.7in;display:flex;justify-content:space-between;color:#000;">
+<span style="font-weight:600">D. B. Ritts III · {M("header_label", "Guidebook")}</span><span>Confidential — internal reference · not for LP distribution</span></div>"""
 FOOTER = f"""<div style="width:100%;font-family:Helvetica,Arial,sans-serif;font-size:7px;padding:0 0.7in;color:#000;">
 <div style="border-top:1px solid #000;padding-top:4px;display:flex;justify-content:space-between;align-items:baseline;">
 <span style="font-weight:600">Model figures are estimated and unaudited. Not investment advice.</span>
