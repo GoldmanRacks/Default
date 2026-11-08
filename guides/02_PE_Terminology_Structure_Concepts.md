@@ -88,7 +88,7 @@ mindmap
 | **SMA (Separately Managed Account)** | Single-LP custom mandate | Custom terms, typically large LPs |
 | **Evergreen / semi-liquid fund** | Open-ended vehicle with periodic subscriptions and redemptions (common in wealth channels) | No fixed term; liquidity gates |
 | **Continuation vehicle (CV)** | GP-led secondary: assets move from an old fund to a new vehicle, and existing LPs choose to roll or sell | Extends the hold on winners |
-| **Holdco** | Holding company owning stakes across sub-portfolios or sleeves | ▸ Leviathan = $855M holdco across three sleeves |
+| **Holdco** | Holding company owning stakes across sub-portfolios or sleeves | ▸ Leviathan = $1,406M holdco across three sleeves |
 | **Sleeve** | Distinct sub-strategy or sub-fund within a vehicle | ▸ IQT-mirror / Weapons / Consumer |
 | **GP commitment** | GP's own capital in the fund (typically 1–5%) | Alignment ("skin in the game") |
 | **Key person clause** | Investment period suspends if named individuals leave | Protects LPs against team risk |
@@ -178,7 +178,7 @@ Fees are then deducted: 2% × $100M × 5 years = $10M. The difference between th
 | **DPI (distributions to paid-in)** | Cumulative distributions ÷ PIC | "Cash-on-cash." What LPs care about most in tight markets |
 | **RVPI (residual value to paid-in)** | NAV ÷ PIC | Unrealized portion; TVPI = DPI + RVPI |
 | **PME (public market equivalent)** | Compares PE cash flows with an index | Answers "did I beat the index on the same cash-flow timing?" |
-| **KS-PME (Kaplan–Schoar)** | Σ Distₜ×(I_T/Iₜ) + NAV_T, divided by Σ Callₜ×(I_T/Iₜ) | >1.0 = beat the index. Single in/out: MOIC ÷ (1+r_index)^T ▸ 2.068 ÷ 1.09⁵ = 1.34x |
+| **KS-PME (Kaplan–Schoar)** | Σ Distₜ×(I_T/Iₜ) + NAV_T, divided by Σ Callₜ×(I_T/Iₜ) | >1.0 = beat the index. Single in/out: MOIC ÷ (1+r_index)^T ▸ 5-yr Base 2.42 ÷ 1.09⁵ = 1.57x vs S&P 500 |
 | **Direct Alpha** | IRR of index-compounded cash flows | Annualized excess return over the index |
 | **Long–Nickels PME (LN-PME / ICM)** | Implied IRR from investing the same flows in the index | Can break down with large distributions |
 | **J-curve** | Early negative returns (fees, write-downs) before value creation and exits turn the curve up | Subscription lines flatten it artificially |
@@ -198,10 +198,10 @@ Fees are then deducted: 2% × $100M × 5 years = $10M. The difference between th
 | **Growth equity** | Revenue scaling, near or at profitability | Minority, little leverage | Revenue growth |
 | **Buyout / LBO** | Mature, cash-generative | Control, 4–7x debt/EBITDA | EBITDA growth, deleveraging, multiple |
 | **Take-private (P2P)** | Buying a listed company | Control | Re-rating plus operational improvement |
-| **Carve-out / spin-off** | Buying a division from a corporate parent | Control or minority | Standalone efficiency; TSAs ▸ L3Harris MSL |
+| **Carve-out / spin-off** | Buying a division from a corporate parent | Control or minority | Standalone efficiency; TSAs |
 | **Buy-and-build / roll-up** | Platform plus add-on acquisitions | Control | Multiple arbitrage (buy add-ons at 6x, consolidate at 12x) |
 | **Minority / structured equity** | Preferred with downside protection | Minority, structured | Contractual returns plus upside ▸ Ellwood, ARA |
-| **Pre-IPO / crossover** | Last private round before listing | Minority | Discount to IPO price ▸ MSL 15% |
+| **Pre-IPO / crossover** | Last private round before listing | Minority | Discount to IPO price ▸ IAI cornerstone, Syntiant |
 | **PIPE** | Private investment in public equity | Minority | Discount plus terms ▸ Infleqtion |
 | **Secondaries, LP-led** | Buying LP fund interests | Passive | Discount to NAV, shorter J-curve |
 | **Secondaries, GP-led** | Continuation vehicles, strip sales | Varies | Extending winners |
@@ -259,18 +259,18 @@ Equity Value = Enterprise Value − Debt − Preferred − Minority interest −
 |---|---|
 | **EBITDA / Adjusted EBITDA** | Operating cash proxy. "Adjusted" removes one-offs, and is where sellers inflate the number |
 | **Run-rate / pro forma EBITDA** | Annualized latest results plus synergies or acquisitions |
-| **EV/EBITDA, EV/EBIT, EV/Revenue** | Core multiples ▸ LHX 15.1x EBITDA, RHM 17.3x, Faxon entry 10.95x, MSL IPO at 22x EBIT |
+| **EV/EBITDA, EV/EBIT, EV/Revenue** | Core multiples ▸ LHX 15.1x and RHM 17.3x EV/EBITDA; Saronic ~46x EV/revenue |
 | **Trading comps** | Multiples of similar listed companies |
 | **Precedent transactions** | Multiples paid in comparable M&A (include a control premium) |
 | **DCF** | PV of free cash flow plus terminal value (Gordon growth or exit multiple) |
 | **LBO analysis** | Maximum price a sponsor can pay and still hit its target IRR |
-| **Pre-money / post-money** | Value before / after new money. Post = Pre + new investment. Ownership = Check ÷ Post ▸ $9M ÷ $92M = 9.8% |
+| **Pre-money / post-money** | Value before / after new money. Post = Pre + new investment. Ownership = Check ÷ Post ▸ Hermeus $35M ÷ $1.0B = 3.5% |
 | **Fully diluted** | Counts options, warrants and convertibles |
 | **Option pool shuffle** | Pool created in the pre-money, so the dilution falls on existing holders |
 | **Down round / flat round** | New price below / equal to the prior round |
 | **409A** | Independent common-stock valuation used for option strikes |
 | **ASC 820 / Level 3** | Fair-value accounting. Private marks are model-based (Level 3) |
-| **Probability-weighted EV** | Σ pᵢ × EVᵢ across scenarios ▸ Faxon 25/50/25 → $91.75M |
+| **Probability-weighted value** | Σ pᵢ × Valueᵢ across scenarios ▸ holdco 7-yr Expected 4.63x = 45% × 3.56x + 25% × 7.79x + 15% × 1.05x + 15% × 6.14x |
 | **Control premium / minority discount / DLOM** | Adjustments for control and lack of marketability |
 
 ---
@@ -321,9 +321,9 @@ The terms that protect a minority investor matter most for stakes like the Levia
 | **Information rights** | Monthly or quarterly financials, budget, audit | Basic |
 | **Redemption right** | Investor can force a buyback after N years | Liquidity path in family or ESOP-owned companies |
 | **Put / call options** | Contractual exit rights | Used in structured minority deals |
-| **Conversion** | Preferred converts to common (automatically at a qualified IPO) | ▸ DoW convertible preferred converts at the MSL IPO |
+| **Conversion** | Preferred converts to common (automatically at a qualified IPO) | Automatic conversion on a qualified IPO is the standard pre-IPO exit path |
 | **IPO ratchet** | Extra shares if the IPO prices below a threshold | Pre-IPO protection |
-| **Warrants** | Right to buy shares at a strike | Equity kicker ▸ DoW warrants at MSL |
+| **Warrants** | Right to buy shares at a strike | Equity kicker; common in mezzanine and SPAC deals |
 | **Convertible note / SAFE** | Early instruments converting at the next round, with cap and discount | Seed stage |
 | **Pay-to-play** | Investors who don't follow on lose preferences | Penalizes free riders |
 | **Dividend (cumulative / non-cumulative)** | Preferred coupon | Structured preferred usually 8–12% cumulative |
@@ -396,7 +396,7 @@ The terms that protect a minority investor matter most for stakes like the Levia
 | **LRIP / FRP** | Low-Rate Initial Production / Full-Rate Production |
 | **FFP vs cost-plus** | Firm Fixed Price (contractor bears cost risk; margin upside) vs Cost-Plus (cost reimbursed plus a fee; lower risk and margin) |
 | **FMS vs DCS** | Foreign Military Sales (government-to-government through DSCA) vs Direct Commercial Sales |
-| **Prime / tier-1 / tier-2 / tier-3** | Position in the supply chain ▸ Faxon and Ellwood are tier-2 or tier-3 chokepoints |
+| **Prime / tier-1 / tier-2 / tier-3** | Position in the supply chain ▸ Ellwood, Superior & Grand Valley and Haigh-Farr are tier-2 or tier-3 chokepoints |
 | **Sole source / J&A** | Non-competitive award with justification. Strong moat |
 | **Recompete** | Re-bidding when a contract expires: a revenue cliff risk |
 | **OTA (Other Transaction Authority)** | Fast prototyping contracts outside the FAR (DIU, consortia) |
@@ -439,4 +439,4 @@ The terms that protect a minority investor matter most for stakes like the Levia
 | Venture (fund level) | 20–30%+ | 3.0x+ (top quartile) | 8–12 years |
 | Secondaries | 12–18% | 1.5–1.8x | 3–5 years |
 | Private credit | 9–13% | 1.3–1.5x | 3–5 years |
-| ▸ Leviathan holdco (7-year, Expected) | **19.4%** | **3.46x** | 7 years |
+| ▸ Leviathan holdco (7-year, Expected) | **24.5%** | **4.63x** | 7 years |

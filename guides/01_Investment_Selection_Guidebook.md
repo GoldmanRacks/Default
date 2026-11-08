@@ -11,7 +11,7 @@ kf: 5|factors in the selection equation, multiplied, not added
 kf: 8|selection lenses, each with live examples
 pull: Follow the shift down through budgets, contracts and production lines until you find the constraint that has to be paid. Then own it at a price the public market won’t offer twice.
 note: Evidence-tier weights are the author’s framework weights for conviction decisions, not empirical measurements.
-note: Leviathan Core PE Holdco IC model, v2 (Faxon / MSL / Golden Dome), September 2026. Holdco size, sleeve structure, scores, entry marks, scenario returns and KS-PME are model outputs, estimated and unaudited; several entry marks are estimates pending cap-table confirmation.
+note: Leviathan core PE holdco model, January 2027 internal version ($1,406M). Holdco size, sleeve structure, scores, overlays, entry marks, scenario returns and KS-PME are model outputs, estimated and unaudited; many entry marks are placeholders pending cap-table confirmation.
 note: Roll-up, public-book and macro material is drawn from the author’s research records and position notes, May–November 2026. Positions are described as recorded at the time and are not a current holdings statement. Marina platform multiples come from the platform’s 5-year model.
 closing_note: Model figures are estimated and unaudited. Defense-book material is restricted from LP distribution.
 ---
@@ -80,13 +80,13 @@ Each lens is a different way a company can earn a place in the book. Most select
 
 | Lens | The question | Examples across my books |
 |---|---|---|
-| **Dual-engine convergence** | Is it pulled by two independent demand curves? | Substrate (national security + AI); ThinTronics (CHIPS + AI packaging); L3Harris MSL (Golden Dome + munitions); PDYN (physical manufacturing + autonomy) |
+| **Dual-engine convergence** | Is it pulled by two independent demand curves? | Substrate (national security + AI); ThinTronics (CHIPS + AI packaging); Ursa Major (solid rocket motors + hypersonics); PDYN (physical manufacturing + autonomy) |
 | **TAM breadth** | How many demographics, channels and geographies can buy it without category education? | Made In (every household cohort); Quince (value trade-down); the fitness roll-up (premium experience at mass pricing) |
 | **Chokepoint / sole source** | Can the system route around it? | EUV Tech (no fab qualifies without it); Ellwood and Helicon (forgings, energetics); CRS (submarine alloys); MP (NdPr magnets) |
-| **Contract-visible demand** | Is the demand already signed? | Faxon ($473M BLU-136/B); MSL (PAC-3, THAAD multiyears); the Tomahawk supplier chain (RTX → PPG, FEIM, DCO, MTSI) |
+| **Contract-visible demand** | Is the demand already signed? | CoAspire (low-cost cruise missiles, top DoW missile priority); Haigh-Farr (missile telemetry and PGM RF); the Tomahawk supplier chain (RTX → PPG, FEIM, DCO, MTSI) |
 | **Sovereign validation** | Has a strategic allocator already vetted it? | Nine In-Q-Tel-backed names; ThinTronics’ $50M CHIPS LOI; NDAA line items |
 | **Unit economics & repeat** | Does each customer pay back, and come back? | Farmer’s Dog (profitable, >$1B revenue); Whoop (subscription); high-margin sauna and cold-plunge add-ons in the fitness roll-up |
-| **Catalyst proximity** | What event re-rates it inside my hold or option tenor? | MSL IPO; NGP production award; a county board data-center vote for the marina platform; Treasury refunding statements for the macro book |
+| **Catalyst proximity** | What event re-rates it inside my hold or option tenor? | Ursa Major SPAC close; IAI IPO attempt; a county board data-center vote for the marina platform; Treasury refunding statements for the macro book |
 | **Mark quality & access** | Is the price real, and can I get in? | Stripe tender; Forge prints; listed LEAPS priced daily, versus GOAT’s five-year-stale mark |
 
 ## 3. How I Research
@@ -112,7 +112,7 @@ Signals are weighted by how hard they are to fake. Lower tiers refine timing; on
 <div class="barrow"><span>Tier 2: industry / operator</span><div class="track2"><div class="fill" style="width:25%;background:#4C9F8B"></div></div><span class="val">25%</span></div>
 <div class="barrow"><span>Tier 3: market pricing</span><div class="track2"><div class="fill" style="width:10%;background:#006492"></div></div><span class="val">10%</span></div>
 <div class="barrow"><span>Tier 4: narrative</span><div class="track2"><div class="fill" style="width:5%;background:#CACED7"></div></div><span class="val">5%</span></div>
-<div class="note">Case in point: an aggregator showed Faxon Machining at ~$21M revenue. The contract trail ($473M BLU-136/B award, a penetrator IDIQ, MOP, NGP and Tomahawk work) supported ~$60M. The contract trail set the entry price.</div></div>
+<div class="note">Case in point: Hermeus’s entry mark is a priced Series C ($1.0B post, company release), so the price is Tier 1; its dual-pulse rocket motor thesis is not publicly confirmed, so it stays a diligence item rather than a conviction input. Marks for names such as CoAspire, SCD and Haigh-Farr are placeholders until validated.</div></div>
 
 ### 3.3 The question stack
 
@@ -139,7 +139,7 @@ The defining move in my process: I don’t express a macro view directly. I brea
 <div class="st"><b>Institutional</b>ITAR, clearances, sole-source qualification, recompetes</div>
 </div>
 
-**Result:** solid-rocket motors (L3Harris MSL), energetics (Helicon), missile-casing forgings (Ellwood, Superior & Grand Valley), warhead-case machining (Faxon), and in public markets the alloy, magnet, RF and coatings suppliers (CRS, MP, QRVO, PPG).
+**Result:** solid-rocket motors (Ursa Major), low-cost cruise missiles (CoAspire), energetics (Helicon), missile-casing forgings (Ellwood, Superior & Grand Valley), telemetry and seekers (Haigh-Farr, SCD), and in public markets the alloy, magnet, RF and coatings suppliers (CRS, MP, QRVO, PPG).
 
 The full analytical chain I run on every thesis has twelve links: **geopolitics → policy → appropriations → programs → production targets → capacity → bottleneck → supplier → ownership → entry structure → catalyst → payoff.**
 
@@ -153,8 +153,8 @@ For every thesis I name the specific observable, its baseline, and the date it m
 | Gold revaluation (macro) | Treasury General Account | Unexplained $100–150B one-day builds without matching issuance |
 | Financial repression (macro) | Quarterly refunding statements | Larger buybacks or “additional tools” language |
 | Marina platform (roll-up) | County board data-center decisions; state impact analysis; general election | Re-underwrite on each outcome |
-| Faxon (private) | BLU-136/B order period | Ends 30-Sep-2026; recompete outcome |
-| L3Harris MSL (pre-IPO) | IPO timing and pricing | Q1-2027 target; company guided mid-2027 |
+| Ursa Major (PIPE) | SPAC merger close | Expected Q1-2027 |
+| Israel Aerospace Industries (cornerstone) | IPO attempt and pricing | H2-2026 attempt; allocation size |
 
 ## 4. Four Arenas, One Process
 
@@ -173,11 +173,11 @@ The same selection equation runs across four arenas. What changes is the instrum
 
 ## 5. Arena I: Private Stakes
 
-The private arena runs through the Leviathan core PE holdco: an $855M vehicle built as a barbell with a ballast.<sup class="en">(2)</sup>
+The private arena runs through the Leviathan core PE holdco: a $1,406M vehicle built as a barbell with a ballast.<sup class="en">(2)</sup>
 
 <div class="panel"><div class="panel-title">Holdco construction by sleeve<sup class="en">(2)</sup></div><div class="sub">$M committed; 29 positions</div>
-<div class="stack"><div style="flex:405;background:#1B5E5C"></div><div style="flex:250;background:#4C9F8B"></div><div style="flex:200;background:#006492"></div></div>
-<div class="legend"><span><span class="sw" style="background:#1B5E5C"></span>Weapons (physical layer) $405M · cash-generative core</span><span><span class="sw" style="background:#4C9F8B"></span>IQT-mirror deep tech $250M · convex tail hedge</span><span><span class="sw" style="background:#006492"></span>Consumer / Value $200M · ballast and early DPI</span></div></div>
+<div class="stack"><div style="flex:956;background:#1B5E5C"></div><div style="flex:250;background:#4C9F8B"></div><div style="flex:200;background:#006492"></div></div>
+<div class="legend"><span><span class="sw" style="background:#1B5E5C"></span>Weapons (physical layer) $956M · cash-generative core</span><span><span class="sw" style="background:#4C9F8B"></span>IQT-mirror deep tech $250M · convex tail hedge</span><span><span class="sw" style="background:#006492"></span>Consumer / Value $200M · ballast and early DPI</span></div></div>
 
 Every position must fill a **role**: the IQT-mirror sleeve is the capex leg of the supercycle (building the domestic stack), Weapons is the opex leg (consuming munitions), and Consumer is the deliberately uncorrelated ballast. A good company that fills no role is a pass.
 
@@ -197,29 +197,34 @@ Deep-tech names are scored 1–5 on five axes: China-race criticality (25%), Tai
 <div class="barrow"><span>DefendEye</span><div class="track2"><div class="fill" style="width:34%;background:#CACED7"></div></div><span class="val">1.70</span></div>
 <div class="note">Scores are levers, not facts: ±1 point on the TSMC axis moves shock CAGR by ±2.4%. Every score carries a written justification and is sensitivity-tested.</div></div>
 
-Weapons names get a munitions / export overlay instead: exposure = average of a munitions-shortage score and an FMS-backlog score (0–5 each), adding +0.5% Base CAGR per point (+0.4% even in Bear, because multiyear contracts cushion budget slips).
+### 5.2 How a weapons position is underwritten
 
-### 5.2 Program-level underwriting
+Weapons names don’t use the deep-tech score. Their growth is built as a stack of named overlays on a per-name base CAGR, so every point of uplift traces back to a scored driver:<sup class="en">(2)</sup>
 
-Sleeve-level growth assumptions are placeholders. Every position eventually gets a bottom-up build: **program revenue = driver growth + share gain**, with discrete award steps, a margin ramp, FCF conversion and an exit multiple, producing an implied CAGR that feeds the sleeve. Proceeds are haircut for dilution (Check × (1 + CAGR)^T × retention).
+| Overlay | Score | CAGR uplift per point (Base / Bull / Bear / Shock) |
+|---|---|---|
+| Munitions / FMS exposure | Average of munitions-shortage and FMS-backlog scores (0–5) | 0.5% / 0.8% / 0.4% / 0.6% |
+| DoW missile-production priority | 0–5 | 0.6% / 0.8% / 0.2% / 0.8% |
+| China / Indo-Pacific deterrence floor | China relevance, 0–5 | Bear only: 0.8 pp |
 
-- **Faxon Machining** ($9M for 9.8% at a $92M post): eight program lines (BLU-136/B, MOP, NGP, Tomahawk, penetrator IDIQ, missile structures, FMS, commercial), each tied to a named driver. The entry was cross-checked against a contract-derived valuation: Bear $21M / Base $76M / Bull $194M at 25/50/25 = $91.75M. Fair, not a discount.
-- **L3Harris Missile Solutions** ($15M pre-IPO): 2027E EBIT $574M × 22x = $12.6B IPO value, less a 15% pre-IPO discount = $10.7B entry. Program build across PAC-3, THAAD, Standard Missile, Tomahawk, GMLRS / PrSM, hypersonics and Golden Dome interceptors.
+**Example, Helicon Chemical (energetics):** Base 28% + 4 × 0.5% + 5 × 0.6% = **33.0%**; Bear 2% + 4 × 0.4% + 5 × 0.2% + 4 × 0.8% = **7.8%**. The Bear overlays exist because multiyear munitions contracts and Indo-Pacific deterrence demand cushion a budget slip; they are why the Weapons sleeve holds up in the Bear case.
+
+Proceeds are then haircut for dilution: Check × (1 + CAGR)<sup>T</sup> × retention (Weapons 0.92 / 0.88 / 0.82 at 5 / 7 / 10 years). Where the evidence supports it, a position also gets a program-level revenue build (program revenue = driver growth + share gain, with discrete award steps, a margin ramp and an exit multiple), and its implied CAGR replaces the sleeve-level assumption.
 
 ### 5.3 Case study: Substrate, two engines in one asset
 
 <div class="case"><div class="case-tag">Lens: dual-engine convergence</div>
 <p><b>Engine 1, national security:</b> domestic X-ray lithography and US fabs, a path to leading-edge chips if Taiwan / TSMC access is lost; In-Q-Tel backed; CFIUS-clean and acquirable by government or primes. <b>Engine 2, the AI boom:</b> AI accelerators consume leading-edge wafers, fab capacity is the binding constraint, and the technology aims to lower cost per leading-edge wafer.</p>
 <p><b>Why selected:</b> if the AI cycle cools, the national-security need remains; if geopolitics calms, the AI demand remains. That gives a high floor on strategic value with convex upside, and the highest composite score in the book (4.85).</p>
-<p><b>What must be true:</b> production-grade yield and throughput; fab financing and anchor offtake; a timeline inside the hold. <b>Risks:</b> binary technology (Bear 0.32x at 5 years); capital intensity and dilution; a >$1B entry mark.</p>
+<p><b>What must be true:</b> production-grade yield and throughput; fab financing and anchor offtake; a timeline inside the hold. <b>Risks:</b> binary technology (Bear 0.32x gross at 5 years); capital intensity and dilution; a >$1B entry mark.</p>
 <p><b>Decision:</b> anchor position ($80M, 7.6%), capped at ~32% of the sleeve. The dual engine justifies the largest check; the binary risk justifies the cap.</p></div>
 
 ### 5.4 Case study: Made In Cookware, TAM breadth across demographics
 
 <div class="case"><div class="case-tag">Lens: TAM breadth</div>
 <p><b>Demographic breadth:</b> household formation (first kitchens), the affluent upgrade and replacement cycle, gifting and wedding registries, home cooks trading up. <b>Channel breadth:</b> DTC, wholesale and retail placements, and restaurant and pro-chef placements, where professional use builds consumer trust. Room to extend into knives, bakeware and tools, and to grow internationally.</p>
-<p><b>Why selected:</b> a universal category reachable through every cohort and channel without category education. Capital efficiency (~$8.3M raised in total) signals self-funded unit economics and low dilution.</p>
-<p><b>Honest read:</b> the mark (~$280M) is the least-grounded in its sleeve, since no secondary market exists; import and tariff exposure hurts in the Shock case; and the Base IRR (~11–12%) sits below my ~15% position hurdle. It is held for TAM optionality (Bull 4.2x at 7 years), and the mark has to be confirmed through company financials before any upsizing.</p></div>
+<p><b>Why selected:</b> a universal category reachable through every cohort and channel without category education. The model scores this directly: TAM across prime earning years 35–54 (50% weight) 4 / 5, entering prime 22–34 (30%) 2 / 5, and boomers entering retirement (20%) 4 / 5, an exposure score of 3.4 that lifts Base CAGR from 14% to 16.0%. Capital efficiency (~$8.3M raised in total) signals self-funded unit economics and low dilution.</p>
+<p><b>Honest read:</b> the mark (~$280M) is the least-grounded in its sleeve, since no secondary market exists; import and tariff exposure hurts in the Shock case; and the Base IRR (~13–14%) still sits below my ~15% position hurdle. It is held for TAM optionality (Bull 4.9x gross at 7 years; Bear 0.47x), and the mark has to be confirmed through company financials before any upsizing.</p></div>
 
 ### 5.5 Case study: EUV Tech, the chokepoint with a floor
 
@@ -229,7 +234,7 @@ Sleeve-level growth assumptions are placeholders. Every position eventually gets
 ### 5.6 Case study: reading the secondary tape
 
 <div class="two">
-<div class="case"><div class="case-tag">The Farmer’s Dog: compounding with a catalyst</div><p>Profitable, >$1B revenue, a daily-use subscription. Forge prints imply $3.76B, up from a $2.5B Series E. The Walmart.com launch moves it from DTC-only to omnichannel. Bear CAGR is still +10%: the only consumer name above 1.0x in the Bear case.</p></div>
+<div class="case"><div class="case-tag">The Farmer’s Dog: compounding with a catalyst</div><p>Profitable, >$1B revenue, a daily-use subscription. Forge prints imply $3.76B, up from a $2.5B Series E. The Walmart.com launch moves it from DTC-only to omnichannel. Bear CAGR is still positive (12% after the cohort overlay), so it returns 1.88x gross at 7 years even in the Bear case, one of only two consumer names (with Quince) above 1.0x there.</p></div>
 <div class="case"><div class="case-tag">Thrive Market: growth without return</div><p>Revenue rose from $400M to $700M+, yet Forge implies ~$945M, down ~27% from the 2021 Series C. The 2021 entry multiple was the problem. Lesson: <b>price the tape, not the last round.</b> Growth doesn’t equal return when the entry was set at peak multiples.</p></div>
 </div>
 
@@ -314,13 +319,13 @@ The release valve is **gold certificate revaluation** under 31 U.S.C. §5117: 26
 
 Private positions are underwritten to the probability-weighted Expected case across four scenarios (Base 45%, Bull 25%, Bear 15%, Taiwan / TSMC Shock 15%), with Base and Bear always reported beside it.
 
-<div class="panel"><div class="panel-title">Leviathan holdco 7-year net MOIC by scenario<sup class="en">(2)</sup></div><div class="sub">net to LP after 2% / 8% / 20%; axis 0–6x</div>
-<div class="barrow"><span>Base (45%)</span><div class="track2"><div class="fill" style="width:47.2%;background:#1B5E5C"></div></div><span class="val">2.83x</span></div>
-<div class="barrow"><span>Bull (25%)</span><div class="track2"><div class="fill" style="width:94.8%;background:#4C9F8B"></div></div><span class="val">5.69x</span></div>
-<div class="barrow"><span>Bear (15%)</span><div class="track2"><div class="fill" style="width:11.7%;background:#C39D78"></div></div><span class="val">0.70x</span></div>
-<div class="barrow"><span>TSMC-Shock (15%)</span><div class="track2"><div class="fill" style="width:72.8%;background:#006492"></div></div><span class="val">4.37x</span></div>
-<div class="barrow"><span><b>Expected</b></span><div class="track2"><div class="fill" style="width:57.6%;background:#000"></div></div><span class="val">3.46x</span></div>
-<div class="note">Expected net IRR 19.4%; KS-PME 1.30x against a 15% forward Defense + Semis ETF basket and 1.89x against the S&P 500.</div></div>
+<div class="panel"><div class="panel-title">Leviathan holdco 7-year net MOIC by scenario<sup class="en">(2)</sup></div><div class="sub">net to LP after 2% / 8% / 20%; axis 0–8x</div>
+<div class="barrow"><span>Base (45%)</span><div class="track2"><div class="fill" style="width:44.5%;background:#1B5E5C"></div></div><span class="val">3.56x</span></div>
+<div class="barrow"><span>Bull (25%)</span><div class="track2"><div class="fill" style="width:97.4%;background:#4C9F8B"></div></div><span class="val">7.79x</span></div>
+<div class="barrow"><span>Bear (15%)</span><div class="track2"><div class="fill" style="width:13.1%;background:#C39D78"></div></div><span class="val">1.05x</span></div>
+<div class="barrow"><span>TSMC-Shock (15%)</span><div class="track2"><div class="fill" style="width:76.8%;background:#006492"></div></div><span class="val">6.14x</span></div>
+<div class="barrow"><span><b>Expected</b></span><div class="track2"><div class="fill" style="width:57.9%;background:#000"></div></div><span class="val">4.63x</span></div>
+<div class="note">Expected net IRR 24.5%; KS-PME 1.74x against a 15% forward Defense + Semis ETF basket and 2.53x against the S&P 500. Bear now roughly preserves capital (1.05x net) because the Weapons overlays cushion it; the IQT seed names and Consumer still lose money in Bear.</div></div>
 
 **The scoreboard is the thematic ETF, not cash.** If owning ITA / SOXX would have done as well, the illiquidity, fees and diligence were wasted. Thresholds: Expected KS-PME against the thematic basket must exceed 1.0x; Base KS-PME of at least 1.0x is preferred; individual private positions should clear ~2.0x gross at five years (≈15% IRR) unless they are ballast or a liquidity bridge.
 
@@ -329,7 +334,7 @@ Private positions are underwritten to the probability-weighted Expected case acr
 - **Cap the anchor.** Maximum conviction still gets a cap when the risk is binary (Substrate ≈32% of its sleeve).
 - **Tranche ladder.** Anchor → growth core → pre-IPO / liquid → venture → seed optionality, with size falling as binary risk rises.
 - **More than 15% ownership means seeking a board seat or observer rights.**
-- **Trim versus new money.** A substitute exposure is funded by trimming (Faxon came from Superior & Grand Valley); additive exposure gets a new commitment (MSL took the Weapons sleeve from $390M to $405M).
+- **Trim versus new money.** A substitute exposure is funded by trimming (Hermeus was funded by cutting Heckler & Koch from $35M to $20M); additive exposure gets a new commitment (the November 2026 munitions surge added $296M of new money across CoAspire, SCD and Tadiran Spectralink).
 - **Allied and foreign names stay minority-only and smaller**, because the CFIUS ceiling limits exit buyers.
 - **Instrument sizing in the liquid books:** ITM LEAPS and defined-risk structures, so the maximum loss is known at entry and theta does not decide the outcome.
 
@@ -347,6 +352,8 @@ A red flag rarely kills a great company outright; it changes the size, the struc
 | Saronic | Private | **Entry price**: $9.25B on $200M revenue (~46x) | Secondary or late primary only |
 | DefendEye | Private | **Access / evidence**: EU cap table, overseas manufacturing | Provenance diligence first |
 | EdgeCortix | Private | **Access**: foreign nexus, CFIUS ceiling | Minority only, capped |
+| CoAspire, SCD, Haigh-Farr | Private | **Evidence**: entry marks are placeholders with no priced round | Validate round terms before funding |
+| Hermeus | Private | **Evidence**: dual-pulse rocket motor program not publicly confirmed | Diligence before upsizing |
 
 ### 9.4 Tripwires: conditions that break a thesis
 
@@ -366,7 +373,7 @@ A framework earns trust by naming where it flatters its own answer.
 
 | Blind spot | Why it matters | Fix |
 |---|---|---|
-| Single-factor concentration | Most of the book (private and public) loads on one geopolitical factor | Model an explicit de-escalation scenario; cap factor exposure; lean on backlog-protected names |
+| Single-factor concentration | Weapons alone is 68% of the $1,406M holdco, and most of the rest (private and public) loads on the same geopolitical factor | Model an explicit de-escalation scenario; cap factor exposure; lean on backlog-protected names |
 | Judgment-based scores | Strategic scores drive the convexity case | Score sensitivity tables; a second scorer |
 | Point-to-point IRR | Single exit cash flow; no J-curve or staged calls | Build a quarterly call / distribution schedule |
 | Simplified waterfall | No GP catch-up flatters upside net returns | Run full catch-up as a sensitivity |

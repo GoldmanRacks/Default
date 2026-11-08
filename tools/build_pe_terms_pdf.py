@@ -191,7 +191,7 @@ def lbo_panel():
 def targets_panel():
     rows = [("Large buyout", 15, 20, P[0], "15–20%"), ("Mid-market buyout", 18, 25, P[0], "18–25%"), ("Growth equity", 20, 25, P[1], "20–25%"),
             ("Venture (fund)", 20, 30, P[2], "20–30%+"), ("Secondaries", 12, 18, P[3], "12–18%"), ("Private credit", 9, 13, P[4], "9–13%"),
-            ("Leviathan 7-yr Expected", 19.2, 19.6, "#A95228", "19.4%")]
+            ("Leviathan 7-yr Expected", 24.3, 24.7, "#A95228", "24.5%")]
     return f"""<div class="panel"><div class="panel-title">Target net IRR ranges<sup class="en">(4)</sup></div><div class="sub">axis 5% to 35%; bar spans the rule-of-thumb range</div>
 {range_bars(rows, 5, 35)}<div class="note">The Leviathan marker is the probability-weighted 7-year holdco net IRR from the IC model.<sup class="en">(1)</sup></div></div>"""
 
@@ -242,7 +242,7 @@ for n, title, body in sections:
     out.append(f'<section class="{cls}"><div class="sec-head"><span class="n">{n:02d}</span><h2>{esc(title)}{en}</h2></div>{h}</section>')
 
 NOTES = """<section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol>
-<li>Leviathan Core PE Holdco IC model, v2 (Faxon / MSL / Golden Dome), September 2026. All <span class="xref">▸</span> figures (holdco size, sleeve structure, net IRR / MOIC, KS-PME, retention, entry marks) are model outputs, estimated and unaudited.</li>
+<li>Leviathan core PE holdco model, January 2027 internal version ($1,406M). All <span class="xref">▸</span> figures (holdco size, sleeve structure, net IRR / MOIC, KS-PME, retention, entry marks) are model outputs, estimated and unaudited.</li>
 <li>Worked examples (waterfall, LBO, EV bridge, dilution) use round illustrative numbers chosen for arithmetic clarity, not market data.</li>
 <li>Capital-stack pricing is indicative and varies with the rate environment, leverage and credit quality.</li>
 <li>Return targets are rule-of-thumb ranges used in industry practice, not sourced performance data.</li>
@@ -257,7 +257,7 @@ COVER = f"""<section>
 <div class="keyfigs">
  <div class="kf"><div class="v">10</div><div class="l">domains in the reference map</div></div>
  <div class="kf"><div class="v">3</div><div class="l">worked examples: waterfall, LBO, EV bridge<sup class="en">(2)</sup></div></div>
- <div class="kf"><div class="v">$855M</div><div class="l">Leviathan holdco used as the running example<sup class="en">(1)</sup></div></div>
+ <div class="kf"><div class="v">$1,406M</div><div class="l">Leviathan holdco used as the running example<sup class="en">(1)</sup></div></div>
 </div>
 <div class="sec-head" style="margin-top:6pt"><span class="n">00</span><h2>The map</h2></div>
 {MAP}
