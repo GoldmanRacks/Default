@@ -11,7 +11,7 @@ kf: 4|vehicles in the architecture, each matched to its assets’ liquidity
 kf: 6|Luxembourg regimes compared, from UCITS to unregulated SCSp
 pull: Structure is strategy. The right asset in the wrong wrapper loses to forced selling, tax leakage or distribution limits, however good the thesis.
 note: Roll-up worked example (§5) is illustrative: round numbers chosen to show the mechanics, not output of the marina platform model. Entry and exit multiples (5.8x / 9.0x) are taken from the platform model.
-note: Leviathan vehicle architecture is drawn from the author’s planning records, May–November 2026. Structures, counterparties and timelines were under negotiation at the time of writing and may change.
+note: Vehicle architecture is sourced from the latest internal planning records. Structures and timelines are indicative and subject to change.
 note: Regulatory summaries reflect Luxembourg and EU rules as understood at November 2026 (2010 Law Parts I and II, SIF Law 2007, SICAR Law 2004, RAIF Law 2016, AIFMD and AIFMD II, ELTIF Regulation as amended). Limits are summarized; confirm against current law, CSSF circulars and counsel before structuring.
 note: US tax points (PFIC, F reorganization, §338(h)(10), UBTI / ECI) are summaries for orientation, not tax advice.
 closing_note: Illustrative figures are not forecasts. Regulatory and tax summaries require confirmation by counsel.
