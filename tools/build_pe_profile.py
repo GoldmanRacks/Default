@@ -9,27 +9,25 @@ N = [0]
 
 def slide(section, title, ts=30):
     s = blank(p); N[0] += 1
-    header(s, section, title, ts); page_no(s, N[0])
+    header(s, section, title, ts)
     return s
 
 # ---------------------------------------------------------------- 1 COVER
 s = blank(p); N[0] += 1
 txt(s, 0.5, 0.45, 12.3, 0.8, "D. B. Ritts III — Private Equity Investment Profile", size=34, color=NAVY, font=SERIF)
 rect(s, 0.5, 1.3, 12.33, 0.012, fill=LINE)
-txt(s, 0.5, 1.42, 12, 0.3, [[("How I think, analyze & select PE targets  ·  Process architecture  ·  Leviathan holdco application", {"caps": True, "track": 150})]], size=10.5, color=MUTED)
+txt(s, 0.5, 1.42, 12, 0.3, [[("How I research & select investment targets  \u00b7  Selection lenses  \u00b7  Case studies  \u00b7  Leviathan holdco", {"caps": True, "track": 150})]], size=10.5, color=MUTED)
 rect(s, 0.5, 1.95, 4.1, 4.8, fill=NAVY)
-txt(s, 0.8, 2.15, 3.6, 1.6, "Executive Assessment: a constraint-first, thesis-led PE allocator", size=20, color=WHITE, font=SERIF, line_spacing=1.05)
+txt(s, 0.8, 2.15, 3.6, 1.6, "Executive Assessment: a research-led selector of constrained, multi-engine assets", size=20, color=WHITE, font=SERIF, line_spacing=1.05)
 rect(s, 0.8, 3.85, 0.6, 0.02, fill=GOLD)
-txt(s, 0.8, 4.0, 3.6, 1.2, "Buys private stakes in the scarce, mission-critical enablers that a macro shift cannot route around — before public markets re-rate them.", size=11, color=WHITE)
+txt(s, 0.8, 4.0, 3.6, 1.2, "Selects targets pulled by more than one secular demand curve \u2014 national security and the AI boom, or a TAM that spans every demographic \u2014 then owns the scarce asset privately.", size=11, color=WHITE)
 rect(s, 0.8, 5.15, 3.5, 0.01, fill=RGBColor(0x55, 0x66, 0x88))
 txt(s, 0.8, 5.3, 3.6, 1.3, "Underwrites contracts, not narratives: program-level revenue builds, four-scenario returns, and a thematic-ETF hurdle (KS-PME) as the scoreboard.", size=11, color=WHITE)
 rect(s, 4.85, 1.95, 7.98, 1.55, fill=PANEL, line=LINE)
 txt(s, 5.0, 1.95, 0.6, 0.8, "“", size=54, color=NAVY, font=SERIF)
 txt(s, 5.6, 2.1, 6.6, 1.3, "Follow the macro shift down through budgets, programs and production lines until you find the constraint that has to be paid — then own it privately, at an entry price the public market will not offer twice.", size=15, color=NAVY, font=SERIF, italic=True)
-band(s, 4.85, 3.65, 7.98, 0.32, "PE target-selection architecture")
-steps = [("1. Macro lens", "Structural shift with a named dollar flow"), ("2. Constraint map", "Decompose budget → program → capacity → chokepoint"),
-         ("3. Gate & score", "Hard gates, 5-axis score, munitions/FMS overlay"), ("4. Underwrite", "Program-level build; 4 scenarios; KS-PME hurdle"),
-         ("5. Size & structure", "Tranche, caps, minority rights, tripwires")]
+band(s, 4.85, 3.65, 7.98, 0.32, "Target research & selection architecture")
+steps = [("1. Demand engines", "How many secular curves pull on it? How wide is the TAM?"), ("2. Constraint / moat", "What can\u2019t the market route around?"), ("3. Evidence", "Contracts, filings, priced marks over narrative"), ("4. Underwrite", "Program / unit build; 4 scenarios; KS-PME hurdle"), ("5. Entry & access", "Real price, real route in, right structure")]
 cw = 7.98 / 5
 for i, (a, b) in enumerate(steps):
     x = 4.85 + i * cw
@@ -602,6 +600,226 @@ txt(s, 0.6, 5.9, 0.7, 0.8, "“", size=48, color=NAVY, font=SERIF)
 txt(s, 1.3, 5.97, 10.8, 0.55, "He follows the thesis down the supply chain until he finds the bottleneck — then finds the best structure to own it privately.", size=15, color=NAVY, font=SERIF, align="c", anchor="m")
 txt(s, 1.3, 6.5, 10.8, 0.3, [[("Seeks the constraint. Owns the bottleneck. Captures the rent before the re-rate.", {"caps": True, "track": 100})]], size=8.5, color=MUTED, align="c")
 txt(s, 12.1, 5.95, 0.7, 0.8, "”", size=48, color=NAVY, font=SERIF)
+
+# ================================================================ NEW: RESEARCH & SELECTION SLIDES (22+)
+# ---------------------------------------------------------------- 22 SELECTION EQUATION
+s = slide("Target selection", "What Makes a Target Selectable: The Selection Equation")
+rect(s, 0.5, 1.42, 12.33, 0.75, fill=NAVY)
+txt(s, 0.6, 1.42, 12.1, 0.75, [[("Attractiveness  =  ", {}), ("Demand engines", {"color": GOLD}), ("  ×  ", {}), ("Constraint / moat", {"color": GOLD}), ("  ×  ", {}),
+    ("Evidence quality", {"color": GOLD}), ("  ×  ", {}), ("Entry price", {"color": GOLD}), ("  ×  ", {}), ("Access", {"color": GOLD})]], size=16, color=WHITE, font=SERIF, align="c", anchor="m")
+eq = [("Demand engines", "How many independent secular curves pull on this company — and how wide is the addressable market?",
+       ["Two engines beat one: Substrate = national security + AI boom", "Breadth beats depth: Made In sells to every household cohort"]),
+      ("Constraint / moat", "What can the market not route around — capacity, qualification, IP, brand, network?",
+       ["Physical: forgings, energetics, SRMs, metrology", "Commercial: pro-chef credibility, subscription habit, payments network"]),
+      ("Evidence quality", "Is the thesis provable from compelled disclosures, contracts and priced marks?",
+       ["Contract-derived revenue (Faxon $60M vs $21M aggregator)", "Forge / tender prints over stale rounds"]),
+      ("Entry price", "Does today’s mark leave room for the Base case to clear ~15% gross IRR and beat the ETF?",
+       ["Pre-IPO discount (MSL −15%)", "Compressed multiples (Thrive −27% vs 2021)"]),
+      ("Access", "Is there a real, structurable route to a meaningful stake?",
+       ["Significant minority + board (EUV Tech 17%)", "Family / ESOP / carve-out routes others skip"])]
+cw = 12.33 / 5
+for i, (a, q, ex) in enumerate(eq):
+    x = 0.5 + i * cw
+    rect(s, x + 0.03, 2.32, cw - 0.06, 3.55, fill=WHITE, line=LINE)
+    num(s, x + cw / 2 - 0.16, 2.42, i + 1)
+    txt(s, x + 0.1, 2.8, cw - 0.2, 0.35, [[(a, {"bold": True, "caps": True})]], size=10, color=NAVY, align="c")
+    txt(s, x + 0.12, 3.15, cw - 0.24, 1.1, [[(q, {"italic": True})]], size=9.5, color=INK, align="c")
+    rect(s, x + 0.12, 4.3, cw - 0.24, 0.01, fill=LINE)
+    bullets(s, x + 0.12, 4.38, cw - 0.24, 1.45, ex, size=9)
+rect(s, 0.5, 6.0, 12.33, 0.85, fill=PANEL, line=LINE)
+txt(s, 0.65, 6.0, 2.1, 0.85, [[("Multiplicative, not additive", {"bold": True, "caps": True})]], size=9.5, color=BURG, anchor="m")
+txt(s, 2.8, 6.0, 9.9, 0.85, "Any factor near zero kills the target, however strong the rest. A brilliant chokepoint with no access route, or a huge TAM at a mark that can’t clear the hurdle, is a pass — or a watchlist entry until the weak factor changes.", size=10, anchor="m")
+
+# ---------------------------------------------------------------- 23 EIGHT SELECTION LENSES
+s = slide("Target selection", "Eight Selection Lenses: How I Decide a Company Deserves Capital")
+lens = [("Dual-engine convergence", "Pulled by two independent secular demand curves?", "Substrate (nat-sec + AI) · ThinTronics (CHIPS + AI packaging) · MSL (Golden Dome + munitions)"),
+        ("TAM breadth", "How many demographics, channels and geographies can buy it without category education?", "Made In (every household) · Quince (value trade-down) · Stripe (every online merchant)"),
+        ("Chokepoint / sole source", "Can the system route around it?", "EUV Tech (no fab qualifies without it) · Ellwood · Helicon"),
+        ("Contract-visible demand", "Is the demand already signed?", "Faxon ($473M BLU-136/B) · MSL (PAC-3, THAAD MYPs) · IAI"),
+        ("Sovereign validation", "Has a strategic allocator already vetted it?", "Nine IQT-backed names · ThinTronics $50M CHIPS LOI"),
+        ("Unit economics & repeat", "Does each customer pay back — and come back?", "Farmer’s Dog (profitable, >$1B rev) · Thrive (membership) · Whoop (subscription)"),
+        ("Catalyst proximity", "What event re-rates it inside my hold?", "MSL IPO · Whoop IPO track · Farmer’s Dog Walmart.com · NGP award"),
+        ("Mark quality & access", "Is the price real, and can I get in?", "Stripe tender ($159B) · Forge prints — vs. GOAT’s 5-yr-stale mark")]
+for i, (a, q, ex) in enumerate(lens):
+    col, row = i % 4, i // 4
+    x = 0.5 + col * 3.1; y = 1.45 + row * 2.72
+    rect(s, x, y, 2.95, 2.6, fill=WHITE, line=LINE)
+    rect(s, x, y, 2.95, 0.55, fill=NAVY if i not in (1, 5) else TEAL)
+    txt(s, x + 0.1, y, 0.5, 0.55, str(i + 1), size=20, color=WHITE, font=SERIF, anchor="m")
+    txt(s, x + 0.55, y, 2.35, 0.55, [[(a, {"bold": True, "caps": True})]], size=9.5, color=WHITE, anchor="m")
+    txt(s, x + 0.15, y + 0.65, 2.65, 0.85, [[(q, {"italic": True})]], size=10, color=NAVY, font=SERIF)
+    rect(s, x + 0.15, y + 1.5, 2.65, 0.01, fill=LINE)
+    txt(s, x + 0.15, y + 1.57, 2.65, 0.95, [[("In the book: ", {"bold": True, "color": TEAL}), (ex, {})]], size=9)
+
+# ---------------------------------------------------------------- 24 RESEARCH QUESTION STACK
+s = slide("Research process", "How I Research a Target: The Question Stack")
+txt(s, 0.5, 1.4, 12.33, 0.4, "Research is a sequence of questions, each with its own evidence. A target advances only when the current layer is answered from primary sources.", size=11.5, align="c")
+table(s, 0.5, 1.9, 12.33, 4.35, [["Stage", "Core questions", "Primary sources", "Output / gate"],
+    [("1  Demand engines", {"bold": True, "color": NAVY}), "Who must buy this? How many independent curves drive it? How wide is the TAM across demographics, channels, geographies?", "Budgets & appropriations, procurement notices, census / household data, category sizing, channel checks", "Named $ flow; engine count; TAM map"],
+    [("2  Constraint / moat", {"bold": True, "color": NAVY}), "What can’t the market route around? How long to replicate? Who else could supply?", "Supplier lists, qualification records, IDIQ awardee counts, patents, expert calls", "Chokepoint or brand moat — or pass"],
+    [("3  Company proof", {"bold": True, "color": NAVY}), "Is revenue real and visible? Contracts, cohorts, repeat rates, margins?", "FPDS / SAM awards, S-1s, management data, QoE, cohort data", "Program-level or unit-level build"],
+    [("4  Price", {"bold": True, "color": NAVY}), "What is the mark, and what tier of evidence supports it?", "Priced rounds, Forge / tender prints, contract-derived EV, comps", "Mark tier: priced / secondary / contract / estimate"],
+    [("5  Access & structure", {"bold": True, "color": NAVY}), "Can I get a meaningful stake? Which structure protects me?", "Cap table, ROFR / transfer terms, CFIUS / ITAR review", "Route + structure + ownership %"],
+    [("6  Scenarios & exit", {"bold": True, "color": NAVY}), "What happens in Base / Bull / Bear / Shock? Who buys it, and when?", "Model, precedent exits, IPO windows, strategic acquirer map", "Expected MOIC / IRR, KS-PME, tripwires"]],
+    col_w=[1.7, 4.0, 3.9, 2.4], size=9.2, align=["l", "l", "l", "l"])
+rect(s, 0.5, 6.35, 12.33, 0.5, fill=NAVY)
+txt(s, 0.7, 6.35, 12, 0.5, [[("Rule: ", {"bold": True, "color": GOLD}), ("never skip to stage 4. A cheap price on a company without a demand engine or moat is a value trap, not an opportunity.", {})]], size=10.5, color=WHITE, anchor="m")
+
+# ---------------------------------------------------------------- CASE STUDY TEMPLATE
+def case(section, title, tag, logic, engines, must, risks, facts, rets, verdict, eng_fills=(NAVY, TEAL)):
+    s = slide(section, title)
+    rect(s, 0.5, 1.42, 7.4, 0.32, fill=PALE)
+    txt(s, 0.6, 1.42, 7.2, 0.32, [[("Selection lens: ", {"bold": True, "color": NAVY}), (tag, {"color": NAVY})]], size=10, anchor="m")
+    ew = 7.4 / len(engines)
+    for i, (hd, bl) in enumerate(engines):
+        x = 0.5 + i * ew
+        band(s, x + (0.03 if i else 0), 1.85, ew - 0.06, 0.34, hd, fill=eng_fills[i % 2], size=9.5)
+        rect(s, x + (0.03 if i else 0), 2.19, ew - 0.06, 1.85, fill=WHITE, line=LINE)
+        bullets(s, x + 0.12, 2.27, ew - 0.24, 1.75, bl, size=9.2, spacing=4)
+    rect(s, 0.5, 4.15, 7.4, 0.95, fill=PANEL, line=LINE)
+    txt(s, 0.62, 4.15, 7.2, 0.95, [[("Why it was selected: ", {"bold": True, "color": NAVY}), (logic, {})]], size=9.8, anchor="m")
+    for i, (hd, bl, f) in enumerate([("What must be true", must, TEAL), ("Risks & tripwires", risks, BURG)]):
+        x = 0.5 + i * 3.73
+        txt(s, x, 5.2, 3.6, 0.28, [[(hd, {"bold": True, "caps": True})]], size=9, color=f)
+        rect(s, x, 5.47, 3.6, 0.02, fill=f)
+        bullets(s, x, 5.55, 3.6, 1.35, bl, size=9, spacing=2)
+    band(s, 8.1, 1.42, 4.73, 0.32, "Position")
+    table(s, 8.1, 1.74, 4.73, 0.3 * len(facts), [["Item", "Value"]] + facts, col_w=[2.2, 2.5], size=9, align=["l", "l"])
+    yy = 1.74 + 0.3 * len(facts) + 0.45
+    band(s, 8.1, yy - 0.05, 4.73, 0.32, "Gross MOIC by scenario (model)")
+    table(s, 8.1, yy + 0.27, 4.73, 1.0, [["Hold", "Base", "Bull", "Bear", "Shock"]] + rets, col_w=[1.0, 0.9, 0.9, 0.9, 0.9], size=9.5)
+    vy = yy + 1.42
+    rect(s, 8.1, vy, 4.73, 6.85 - vy, fill=NAVY)
+    txt(s, 8.25, vy + 0.05, 4.45, 6.85 - vy - 0.1, [[("Verdict", {"caps": True, "bold": True, "color": GOLD, "size": 9})], [(verdict, {"font": SERIF, "size": 11.5})]], size=10, color=WHITE, spacing=4, anchor="m")
+    return s
+
+def br(v):  # colour bear/shock sub-1x
+    return (v, {"color": BURG}) if float(v.rstrip("x")) < 1 else v
+
+# ---------------------------------------------------------------- 25 SUBSTRATE
+case("Case study · IQT-mirror", "Case Study — Substrate: Two Engines, One Asset",
+     "Dual-engine convergence — national security × the AI boom",
+     "Two independent demand curves converge on one asset. If the AI cycle cools, the national-security need for domestic leading-edge patterning remains; if geopolitics calms, AI demand for leading-edge wafer capacity remains. That gives a high floor on strategic value with convex upside — the highest composite score in the book (4.85).",
+     [("Engine 1 — National security", ["Domestic X-ray lithography and US fabs: a path to leading-edge chips if Taiwan / TSMC access is lost", "IQT-backed — sovereign validation", "CFIUS-clean US sovereign: acquirable by government or primes"]),
+      ("Engine 2 — AI boom", ["AI accelerators consume leading-edge wafers; fab capacity is the binding constraint", "Aims to lower cost per leading-edge wafer versus EUV-based patterning", "US fab build-out captures onshoring and CHIPS capital"])],
+     ["Tool reaches production-grade yield and throughput", "Fab financing and anchor customers or government offtake secured", "Timeline lands inside the 7–10-yr vehicles"],
+     ["Binary technology risk — Bear 0.32x (5-yr)", "Capital intensity drives dilution (retention 0.78 at 7 yrs)", ">$1B entry mark leaves little room for slippage"],
+     [["Entry post-money", "$1,050M (est., Oct-25 round)"], ["Check / ownership", "$80M / 7.6%"], ["Sizing", "Anchor — 32% of IQT sleeve (capped)"], ["Composite / shock prem.", "4.85 / +18.8%"], ["CAGR B / Bu / Be / S", "22% / 34% / −18% / 40.8%"]],
+     [["5-yr", "2.30x", "3.67x", br("0.32x"), "4.70x"], ["7-yr", "3.14x", "6.05x", br("0.19x"), "8.56x"]],
+     "Anchor position: maximum conviction, capped size. The dual engine justifies the largest check; the binary technology risk justifies the cap.")
+
+# ---------------------------------------------------------------- 26 MADE IN
+case("Case study · Consumer / Value", "Case Study — Made In Cookware: TAM Breadth Across Demographics",
+     "TAM breadth — a universal category reachable through every cohort and channel",
+     "Cookware is bought by virtually every household, at every life stage, through several channels at once — no category education needed. A premium brand with professional-kitchen credibility can compound across age, income and channel. Capital efficiency (only ~$8.3M ever raised) signals self-funded unit economics and means low dilution for a 6.25% stake.",
+     [("Demographic breadth", ["Household formation: first-kitchen buyers (Gen Z / millennials)", "Affluent upgrade and replacement cycle", "Gifting and wedding registries", "Home-cooking and aging cohorts trading up"]),
+      ("Channel breadth", ["DTC brand, with wholesale / retail placements", "Restaurant and pro-chef placements — pro use feeds consumer trust", "Category extension: knives, bakeware, tools", "International runway"])],
+     ["Repeat and attach rates across product lines", "Wholesale scales without eroding brand pricing", "DTC CAC stays stable as the brand scales"],
+     ["Least-grounded mark in the sleeve — no secondary market exists", "Import / COGS / tariff exposure: −14% Shock CAGR", "Base IRR ~11–12% sits below the ~15% position hurdle"],
+     [["Entry EV", "$280M (estimate)"], ["Check / ownership", "$17.5M / 6.25%"], ["Capital raised to date", "~$8.3M ($5M 2019 seed)"], ["Channels", "DTC + wholesale + restaurant"], ["CAGR B / Bu / Be / S", "14% / 26% / −10% / −14%"]],
+     [["5-yr", "1.73x", "2.86x", br("0.53x"), br("0.42x")], ["7-yr", "2.10x", "4.24x", br("0.40x"), br("0.29x")]],
+     "Held for TAM optionality (Bull 4.2x at 7 yrs). Before any upsizing, confirm the mark through company financials, repeat rate and wholesale mix.")
+
+# ---------------------------------------------------------------- 27 EUV TECH
+case("Case study · IQT-mirror", "Case Study — EUV Tech: The Chokepoint With a Floor",
+     "Chokepoint / sole source — plus downside protection",
+     "At-wavelength EUV metrology is a node no leading-edge fab can route around: processes aren’t qualified without it. The company already generates revenue as a niche leader, so the Bear case is roughly capital-preserving (~1.0x) — the best risk-adjusted name in the IQT sleeve. A ~17% stake earns governance.",
+     [("Chokepoint", ["At-wavelength EUV metrology: no fab qualifies without it", "Revenue-generating niche leader", "Supply-chain chokepoint score 5 / 5"]),
+      ("Sovereignty", ["US (CA), CFIUS-clean: score 5 / 5", "China-race criticality 5 / 5", "Every domestic EUV fab is a customer"])],
+     ["Domestic EUV fab build-out proceeds", "Retains its niche as tool vendors integrate", "Board seat secured at ~17%"],
+     ["Niche TAM caps Base at 14% CAGR (below hurdle)", "Dependence on the EUV ecosystem", "Mark is an estimate (undisclosed)"],
+     [["Entry post-money", "$180M (estimate)"], ["Check / ownership", "$30M / 16.7%"], ["Governance", "Significant minority — board seat"], ["Composite / shock prem.", "4.55 / +16.4%"], ["CAGR B / Bu / Be / S", "14% / 26% / 3% / 30.4%"]],
+     [["5-yr", "1.64x", "2.70x", br("0.99x"), "3.20x"], ["7-yr", "1.95x", "3.93x", br("0.96x"), "5.00x"]],
+     "Growth-core holding selected for asymmetry: limited downside, 5x in Shock. It is the book’s protection against the binary risk in the anchor.")
+
+# ---------------------------------------------------------------- 28 FARMER'S DOG vs THRIVE
+s = slide("Case study · Consumer / Value", "Case Study — Reading the Secondary Tape: Farmer’s Dog vs. Thrive Market")
+txt(s, 0.5, 1.4, 12.33, 0.4, "Two subscription consumer names, both priced by Forge secondaries (Sep-26). Same lens — unit economics and repeat — with opposite lessons on entry price.", size=11.5, align="c")
+for j, (nm, hd, f, pts, facts, rets, lesson) in enumerate([
+    ("The Farmer’s Dog", "Compounding with a catalyst", TEAL,
+     [("Unit economics: ", "profitable, >$1B annualized revenue"), ("Repeat: ", "subscription staple — pets eat every day"), ("Catalyst: ", "Walmart.com launch (2025): DTC-only → omnichannel"), ("Tape: ", "Forge $23.64/sh = $3.76B, up from $2.5B Series E (Jun-22)"), ("Defensive: ", "Bear CAGR +10%; Shock only −5%")],
+     "$24.5M check · 0.65% · CAGR 22 / 34 / 10 / −5%", [["5-yr", "2.43x", "3.89x", "1.45x", br("0.70x")], ["7-yr", "3.38x", "6.52x", "1.64x", br("0.59x")]],
+     "The market has repriced it up, and the fundamentals justify it. It is the only consumer name above 1.0x in the Bear case."),
+    ("Thrive Market", "Growth without return", BURG,
+     [("Unit economics: ", "membership DTC; revenue $400M → $700M+"), ("Tape: ", "Forge $17.98/sh = ~$945M, down ~27% from $1.29B Series C (Jul-21)"), ("Diagnosis: ", "real multiple compression — the 2021 entry multiple was the problem"), ("Role: ", "IPO candidate at a compressed entry"), ("Base CAGR: ", "7% — the lowest in the sleeve")],
+     "$14M check · 1.5% · CAGR 7 / 16 / −5 / −8%", [["5-yr", "1.26x", "1.89x", br("0.70x"), br("0.59x")], ["7-yr", "1.35x", "2.37x", br("0.59x"), br("0.47x")]],
+     "Revenue nearly doubled and the equity still fell. Growth does not equal return when the entry price is set at peak multiples.")]):
+    x = 0.5 + j * 6.27
+    band(s, x, 1.9, 6.06, 0.36, f"{nm} — {hd}", fill=f)
+    rect(s, x, 2.26, 6.06, 2.15, fill=WHITE, line=LINE)
+    bullets(s, x + 0.15, 2.35, 5.8, 2.0, pts, size=9.5, spacing=4)
+    txt(s, x, 4.48, 6.06, 0.28, [[(facts, {"bold": True})]], size=9.2, color=NAVY)
+    table(s, x, 4.78, 6.06, 0.9, [["Gross MOIC", "Base", "Bull", "Bear", "Shock"]] + rets, col_w=[1.2, 1, 1, 1, 1], size=9.5)
+    rect(s, x, 5.8, 6.06, 0.55, fill=PANEL, line=LINE)
+    txt(s, x + 0.12, 5.8, 5.85, 0.55, [[("Lesson: ", {"bold": True, "color": f}), (lesson, {})]], size=9.3, anchor="m")
+rect(s, 0.5, 6.45, 12.33, 0.42, fill=NAVY)
+txt(s, 0.7, 6.45, 12, 0.42, [[("Price the tape, not the last round. ", {"bold": True, "color": GOLD}), ("Secondary prints are Tier-3 evidence for timing — and the best available truth on what a 2021 mark is really worth today.", {})]], size=10.2, color=WHITE, anchor="m")
+
+# ---------------------------------------------------------------- 29 RATIONALE MAP I
+s = slide("Selection map", "Selection Rationale Map I: Why Each IQT-Mirror and Consumer Name Is Held")
+L = lambda t: (t, {"color": TEAL, "bold": True, "size": 8.3})
+band(s, 0.5, 1.42, 6.06, 0.32, "IQT-mirror (deep tech) — $250M")
+table(s, 0.5, 1.74, 6.06, 5.1, [["Name", "Primary lens", "Selection rationale"],
+    ["Substrate", L("Dual engine"), "National-security litho + AI wafer capacity; anchor, capped"],
+    ["EUV Tech", L("Chokepoint"), "EUV metrology no fab can skip; revenue; ~1.0x Bear"],
+    ["ThinTronics", L("Dual engine"), "US ABF substrates vs. Ajinomoto; $50M CHIPS LOI catalyst"],
+    ["EdgeCortix", L("Sovereign valid."), "Denied-environment edge AI; Japan → minority only; Renesas exit"],
+    ["Syntiant", L("Catalyst"), "Edge-AI inference; S-1 filed — liquidity ladder"],
+    ["Infleqtion", L("Mark quality"), "Listed quantum benchmark (INFQ); PIPE / secondary"],
+    ["Diraq", L("Dual engine"), "Quantum on standard CMOS foundries; AUKUS-aligned optionality"],
+    ["Mueon", L("Sovereign valid."), "Dense domestic AI compute; seed, milestone-gated"],
+    ["DefendEye", L("Optionality"), "Autonomous sensing; gated on NDAA / Blue UAS provenance"]],
+    col_w=[1.2, 1.25, 3.6], size=8.6, align=["l", "l", "l"])
+band(s, 6.77, 1.42, 6.06, 0.32, "Consumer / Value — $200M", fill=TEAL)
+table(s, 6.77, 1.74, 6.06, 5.1, [["Name", "Primary lens", "Selection rationale"],
+    ["Quince", L("TAM breadth"), "Manufacturer-to-consumer value model; >$1B ARR; $10.1B Mar-26"],
+    ["Whoop", L("Catalyst"), "Wearable → medical-grade / glucose; IPO track; $10.1B Mar-26"],
+    ["Farmer’s Dog", L("Unit economics"), "Profitable subscription >$1B; Walmart.com; tape up to $3.76B"],
+    ["Made In", L("TAM breadth"), "Every household cohort and channel; capital-light; mark unproven"],
+    ["Thrive Market", L("Mark quality"), "Membership DTC at compressed entry (−27%); IPO candidate"],
+    ["Plunge", L("Category creation"), "Cold-plunge wellness; ~$200M lifetime sales, mostly self-funded"],
+    ["Polymarket", L("Dual engine"), "Event-volume convexity + regulated US / ICE distribution"],
+    ["GOAT Group", L("Re-underwrite"), "Resale marketplace; 5-yr-stale 2021 mark — verify before check"],
+    ["Stripe", L("Mark quality"), "Payments infrastructure; TPV +34%; $159B tender — most liquid"]],
+    col_w=[1.2, 1.25, 3.6], hdr_fill=TEAL, size=8.6, align=["l", "l", "l"])
+
+# ---------------------------------------------------------------- 30 RATIONALE MAP II
+s = slide("Selection map", "Selection Rationale Map II: Why Each Weapons Name Is Held")
+table(s, 0.5, 1.45, 12.33, 4.85, [["Name", "Primary lens", "Selection rationale", "Access / structure", "Exposure"],
+    ["Saronic", L("Dual engine"), "Naval autonomy hypergrowth: $200M 2025 revenue (+1,500%); Replicator", "Late and expensive ($9.25B) → secondary only", "2.5"],
+    ["Epirus", L("Chokepoint"), "High-power microwave counter-drone — fastest-growing threat pool", "US clean; growth stage", "3.0"],
+    ["Israel Aerospace Ind.", L("Contract demand"), "Allied prime with maximum munitions and FMS backlog", "IPO cornerstone; ITAR remains", "5.0"],
+    ["Elta Systems", L("Contract demand"), "EW / ISR franchise consolidating into the IAI IPO", "Within IAI", "3.0"],
+    ["Heckler & Koch", L("Contract demand"), "NATO small-arms standardization and rearmament", "Listed, closely held → block", "3.0"],
+    ["Helicon Chemical", L("Chokepoint"), "Energetics: the scarcest input in replenishment; early growth", "Real stake: 26.7%", "4.0"],
+    ["The Ellwood Group", L("Chokepoint"), "Missile-casing and naval forgings; ~0.9x sales entry", "Family-owned → structured pref", "4.5"],
+    ["Superior & Grand Valley", L("Chokepoint"), "Missile procurement metal forging", "Placeholder mark", "4.5"],
+    ["Applied Research Assoc.", L("Sovereign valid."), "R&D house; NGP system design agent", "ESOP — structurally hard", "2.5"],
+    ["Faxon Machining", L("Contract demand"), "Warhead-case machining: BLU-136/B, MOP, NGP, TLAM", "9.8% minority; contract-derived EV", "4.0"],
+    ["L3Harris MSL", L("Dual engine"), "#2 US SRM maker: munitions MYPs + Golden Dome interceptors", "Pre-IPO, 15% discount", "—"]],
+    col_w=[2.0, 1.4, 4.6, 3.0, 0.9], size=9, align=["l", "l", "l", "l", "c"])
+rect(s, 0.5, 6.4, 12.33, 0.45, fill=PANEL, line=LINE)
+txt(s, 0.65, 6.4, 12.1, 0.45, [[("Pattern: ", {"bold": True, "color": NAVY}), ("the Weapons sleeve concentrates on chokepoints and contract-visible demand; the hard-access structures (family, ESOP, carve-out, IPO cornerstone) are where the price edge comes from.", {})]], size=9.8, anchor="m")
+
+# ---------------------------------------------------------------- 31 RED FLAGS
+s = slide("Selection discipline", "Selection Discipline: Red Flags That Gate or Shrink a Check")
+table(s, 0.5, 1.45, 12.33, 4.6, [["Name", "Red flag", "Evidence", "Action taken"],
+    ["GOAT Group", ("Stale mark", {"color": BURG, "bold": True}), "Last priced Series F Jun-21; no live Forge quote", "Re-underwrite before any check"],
+    ["Made In Cookware", ("Unproven mark", {"color": BURG, "bold": True}), "No secondary market; estimated EV", "Confirm via financials before upsizing"],
+    ["Superior & Grand Valley", ("Placeholder mark", {"color": BURG, "bold": True}), "No disclosed valuation", "Trimmed $40M → $31M to fund Faxon"],
+    ["Saronic", ("Price", {"color": BURG, "bold": True}), "$9.25B on $200M revenue (~46x)", "Secondary or late primary only"],
+    ["DefendEye", ("Provenance", {"color": BURG, "bold": True}), "EU cap table; Krakow manufacturing", "NDAA / Blue UAS diligence before defense credit"],
+    ["EdgeCortix", ("Foreign nexus", {"color": BURG, "bold": True}), "Japan HQ; TSMC-Kumamoto exposure", "Minority-only; CFIUS ceiling on exit"],
+    ["Thrive Market", ("Multiple compression", {"color": BURG, "bold": True}), "−27% vs 2021 despite revenue +75%", "Small check; held as IPO candidate"],
+    ["Faxon Machining", ("Recompete", {"color": BURG, "bold": True}), "BLU-136/B order period ends 30-Sep-26", "Partial loss in Bear; diligence position"],
+    ["Applied Research Assoc.", ("Access", {"color": BURG, "bold": True}), "Employee-owned ESOP", "Structured approach; realistic liquidity"]],
+    col_w=[2.2, 1.8, 4.3, 4.0], size=9.2, align=["l", "l", "l", "l"])
+rect(s, 0.5, 6.15, 12.33, 0.7, fill=WHITE, line=BURG, lw=1)
+txt(s, 0.65, 6.15, 12.1, 0.7, [[("A red flag rarely kills a great company outright — it changes the size, the structure or the timing. ", {"bold": True, "color": BURG}), ("Only flags that can’t be cured (no access, incurable provenance, a thesis that needs the Bull case) are hard passes.", {})]], size=10, anchor="m")
+
+# final order: research & selection first, then portfolio, risk and tools
+reorder(p, [1, 22, 23, 2, 3, 24, 9, 8, 25, 26, 27, 28, 12, 29, 30, 10, 11, 31, 4, 5, 6, 7, 14, 15, 13, 16, 17, 18, 19, 20, 21])
+stamp_pages(p)
 
 p.save(OUT)
 print("saved", OUT, N[0], "slides")

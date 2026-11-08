@@ -1,3 +1,4 @@
+import re
 """Minimal styling kit reproducing the D. B. Ritts III investment-profile deck look."""
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
@@ -96,17 +97,35 @@ def bullets(s, x, y, w, h, items, size=9.5, color=INK, bullet="•", spacing=3, 
     return txt(s, x, y, w, h, paras, size=size, color=color, spacing=spacing)
 
 
-def fit_title(title, max_size=30, width_pt=880.0, em=0.56):
+def fit_title(title, max_size=30, width_pt=880.0, em=0.6):
     return max(20, min(max_size, int(width_pt / (len(title) * em))))
 
 
 def header(s, section, title, title_size=30):
     title_size = fit_title(title, title_size)
+    section = re.sub(r"^\d+\s*\|\s*", "", section)
     txt(s, 0.5, 0.28, 12.3, 0.3, [[(section, {"caps": True, "track": 150})]], size=10, color=MUTED)
     txt(s, 0.5, 0.55, 12.4, 0.75, title, size=title_size, color=NAVY, font=SERIF)
     rect(s, 0.5, 1.27, 12.33, 0.012, fill=LINE)
     rect(s, 0.5, 7.0, 12.33, 0.008, fill=LINE)
     txt(s, 0.5, 7.05, 6, 0.25, FOOTER, size=8, color=GREY)
+
+
+def reorder(p, order):
+    """order: list of 1-based creation indices in desired final order."""
+    lst = p.slides._sldIdLst
+    ids = list(lst)
+    for e in ids:
+        lst.remove(e)
+    for i in order:
+        lst.append(ids[i - 1])
+
+
+def stamp_pages(p, skip_first=True):
+    for i, s in enumerate(p.slides, 1):
+        if skip_first and i == 1:
+            continue
+        page_no(s, i)
 
 
 def page_no(s, n):
