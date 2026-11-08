@@ -1,0 +1,861 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Investment Selection Guidebook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+@page { size: Letter; margin: 0.85in 0.7in 0.95in 0.7in; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin:0; font-family:'Public Sans',Helvetica,Arial,sans-serif; font-weight:300; color:#000;
+       font-size:9.5pt; line-height:1.4; -webkit-font-smoothing:antialiased; }
+.serif { font-family:'Source Serif 4',Georgia,serif; font-weight:600; }
+b, strong { font-weight:500; }
+em { font-style:normal; font-weight:500; }
+sup.en { font-size:7pt; font-weight:500; margin-left:1px; }
+.xref { color:#A95228; font-weight:500; }
+p { margin:0 0 7pt; }
+/* masthead / cover */
+.mast-top { display:flex; justify-content:space-between; font-size:8pt; font-weight:300; letter-spacing:.04em; text-transform:uppercase; }
+.mast-top b { font-weight:500; }
+.rule-ink { height:1px; background:#000; margin:8pt 0 18pt; }
+.eyebrow { font-size:10pt; font-weight:500; letter-spacing:.04em; text-transform:uppercase; }
+h1.title { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:27pt; line-height:1.08; margin:8pt 0 12pt; letter-spacing:-.01em; }
+.lead { font-size:12pt; line-height:1.35; font-weight:300; max-width:6.1in; margin-bottom:14pt; }
+.keyfigs { display:grid; grid-template-columns:repeat(3,1fr); gap:14pt; margin:6pt 0 20pt; }
+.kf { border-top:2px solid #1B5E5C; padding-top:7pt; }
+.kf .v { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:26pt; line-height:1; }
+.kf .l { font-size:9pt; font-weight:400; margin-top:4pt; line-height:1.3; }
+.disc-box { border:1px solid #000; padding:7pt 9pt; font-size:7.5pt; font-weight:500; line-height:1.4; letter-spacing:.01em; margin:14pt 0 8pt; }
+/* sections */
+.sec { break-before: page; }
+.sec.flow { break-before: auto; margin-top:22pt; }
+.sec-head { display:flex; align-items:baseline; gap:10pt; border-bottom:1px solid #000; padding-bottom:6pt; margin-bottom:10pt; break-after:avoid; }
+.sec-head .n { font-size:9pt; font-weight:500; color:#727272; }
+.sec-head h2 { margin:0; font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:20pt; line-height:1.1; }
+h3 { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:13pt; margin:14pt 0 6pt; break-after:avoid; }
+.sub { font-size:9pt; font-weight:300; margin:-3pt 0 8pt; }
+/* tables (4.3 performance table pattern) */
+table { width:100%; border-collapse:collapse; font-size:8.1pt; font-weight:300; margin:4pt 0 10pt; }
+thead { display:table-header-group; }
+th { background:#1B5E5C; color:#FFF; font-weight:500; text-align:left; padding:4pt 6pt; vertical-align:bottom; }
+td { padding:3.4pt 6pt; border-bottom:1px solid #BFBFBF; vertical-align:top; }
+tbody tr:nth-child(even) td { background:#F2F2F2; }
+tbody tr:last-child td { border-bottom:1px solid #000; }
+td:first-child { font-weight:500; }
+tr { break-inside:avoid; }
+/* formula block */
+.formula { border-top:1px solid #000; border-bottom:1px solid #000; padding:9pt 0; margin:6pt 0 12pt;
+           font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:11.5pt; text-align:center; }
+/* lists */
+ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
+/* components */
+.panel { background:#FFF; border:1px solid #E4E4E4; padding:10pt 12pt; margin:6pt 0 12pt; break-inside:avoid; }
+.panel-title { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:12pt; margin-bottom:2pt; }
+.grid-map { display:grid; grid-template-columns:repeat(2,1fr); gap:6pt; margin:6pt 0 8pt; }
+.dom { border-top:3px solid #000; background:#F4F4F2; padding:5pt 9pt; break-inside:avoid; }
+.dom .k { font-size:8pt; font-weight:500; color:#727272; }
+.dom .h { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:11pt; margin:0 0 2pt; }
+.dom .d { font-size:8.3pt; line-height:1.35; }
+.track { display:grid; gap:4pt; margin:8pt 0 12pt; }
+.step { border-top:3px solid #1B5E5C; background:#F4F4F2; padding:7pt 8pt; font-size:8pt; line-height:1.3; break-inside:avoid; }
+.step .h { font-weight:500; font-size:8.6pt; margin-bottom:2pt; }
+.step .y { color:#727272; font-size:7.6pt; margin-bottom:3pt; }
+.step.hl { border-top-color:#A95228; }
+.legend { display:flex; flex-wrap:wrap; gap:4pt 14pt; font-size:8pt; margin-top:6pt; }
+.legend span.sw { display:inline-block; width:9px; height:9px; margin-right:5px; vertical-align:-1px; }
+.stack { display:flex; height:20px; gap:2px; margin:3pt 0; }
+.barrow { display:grid; grid-template-columns:1.55in 1fr 0.75in; gap:8pt; align-items:center; font-size:8.3pt; padding:3pt 0; }
+.barrow .track2 { height:13px; background:#E4E4E4; position:relative; }
+.barrow .fill { position:absolute; top:0; bottom:0; }
+.barrow .val { text-align:right; font-weight:500; }
+.note { font-size:7.8pt; color:#727272; line-height:1.4; margin-top:4pt; }
+.struct { display:grid; grid-template-columns:repeat(4,1fr); gap:6pt; margin:8pt 0 4pt; font-size:8pt; text-align:center; }
+.box { border:1px solid #000; padding:6pt 4pt; background:#FFF; line-height:1.25; }
+.box b { display:block; font-size:8.6pt; }
+.box.ink { background:#1B5E5C; color:#FFF; border-color:#1B5E5C; }
+.arrowline { text-align:center; font-size:9pt; color:#727272; margin:2pt 0; letter-spacing:.04em; }
+.notes ol { padding-left:16pt; font-size:8pt; line-height:1.45; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:14pt; }
+
+.lead2 { font-size:11.5pt; line-height:1.4; font-weight:300; margin:2pt 0 12pt; }
+.habits { display:grid; grid-template-columns:1fr 1fr; gap:6pt 14pt; margin:6pt 0 12pt; }
+.hb { border-top:1px solid #BFBFBF; padding-top:5pt; font-size:8.6pt; line-height:1.38; break-inside:avoid; }
+.hb span { display:block; font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:13pt; line-height:1; margin-bottom:3pt; }
+.case { border-top:3px solid #000; background:#F4F4F2; padding:9pt 12pt 4pt; margin:6pt 0 12pt; break-inside:avoid; }
+.case p { font-size:9pt; margin:0 0 6pt; }
+.case-tag { font-size:8pt; font-weight:500; letter-spacing:.05em; text-transform:uppercase; margin-bottom:5pt; }
+.two .case { margin-top:0; }
+.track5 { display:grid; grid-template-columns:repeat(5,1fr); gap:4pt; margin:6pt 0 10pt; }
+.st { border-top:3px solid #1B5E5C; background:#F4F4F2; padding:6pt 7pt; font-size:8pt; line-height:1.3; break-inside:avoid; }
+.st b { display:block; font-size:8.6pt; margin-bottom:2pt; }
+.st.dark { border-top-color:#000; }
+.toc { columns:2; column-gap:20pt; font-size:9pt; margin:6pt 0 0; padding:0; list-style:none; }
+.toc li { display:flex; gap:8pt; border-bottom:1px solid #E4E4E4; padding:4pt 0; break-inside:avoid; }
+.toc li span { color:#727272; font-weight:500; width:16pt; }
+.pull { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:14pt; line-height:1.3; border-top:1px solid #000; border-bottom:1px solid #000; padding:10pt 0; margin:4pt 0 16pt; }
+</style></head><body><section>
+<div class="rule-ink" style="margin-top:0"></div>
+<div class="eyebrow">November 2026 · D. B. Ritts III</div>
+<h1 class="title">How I Find, Judge and<br>Select Investments</h1>
+<p class="lead">A guidebook to my research process and selection discipline across <b>private stakes, operational roll-ups, public equity books and the macro overlay</b>, with the frameworks, evidence standards, case studies and kill rules behind each decision.</p>
+<div class="keyfigs">
+ <div class="kf"><div class="v">4</div><div class="l">arenas run on one selection process</div></div>
+ <div class="kf"><div class="v">5</div><div class="l">factors in the selection equation, multiplied, not added</div></div>
+ <div class="kf"><div class="v">8</div><div class="l">selection lenses, each with live examples</div></div>
+</div>
+<div class="pull">Follow the shift down through budgets, contracts and production lines until you find the constraint that has to be paid. Then own it at a price the public market won’t offer twice.</div>
+<div class="eyebrow" style="margin-bottom:2pt">Contents</div>
+<ul class="toc"><li><span>01</span>How I Think</li><li><span>02</span>What Makes a Target Selectable</li><li><span>03</span>How I Research</li><li><span>04</span>Four Arenas, One Process</li><li><span>05</span>Arena I: Private Stakes</li><li><span>06</span>Arena II: Operational Roll-ups</li><li><span>07</span>Arena III: Public Equity Books</li><li><span>08</span>Arena IV: The Macro Overlay</li><li><span>09</span>Deciding and Sizing</li><li><span>10</span>Known Blind Spots</li><li><span>11</span>Toolkit: the One-Page Target Scorecard</li></ul>
+</section><section class="sec"><div class="sec-head"><span class="n">01</span><h2>How I Think</h2></div><p class="lead2">I don’t start from a company, a sector or a banker’s book. I start from a structural shift in how the world allocates capital, follow it down through budgets, contracts and production lines until I find the constraint that has to be paid, and then pick the instrument (a private stake, a roll-up, a listed equity, an option or a rates trade) that lets me own that constraint at the right price.</p>
+
+<h3>1.1 One framework, not four disciplines</h3>
+<p>Macro, geopolitics, military doctrine, industrial supply chains and derivatives structure are a single analytical system to me, not separate specialties. A change in one domain propagates into the others: a Treasury funding decision changes the rate path, which changes the exit window for long-duration private assets; a cancelled diplomatic trip changes the timing on energy and volatility positions; an appropriations line changes the revenue of a tier-3 machine shop. I hold my theses as <strong>interlocking pillars</strong>. When one pillar is revised, I trace the cascade through every position that depends on it before I do anything else.</p>
+<h3>1.2 How the world actually works</h3>
+<ul>
+<li><strong>Incentives, power and imperfect information drive outcomes.</strong> I analyze governments, primes, LPs and counterparties by what they are paid and pressured to do, not by what they say.</li>
+<li><strong>Institutional incompetence is a source of mispricing.</strong> Large allocators abandon sectors that are hard to underwrite, too small, politically awkward or operationally messy: family-owned industrials, ESOPs, blue-collar regional businesses, tier-3 defense suppliers. Those gaps create both real-economy damage and exploitable pricing. I target both at once: <strong>returns come from operational restoration, not financial engineering.</strong></li>
+<li><strong>The theme is beta; the entry point is alpha.</strong> By the time a theme is obvious (rearmament, AI compute) it is priced in public markets. What I am paid for is capturing it earlier, deeper in the supply chain, or through a structure others can’t or won’t use.</li>
+<li><strong>Constraints change more slowly than narratives.</strong> I don’t need to be right about the whole macro story. I need to be right about which constraint binds first, because constraints are measurable and edges built on them decay slowly.</li>
+</ul>
+<h3>1.3 Second- and third-order thinking</h3>
+<p>The first-order trade is what everyone does after reading the headline. My process asks <em>what happens after everyone does the first-order trade</em>.</p>
+<table>
+<thead>
+<tr>
+<th>Headline</th>
+<th>First-order (consensus)</th>
+<th>Second / third-order (my process)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Defense budgets rise</td>
+<td>Buy primes, buy the hottest defense-tech round</td>
+<td>Throughput is set by tier-2/3 suppliers: motors, forgings, energetics, case machining. Own the constraint.</td>
+</tr>
+<tr>
+<td>AI race with China</td>
+<td>Buy late-stage AI at peak marks</td>
+<td>If Taiwan is contested, the scarce asset is the domestic fail-safe stack: lithography, metrology, substrates, packaging.</td>
+</tr>
+<tr>
+<td>Intelligence budget grows</td>
+<td>Ignore it, because it is classified</td>
+<td>In-Q-Tel is funded inside the intelligence budget. A bigger budget means a larger, government-validated deal pipeline to mirror.</td>
+</tr>
+<tr>
+<td>Treasury fights long-end yields</td>
+<td>Buy duration, or short it</td>
+<td>Treasury is rewriting the <em>rights</em> attached to the bond. Own the release valve (gold) and the curve shape, and add duration only once repression is confirmed.</td>
+</tr>
+<tr>
+<td>US–China decoupling</td>
+<td>Avoid China</td>
+<td>Pair it: long the allied side of the chokepoint, short the subsidized side.</td>
+</tr>
+</tbody>
+</table>
+<h3>1.4 Ten habits</h3>
+<div class="habits">
+<div class="hb"><span>01</span><b>Constraint first.</b> Geopolitics → budgets → contracts → capacity → equity value, with every link evidenced.</div>
+<div class="hb"><span>02</span><b>Two layers down.</b> The interesting opportunity sits several steps from the obvious trade.</div>
+<div class="hb"><span>03</span><b>Physical over narrative.</b> Requalifying a supplier takes years, so a physical moat outlasts a story moat.</div>
+<div class="hb"><span>04</span><b>Compelled evidence.</b> I underwrite what someone was legally required to disclose, not what they chose to say.</div>
+<div class="hb"><span>05</span><b>Asymmetry.</b> Design for convexity to the most mispriced scenario, then make sure the base case still pays.</div>
+<div class="hb"><span>06</span><b>Discrete events stay discrete.</b> Awards, IPOs, votes and recompetes are modeled as steps, not smoothed into growth.</div>
+<div class="hb"><span>07</span><b>Structure solves access.</b> Preferred, cornerstone, secondary blocks and roll-up rebrands open assets others skip.</div>
+<div class="hb"><span>08</span><b>Pick the instrument, not just the idea.</b> The expression should match the mechanism and the time horizon.</div>
+<div class="hb"><span>09</span><b>Define the kill signal first.</b> Before entry, I name the observable that would tell me I’m wrong.</div>
+<div class="hb"><span>10</span><b>Honest tails.</b> Scenario weights are fixed before I look at the output, and risk sections are analysis, not disclaimers.</div>
+</div></section><section class="sec"><div class="sec-head"><span class="n">02</span><h2>What Makes a Target Selectable</h2></div><h3>2.1 The selection equation</h3>
+<div class="formula">Attractiveness = Demand engines × Constraint / moat × Evidence quality × Entry price × Access</div>
+
+<p>The factors <strong>multiply</strong>. A near-zero on any one kills the target however strong the others are. A brilliant chokepoint with no route to a stake is a pass. A huge TAM at a mark that can’t clear the hurdle is a pass. A cheap price on a company with no demand engine is a value trap. When one factor is weak but curable, the target goes on a watchlist with the condition that would change it written down.</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Question I ask</th>
+<th>What “strong” looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Demand engines</strong></td>
+<td>How many independent secular curves pull on this company, and how wide is the market?</td>
+<td>Two engines (Substrate: national security × AI), or breadth across every demographic and channel (Made In)</td>
+</tr>
+<tr>
+<td><strong>Constraint / moat</strong></td>
+<td>What can the market not route around?</td>
+<td>Capacity, qualification, sole-source status, IP, brand credibility, network</td>
+</tr>
+<tr>
+<td><strong>Evidence quality</strong></td>
+<td>Can the thesis be proven from compelled disclosures and priced marks?</td>
+<td>Contract awards, filings, priced rounds, secondary prints</td>
+</tr>
+<tr>
+<td><strong>Entry price</strong></td>
+<td>Does the mark leave room for the Base case to clear the hurdle?</td>
+<td>Pre-IPO discount, compressed multiple, family / ESOP pricing, multiple arbitrage</td>
+</tr>
+<tr>
+<td><strong>Access</strong></td>
+<td>Is there a real, structurable route to a meaningful position?</td>
+<td>Significant minority with board rights, cornerstone allocation, roll-up rebrand, liquid listed instrument</td>
+</tr>
+</tbody>
+</table>
+<h3>2.2 Eight selection lenses</h3>
+<p>Each lens is a different way a company can earn a place in the book. Most selected names pass through two or three.</p>
+<table>
+<thead>
+<tr>
+<th>Lens</th>
+<th>The question</th>
+<th>Examples across my books</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dual-engine convergence</strong></td>
+<td>Is it pulled by two independent demand curves?</td>
+<td>Substrate (national security + AI); ThinTronics (CHIPS + AI packaging); L3Harris MSL (Golden Dome + munitions); PDYN (physical manufacturing + autonomy)</td>
+</tr>
+<tr>
+<td><strong>TAM breadth</strong></td>
+<td>How many demographics, channels and geographies can buy it without category education?</td>
+<td>Made In (every household cohort); Quince (value trade-down); the fitness roll-up (premium experience at mass pricing)</td>
+</tr>
+<tr>
+<td><strong>Chokepoint / sole source</strong></td>
+<td>Can the system route around it?</td>
+<td>EUV Tech (no fab qualifies without it); Ellwood and Helicon (forgings, energetics); CRS (submarine alloys); MP (NdPr magnets)</td>
+</tr>
+<tr>
+<td><strong>Contract-visible demand</strong></td>
+<td>Is the demand already signed?</td>
+<td>Faxon ($473M BLU-136/B); MSL (PAC-3, THAAD multiyears); the Tomahawk supplier chain (RTX → PPG, FEIM, DCO, MTSI)</td>
+</tr>
+<tr>
+<td><strong>Sovereign validation</strong></td>
+<td>Has a strategic allocator already vetted it?</td>
+<td>Nine In-Q-Tel-backed names; ThinTronics’ $50M CHIPS LOI; NDAA line items</td>
+</tr>
+<tr>
+<td><strong>Unit economics &amp; repeat</strong></td>
+<td>Does each customer pay back, and come back?</td>
+<td>Farmer’s Dog (profitable, &gt;$1B revenue); Whoop (subscription); high-margin sauna and cold-plunge add-ons in the fitness roll-up</td>
+</tr>
+<tr>
+<td><strong>Catalyst proximity</strong></td>
+<td>What event re-rates it inside my hold or option tenor?</td>
+<td>MSL IPO; NGP production award; a county board data-center vote for the marina platform; Treasury refunding statements for the macro book</td>
+</tr>
+<tr>
+<td><strong>Mark quality &amp; access</strong></td>
+<td>Is the price real, and can I get in?</td>
+<td>Stripe tender; Forge prints; listed LEAPS priced daily, versus GOAT’s five-year-stale mark</td>
+</tr>
+</tbody>
+</table></section><section class="sec"><div class="sec-head"><span class="n">03</span><h2>How I Research</h2></div><h3>3.1 The signal stack</h3>
+<p>My research advantage comes from combining signal types that rarely sit on the same desk. I describe it as an <strong>OSINT-to-capital pipeline</strong>: open-source intelligence and compelled disclosure converted into positions faster than consensus models update.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What I read</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Compelled disclosure</strong></td>
+<td>What governments and companies must publish</td>
+<td>Appropriations and NDAA text (FY2027 bill read in full and synthesized), contract awards and IDIQ awardee lists, S-1s, the Fed H.4.1 release, daily Treasury cash balance</td>
+</tr>
+<tr>
+<td><strong>Open-source intelligence</strong></td>
+<td>Physical-world signals before they hit filings</td>
+<td>ADS-B aviation pattern analysis, GPS-interference mapping, naval basing and submarine build-out, a Taiwan warning-indicator dashboard</td>
+</tr>
+<tr>
+<td><strong>Market microstructure</strong></td>
+<td>Where money is positioning</td>
+<td>Unusual options flow (a systematic input, not a standalone signal), dealer gamma positioning, cross-expiry open-interest analysis</td>
+</tr>
+<tr>
+<td><strong>Operator and local intelligence</strong></td>
+<td>What filings miss</td>
+<td>Site visits, management conversations, county board agendas and votes, local land-use and incentive decisions</td>
+</tr>
+<tr>
+<td><strong>Synthesis</strong></td>
+<td>How signals interact</td>
+<td>Interlocking pillars: e.g. an Iran deal fracture → energy timing → volatility spreads → gold accumulation</td>
+</tr>
+</tbody>
+</table>
+<h3>3.2 Evidence hierarchy</h3>
+<p>Signals are weighted by how hard they are to fake. Lower tiers refine timing; only the top tier sets conviction.</p>
+<div class="panel"><div class="panel-title">Weight of evidence in a conviction decision<sup class="en">(1)</sup></div>
+<div class="barrow"><span>Tier 1: compelled / primary</span><div class="track2"><div class="fill" style="width:60%;background:#1B5E5C"></div></div><span class="val">60%</span></div>
+<div class="barrow"><span>Tier 2: industry / operator</span><div class="track2"><div class="fill" style="width:25%;background:#4C9F8B"></div></div><span class="val">25%</span></div>
+<div class="barrow"><span>Tier 3: market pricing</span><div class="track2"><div class="fill" style="width:10%;background:#006492"></div></div><span class="val">10%</span></div>
+<div class="barrow"><span>Tier 4: narrative</span><div class="track2"><div class="fill" style="width:5%;background:#CACED7"></div></div><span class="val">5%</span></div>
+<div class="note">Case in point: an aggregator showed Faxon Machining at ~$21M revenue. The contract trail ($473M BLU-136/B award, a penetrator IDIQ, MOP, NGP and Tomahawk work) supported ~$60M. The contract trail set the entry price.</div></div>
+
+<h3>3.3 The question stack</h3>
+<p>Research is a sequence of questions, each with its own evidence. A target moves to the next stage only when the current one is answered from primary sources. <strong>I never skip to price.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Core questions</th>
+<th>Gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Demand engines</strong></td>
+<td>Who must buy this? How many independent curves drive it? How wide is the market across demographics, channels and geographies?</td>
+<td>A named dollar flow and an engine count</td>
+</tr>
+<tr>
+<td><strong>2. Constraint / moat</strong></td>
+<td>What can’t the market route around? How long would replication take? Who else could supply?</td>
+<td>A chokepoint or a durable commercial moat, or a pass</td>
+</tr>
+<tr>
+<td><strong>3. Company proof</strong></td>
+<td>Is revenue real and visible: contracts, cohorts, repeat rates, margins?</td>
+<td>A program-level or unit-level build</td>
+</tr>
+<tr>
+<td><strong>4. Price</strong></td>
+<td>What is the mark, and which evidence tier supports it?</td>
+<td>Priced / secondary / contract-derived / estimate</td>
+</tr>
+<tr>
+<td><strong>5. Access &amp; structure</strong></td>
+<td>Can I get a meaningful position? Which structure protects me?</td>
+<td>Route, structure and size</td>
+</tr>
+<tr>
+<td><strong>6. Scenarios &amp; exit</strong></td>
+<td>What happens in Base, Bull, Bear and the tail? Who buys it, and when?</td>
+<td>Expected return, hurdle comparison, tripwires</td>
+</tr>
+</tbody>
+</table>
+<h3>3.4 Decomposing macro into constraint</h3>
+<p>The defining move in my process: I don’t express a macro view directly. I break it into the physical, technological, financial and institutional constraints that must clear before spending becomes output, and I buy the constraint.</p>
+<div class="track5">
+<div class="st dark"><b>Macro event</b>Munitions and interceptor budgets rising: Tomahawk multiyear to 1,000+/yr; PAC-3 600 → 2,000/yr</div>
+<div class="st"><b>Physical</b>Forging, deep-hole machining and rocket-motor casting capacity</div>
+<div class="st"><b>Technological</b>Energetics chemistry, propellant and warhead-case know-how</div>
+<div class="st"><b>Financial</b>Long cycles, fixed-price risk, capex needed ahead of awards</div>
+<div class="st"><b>Institutional</b>ITAR, clearances, sole-source qualification, recompetes</div>
+</div>
+
+<p><strong>Result:</strong> solid-rocket motors (L3Harris MSL), energetics (Helicon), missile-casing forgings (Ellwood, Superior &amp; Grand Valley), warhead-case machining (Faxon), and in public markets the alloy, magnet, RF and coatings suppliers (CRS, MP, QRVO, PPG).</p>
+<p>The full analytical chain I run on every thesis has twelve links: <strong>geopolitics → policy → appropriations → programs → production targets → capacity → bottleneck → supplier → ownership → entry structure → catalyst → payoff.</strong></p>
+<h3>3.5 Watch gates: decide what would change my mind before I need to</h3>
+<p>For every thesis I name the specific observable, its baseline, and the date it matters. That converts monitoring from news-reading into a checklist.</p>
+<table>
+<thead>
+<tr>
+<th>Thesis</th>
+<th>Observable</th>
+<th>Baseline / trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gold revaluation (macro)</td>
+<td>Fed H.4.1 gold certificate account</td>
+<td>$11,037M; any move is signal</td>
+</tr>
+<tr>
+<td>Gold revaluation (macro)</td>
+<td>Treasury General Account</td>
+<td>Unexplained $100–150B one-day builds without matching issuance</td>
+</tr>
+<tr>
+<td>Financial repression (macro)</td>
+<td>Quarterly refunding statements</td>
+<td>Larger buybacks or “additional tools” language</td>
+</tr>
+<tr>
+<td>Marina platform (roll-up)</td>
+<td>County board data-center decisions; state impact analysis; general election</td>
+<td>Re-underwrite on each outcome</td>
+</tr>
+<tr>
+<td>Faxon (private)</td>
+<td>BLU-136/B order period</td>
+<td>Ends 30-Sep-2026; recompete outcome</td>
+</tr>
+<tr>
+<td>L3Harris MSL (pre-IPO)</td>
+<td>IPO timing and pricing</td>
+<td>Q1-2027 target; company guided mid-2027</td>
+</tr>
+</tbody>
+</table></section><section class="sec"><div class="sec-head"><span class="n">04</span><h2>Four Arenas, One Process</h2></div><p>The same selection equation runs across four arenas. What changes is the instrument, the evidence available, the horizon and how risk is controlled.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Private stakes</strong></th>
+<th><strong>Operational roll-ups</strong></th>
+<th><strong>Public equity books</strong></th>
+<th><strong>Macro overlay</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>What I select</td>
+<td>Minority / pre-IPO stakes in constrained private companies</td>
+<td>Fragmented local operators near durable demand nodes</td>
+<td>Listed suppliers along the same dependency map</td>
+<td>Policy mechanisms and their cleanest expression</td>
+</tr>
+<tr>
+<td>Primary edge</td>
+<td>Entry price and access</td>
+<td>Multiple arbitrage and operational restoration</td>
+<td>Speed: OSINT and contract trail ahead of consensus</td>
+<td>Early regime identification</td>
+</tr>
+<tr>
+<td>Evidence</td>
+<td>Contracts, cap tables, priced rounds</td>
+<td>Site-level financials, local permits and votes</td>
+<td>Filings, backlogs, options flow</td>
+<td>Statute, Fed and Treasury data</td>
+</tr>
+<tr>
+<td>Instrument</td>
+<td>Equity, structured preferred</td>
+<td>Control equity, rebrand-light platform</td>
+<td>ITM LEAPS, defined-risk structures, pairs</td>
+<td>Call ladders, curve trades, staged duration</td>
+</tr>
+<tr>
+<td>Horizon</td>
+<td>5 / 7 / 10 years</td>
+<td>~5 years to platform exit</td>
+<td>Months to two years</td>
+<td>Weeks to quarters, gated by events</td>
+</tr>
+<tr>
+<td>Risk control</td>
+<td>Position caps, tranches, tripwires</td>
+<td>Synergy ramp discipline, re-underwriting dates</td>
+<td>Defined risk, theta control, pairs</td>
+<td>Watch gates, staged entry, named kill signal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The common thread:</strong> capital redeployed into what institutional capital has mispriced or abandoned, with returns earned by being earlier, deeper in the chain or structurally advantaged in access.</p></section><section class="sec"><div class="sec-head"><span class="n">05</span><h2>Arena I: Private Stakes</h2></div><p>The private arena runs through the Leviathan core PE holdco: an $855M vehicle built as a barbell with a ballast.<sup class="en">(2)</sup></p>
+<div class="panel"><div class="panel-title">Holdco construction by sleeve<sup class="en">(2)</sup></div><div class="sub">$M committed; 29 positions</div>
+<div class="stack"><div style="flex:405;background:#1B5E5C"></div><div style="flex:250;background:#4C9F8B"></div><div style="flex:200;background:#006492"></div></div>
+<div class="legend"><span><span class="sw" style="background:#1B5E5C"></span>Weapons (physical layer) $405M · cash-generative core</span><span><span class="sw" style="background:#4C9F8B"></span>IQT-mirror deep tech $250M · convex tail hedge</span><span><span class="sw" style="background:#006492"></span>Consumer / Value $200M · ballast and early DPI</span></div></div>
+
+<p>Every position must fill a <strong>role</strong>: the IQT-mirror sleeve is the capex leg of the supercycle (building the domestic stack), Weapons is the opex leg (consuming munitions), and Consumer is the deliberately uncorrelated ballast. A good company that fills no role is a pass.</p>
+<h3>5.1 Strategic scoring</h3>
+<p>Deep-tech names are scored 1–5 on five axes: China-race criticality (25%), Taiwan / TSMC insulation (30%), government embeddedness (15%), CFIUS-clean sovereignty (15%) and supply-chain chokepoint (15%). The composite drives the tail scenario: <strong>Shock CAGR = Base CAGR + (Composite − 2.5) × 8% per point.</strong></p>
+<div class="panel"><div class="panel-title">IQT-mirror composite strategic scores<sup class="en">(2)</sup></div><div class="sub">1 = low, 5 = high; pivot at 2.5</div>
+<div class="barrow"><span>Substrate (anchor)</span><div class="track2"><div class="fill" style="width:97%;background:#1B5E5C"></div></div><span class="val">4.85</span></div>
+<div class="barrow"><span>EUV Tech</span><div class="track2"><div class="fill" style="width:91%;background:#1B5E5C"></div></div><span class="val">4.55</span></div>
+<div class="barrow"><span>ThinTronics</span><div class="track2"><div class="fill" style="width:89%;background:#1B5E5C"></div></div><span class="val">4.45</span></div>
+<div class="barrow"><span>Diraq</span><div class="track2"><div class="fill" style="width:71%;background:#4C9F8B"></div></div><span class="val">3.55</span></div>
+<div class="barrow"><span>Mueon</span><div class="track2"><div class="fill" style="width:69%;background:#4C9F8B"></div></div><span class="val">3.45</span></div>
+<div class="barrow"><span>Infleqtion</span><div class="track2"><div class="fill" style="width:68%;background:#4C9F8B"></div></div><span class="val">3.40</span></div>
+<div class="barrow"><span>Syntiant</span><div class="track2"><div class="fill" style="width:65%;background:#4C9F8B"></div></div><span class="val">3.25</span></div>
+<div class="barrow"><span>EdgeCortix</span><div class="track2"><div class="fill" style="width:56%;background:#006492"></div></div><span class="val">2.80</span></div>
+<div class="barrow"><span>DefendEye</span><div class="track2"><div class="fill" style="width:34%;background:#CACED7"></div></div><span class="val">1.70</span></div>
+<div class="note">Scores are levers, not facts: ±1 point on the TSMC axis moves shock CAGR by ±2.4%. Every score carries a written justification and is sensitivity-tested.</div></div>
+
+<p>Weapons names get a munitions / export overlay instead: exposure = average of a munitions-shortage score and an FMS-backlog score (0–5 each), adding +0.5% Base CAGR per point (+0.4% even in Bear, because multiyear contracts cushion budget slips).</p>
+<h3>5.2 Program-level underwriting</h3>
+<p>Sleeve-level growth assumptions are placeholders. Every position eventually gets a bottom-up build: <strong>program revenue = driver growth + share gain</strong>, with discrete award steps, a margin ramp, FCF conversion and an exit multiple, producing an implied CAGR that feeds the sleeve. Proceeds are haircut for dilution (Check × (1 + CAGR)^T × retention).</p>
+<ul>
+<li><strong>Faxon Machining</strong> ($9M for 9.8% at a $92M post): eight program lines (BLU-136/B, MOP, NGP, Tomahawk, penetrator IDIQ, missile structures, FMS, commercial), each tied to a named driver. The entry was cross-checked against a contract-derived valuation: Bear $21M / Base $76M / Bull $194M at 25/50/25 = $91.75M. Fair, not a discount.</li>
+<li><strong>L3Harris Missile Solutions</strong> ($15M pre-IPO): 2027E EBIT $574M × 22x = $12.6B IPO value, less a 15% pre-IPO discount = $10.7B entry. Program build across PAC-3, THAAD, Standard Missile, Tomahawk, GMLRS / PrSM, hypersonics and Golden Dome interceptors.</li>
+</ul>
+<h3>5.3 Case study: Substrate, two engines in one asset</h3>
+<div class="case"><div class="case-tag">Lens: dual-engine convergence</div>
+<p><b>Engine 1, national security:</b> domestic X-ray lithography and US fabs, a path to leading-edge chips if Taiwan / TSMC access is lost; In-Q-Tel backed; CFIUS-clean and acquirable by government or primes. <b>Engine 2, the AI boom:</b> AI accelerators consume leading-edge wafers, fab capacity is the binding constraint, and the technology aims to lower cost per leading-edge wafer.</p>
+<p><b>Why selected:</b> if the AI cycle cools, the national-security need remains; if geopolitics calms, the AI demand remains. That gives a high floor on strategic value with convex upside, and the highest composite score in the book (4.85).</p>
+<p><b>What must be true:</b> production-grade yield and throughput; fab financing and anchor offtake; a timeline inside the hold. <b>Risks:</b> binary technology (Bear 0.32x at 5 years); capital intensity and dilution; a >$1B entry mark.</p>
+<p><b>Decision:</b> anchor position ($80M, 7.6%), capped at ~32% of the sleeve. The dual engine justifies the largest check; the binary risk justifies the cap.</p></div>
+
+<h3>5.4 Case study: Made In Cookware, TAM breadth across demographics</h3>
+<div class="case"><div class="case-tag">Lens: TAM breadth</div>
+<p><b>Demographic breadth:</b> household formation (first kitchens), the affluent upgrade and replacement cycle, gifting and wedding registries, home cooks trading up. <b>Channel breadth:</b> DTC, wholesale and retail placements, and restaurant and pro-chef placements, where professional use builds consumer trust. Room to extend into knives, bakeware and tools, and to grow internationally.</p>
+<p><b>Why selected:</b> a universal category reachable through every cohort and channel without category education. Capital efficiency (~$8.3M raised in total) signals self-funded unit economics and low dilution.</p>
+<p><b>Honest read:</b> the mark (~$280M) is the least-grounded in its sleeve, since no secondary market exists; import and tariff exposure hurts in the Shock case; and the Base IRR (~11–12%) sits below my ~15% position hurdle. It is held for TAM optionality (Bull 4.2x at 7 years), and the mark has to be confirmed through company financials before any upsizing.</p></div>
+
+<h3>5.5 Case study: EUV Tech, the chokepoint with a floor</h3>
+<div class="case"><div class="case-tag">Lens: chokepoint + downside protection</div>
+<p>At-wavelength EUV metrology is a node no leading-edge fab can route around. The company already generates revenue as a niche leader, so the Bear case is roughly capital-preserving (~1.0x), the best risk-adjusted name in the deep-tech sleeve. A ~17% stake earns a board seat. Its niche market caps the Base case at 14% CAGR, but it is selected for asymmetry: it offsets the binary risk in the anchor.</p></div>
+
+<h3>5.6 Case study: reading the secondary tape</h3>
+<div class="two">
+<div class="case"><div class="case-tag">The Farmer’s Dog: compounding with a catalyst</div><p>Profitable, >$1B revenue, a daily-use subscription. Forge prints imply $3.76B, up from a $2.5B Series E. The Walmart.com launch moves it from DTC-only to omnichannel. Bear CAGR is still +10%: the only consumer name above 1.0x in the Bear case.</p></div>
+<div class="case"><div class="case-tag">Thrive Market: growth without return</div><p>Revenue rose from $400M to $700M+, yet Forge implies ~$945M, down ~27% from the 2021 Series C. The 2021 entry multiple was the problem. Lesson: <b>price the tape, not the last round.</b> Growth doesn’t equal return when the entry was set at peak multiples.</p></div>
+</div></section><section class="sec"><div class="sec-head"><span class="n">06</span><h2>Arena II: Operational Roll-ups</h2></div><p>The same constraint-and-entry logic, applied to small, founder-run businesses that institutional capital ignores.<sup class="en">(3)</sup></p>
+<h3>6.1 Case study: the Mid-Atlantic marina platform</h3>
+<div class="case"><div class="case-tag">Lenses: multiple arbitrage · defense-corridor demand · operational restoration</div>
+<p><b>Thesis:</b> buy single-site marinas from founder-operators at low multiples, institutionalize them as a platform, and exit at a platform multiple. Initial sites in Southern Maryland (Desoto’s Landing on the Patuxent at the Route 231 bridge, Lens Marina, Boatel California, Vera’s Beach Club, Stoney’s Broomes Island), expanding to Virginia Beach / Norfolk and coastal North Carolina.</p>
+<p><b>Demand engine:</b> the defense corridor, with NAVAIR Patuxent River in Southern Maryland and the Hampton Roads naval cluster: durable, government-anchored household income near the water.</p>
+<p><b>Restoration, not replacement:</b> sites keep their names and local roots; the roll-up is a rebrand-light platform with shared back office, procurement and financing. That preserves local goodwill (the asset a strategic buyer pays for) while removing the cost disadvantages of independence.</p></div>
+
+<div class="panel"><div class="panel-title">Marina platform: entry vs exit multiple<sup class="en">(3)</sup></div><div class="sub">EV / EBITDA, from the 5-year platform model with synergy ramp and bear / base / bull exits</div>
+<div class="barrow"><span>Blended entry</span><div class="track2"><div class="fill" style="width:58%;background:#006492"></div></div><span class="val">5.8x</span></div>
+<div class="barrow"><span>Base-case exit</span><div class="track2"><div class="fill" style="width:90%;background:#1B5E5C"></div></div><span class="val">9.0x</span></div>
+<div class="note">Multiple arbitrage alone lifts enterprise value ~1.55x on unchanged EBITDA, before synergies, organic growth or leverage.</div></div>
+
+<p><strong>Catalysts and re-underwriting dates.</strong> The Calvert County data-center question (a ~133-acre land swap plus a $30M regional park in one proposal, an AWS application withdrawn in August 2026, a separate earlier data-infrastructure NDA, a state impact analysis and the November election) can change land values, traffic and household income around the platform. Each outcome is a scheduled re-underwrite, not a surprise. A dark-fiber corridor to NAVAIR Patuxent River makes dual-use compute near Calvert Cliffs a live upside scenario.</p>
+<p><strong>Risks:</strong> local politics, integration of founder-led sites, financing cost, and exit-multiple compression if platform buyers retreat.</p>
+<h3>6.2 The second vertical: premium fitness at mass pricing</h3>
+<p>An Equinox-style experience at Planet-Fitness-level pricing (~$40–80 a month), with sauna, cold plunge and spa therapies as high-margin add-ons, in the same target geographies. Same structure: partner with local gyms, owners keep their platform, the deal is a rebrand. The <strong>TAM-breadth</strong> lens applies: premium wellness has historically been priced for a narrow demographic, and this concept widens it.</p></section><section class="sec"><div class="sec-head"><span class="n">07</span><h2>Arena III: Public Equity Books</h2></div><p>Public markets let me run the same dependency maps with daily marks and liquidity. The edge is speed: compelled disclosure and OSINT ahead of consensus models.<sup class="en">(3)</sup></p>
+<h3>7.1 The Weapons Book: chokepoint mapping in listed equities</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Names</th>
+<th>Why selected</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Core</strong></td>
+<td>PDYN</td>
+<td>Hypersonic prime work plus autonomy software and guidance: the one name spanning physical manufacturing and autonomous intelligence</td>
+</tr>
+<tr>
+<td><strong>Materials</strong></td>
+<td>IPX (titanium), NB (niobium), MP (NdPr magnets), CRS (submarine and surface-ship alloys), Mitsubishi Steel Muroran (special steel)</td>
+<td>Inputs no program can route around</td>
+</tr>
+<tr>
+<td><strong>RF &amp; coatings</strong></td>
+<td>QRVO (GaN RF content on F-35 and Raytheon programs), PPG (stealth / radar-absorbent coatings)</td>
+<td>Content-per-platform exposure</td>
+</tr>
+<tr>
+<td><strong>Tomahawk chain</strong></td>
+<td>RTX prime → PPG, FEIM, DCO, MTSI</td>
+<td>Multiyear procurement ramp, traced to suppliers</td>
+</tr>
+<tr>
+<td><strong>Interceptor chain</strong></td>
+<td>LMT → DCO, FEIM, QRVO</td>
+<td>PAC-3 and THAAD production ramps</td>
+</tr>
+<tr>
+<td><strong>Shipbuilding</strong></td>
+<td>GD, BWXT, HII (plus TDY in the wider book)</td>
+<td>Heavy backlog and priority funding</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Selection logic:</strong> Golden Dome is a convergent demand signal across every layer. I treat prime backlogs as <strong>hidden intrinsic value not yet in consensus models, and resilient even to a US–China détente</strong>, which hedges the main blind spot in the private book. Instruments are in-the-money LEAPS and synthetic leverage to limit theta drag over multi-quarter horizons, with gold calls as the monetary overlay.</p>
+<h3>7.2 The long / short pairs book</h3>
+<table>
+<thead>
+<tr>
+<th>Long: the allied side of the chokepoint</th>
+<th>Short: the subsidized side</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HBM-linked semis: MU, LRCX, TER</td>
+<td>China semis: Hua Hong (primary), GigaDevice, VeriSilicon, Ingenic</td>
+</tr>
+<tr>
+<td>Korean defense; Japanese defense IHI and MHI (upgraded to core), Kawasaki: BoJ coordination plus a yen / HBM double-kicker</td>
+<td>Chinese defense-industrial names (shipbuilding, Chengdu Aircraft, AVIC Shenyang); Sinopec after the Iran conflict</td>
+</tr>
+<tr>
+<td></td>
+<td>TIGR after the May 2026 regulatory enforcement (VIE / delisting and AML exposure)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Short-selection criteria:</strong> state-backed capital allocation rather than return-driven management; a Chinese fiscal picture deteriorating against consensus, with Belt &amp; Road credit impairment as an extra channel; and identifiable enforcement or regulatory catalysts. Risk is controlled with LEAPS and defined-risk structures, and dealer gamma positioning is monitored for index-level air pockets. Long-end duration and consumer discretionary were exited as regime calls.</p>
+<h3>7.3 Single-name research discipline</h3>
+<p>Coverage initiations are built as fully formula-linked models, and the conclusion follows the numbers even when it is unexciting. <strong>Microchip (MCHP)</strong> was initiated at HOLD with a $75 target after the DCF and comps diverged, so no margin of safety means no position. Private-company names in the public book use a separate branching workflow because their evidence base is different.</p></section><section class="sec"><div class="sec-head"><span class="n">08</span><h2>Arena IV: The Macro Overlay</h2></div><p>Selection applies to instruments as much as to companies: choose the expression whose payoff matches the mechanism, stage entries on confirmation, and name the observable that kills it.<sup class="en">(3)</sup></p>
+<h3>8.1 Thesis: financial repression by rewriting the bond</h3>
+<p>Formed in November 2025: the Treasury is suppressing long-end yields not by cutting coupons but by <strong>rewriting the rights attached to the bond</strong> (liquidity, collateral, expected supply, access, custody). The mechanisms: enlarged long-end buybacks; the Fed’s foreign repo facility widened to more central banks; Fed bill purchases (~$40B a month since December 2025); the Treasury cash balance as a buyback funding source; and stablecoin legislation that makes issuers structural bill buyers from January 2027.</p>
+<p>The release valve is <strong>gold certificate revaluation</strong> under 31 U.S.C. §5117: 261.5M troy ounces carried at the $42.2222 statutory price, worth over $1T at market, could be marked up to fund long-end buybacks without new issuance and without Fed cooperation. The same mechanism surfaced independently in a widely circulated essay in September 2026, about nine months after the thesis was formed.</p>
+<h3>8.2 Choosing the expression</h3>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Why this instrument</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GLD call ladder, all strikes in-the-money</td>
+<td>Convex to revaluation and to negative real rates; ITM limits theta</td>
+<td>Monetize ahead of the midterm window</td>
+</tr>
+<tr>
+<td>2s30s flattener</td>
+<td>Expresses curve compression from long-end repression, not a generic gold or duration bet</td>
+<td>Hold while buyback scale grows</td>
+</tr>
+<tr>
+<td>Long duration</td>
+<td>The payoff only exists once repression is real</td>
+<td>Enter <strong>after</strong> repression is confirmed, not anticipated</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Main risk, stated in advance:</strong> the market reads a visible revaluation as debt monetization and bear-steepens the long end. That breaks the thesis rather than confirming it. Secondary risks: the Treasury Secretary’s on-record denial, legal ambiguity over whether the statutory price needs Congress, and Fed–Treasury friction.</p></section><section class="sec"><div class="sec-head"><span class="n">09</span><h2>Deciding and Sizing</h2></div><h3>9.1 Scenarios and hurdles</h3>
+<p>Private positions are underwritten to the probability-weighted Expected case across four scenarios (Base 45%, Bull 25%, Bear 15%, Taiwan / TSMC Shock 15%), with Base and Bear always reported beside it.</p>
+<div class="panel"><div class="panel-title">Leviathan holdco 7-year net MOIC by scenario<sup class="en">(2)</sup></div><div class="sub">net to LP after 2% / 8% / 20%; axis 0–6x</div>
+<div class="barrow"><span>Base (45%)</span><div class="track2"><div class="fill" style="width:47.2%;background:#1B5E5C"></div></div><span class="val">2.83x</span></div>
+<div class="barrow"><span>Bull (25%)</span><div class="track2"><div class="fill" style="width:94.8%;background:#4C9F8B"></div></div><span class="val">5.69x</span></div>
+<div class="barrow"><span>Bear (15%)</span><div class="track2"><div class="fill" style="width:11.7%;background:#C39D78"></div></div><span class="val">0.70x</span></div>
+<div class="barrow"><span>TSMC-Shock (15%)</span><div class="track2"><div class="fill" style="width:72.8%;background:#006492"></div></div><span class="val">4.37x</span></div>
+<div class="barrow"><span><b>Expected</b></span><div class="track2"><div class="fill" style="width:57.6%;background:#000"></div></div><span class="val">3.46x</span></div>
+<div class="note">Expected net IRR 19.4%; KS-PME 1.30x against a 15% forward Defense + Semis ETF basket and 1.89x against the S&P 500.</div></div>
+
+<p><strong>The scoreboard is the thematic ETF, not cash.</strong> If owning ITA / SOXX would have done as well, the illiquidity, fees and diligence were wasted. Thresholds: Expected KS-PME against the thematic basket must exceed 1.0x; Base KS-PME of at least 1.0x is preferred; individual private positions should clear ~2.0x gross at five years (≈15% IRR) unless they are ballast or a liquidity bridge.</p>
+<h3>9.2 Sizing and construction</h3>
+<ul>
+<li><strong>Cap the anchor.</strong> Maximum conviction still gets a cap when the risk is binary (Substrate ≈32% of its sleeve).</li>
+<li><strong>Tranche ladder.</strong> Anchor → growth core → pre-IPO / liquid → venture → seed optionality, with size falling as binary risk rises.</li>
+<li><strong>More than 15% ownership means seeking a board seat or observer rights.</strong></li>
+<li><strong>Trim versus new money.</strong> A substitute exposure is funded by trimming (Faxon came from Superior &amp; Grand Valley); additive exposure gets a new commitment (MSL took the Weapons sleeve from $390M to $405M).</li>
+<li><strong>Allied and foreign names stay minority-only and smaller</strong>, because the CFIUS ceiling limits exit buyers.</li>
+<li><strong>Instrument sizing in the liquid books:</strong> ITM LEAPS and defined-risk structures, so the maximum loss is known at entry and theta does not decide the outcome.</li>
+</ul>
+<h3>9.3 What I pass on</h3>
+<p>A red flag rarely kills a great company outright; it changes the size, the structure or the timing. A hard pass happens when a factor in the selection equation goes to zero.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Arena</th>
+<th>Factor that failed</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALROSA / Russian diamond equities</td>
+<td>Public</td>
+<td><strong>Access</strong>: uninvestable for Western capital</td>
+<td>Pass</td>
+</tr>
+<tr>
+<td>T3 Defense</td>
+<td>Public</td>
+<td><strong>Evidence</strong>: going-concern-adjacent nano-cap roll-up, structural concerns</td>
+<td>Initiation paused at go / no-go</td>
+</tr>
+<tr>
+<td>Microchip (MCHP)</td>
+<td>Public</td>
+<td><strong>Entry price</strong>: DCF and comps diverged, no margin of safety</td>
+<td>HOLD, no position</td>
+</tr>
+<tr>
+<td>Consumer discretionary; long-end duration</td>
+<td>Public / macro</td>
+<td><strong>Demand engine</strong>: wrong side of the repression regime</td>
+<td>Exited</td>
+</tr>
+<tr>
+<td>GOAT Group</td>
+<td>Private</td>
+<td><strong>Evidence</strong>: five-year-stale mark, no live secondary</td>
+<td>Re-underwrite before any check</td>
+</tr>
+<tr>
+<td>Saronic</td>
+<td>Private</td>
+<td><strong>Entry price</strong>: $9.25B on $200M revenue (~46x)</td>
+<td>Secondary or late primary only</td>
+</tr>
+<tr>
+<td>DefendEye</td>
+<td>Private</td>
+<td><strong>Access / evidence</strong>: EU cap table, overseas manufacturing</td>
+<td>Provenance diligence first</td>
+</tr>
+<tr>
+<td>EdgeCortix</td>
+<td>Private</td>
+<td><strong>Access</strong>: foreign nexus, CFIUS ceiling</td>
+<td>Minority only, capped</td>
+</tr>
+</tbody>
+</table>
+<h3>9.4 Tripwires: conditions that break a thesis</h3>
+<table>
+<thead>
+<tr>
+<th>Tripwire</th>
+<th>What would falsify it</th>
+<th>Arenas hit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Durable US–China détente</td>
+<td>Credible cross-strait framework; export-control rollback; Taiwan risk premia compress</td>
+<td>Private deep tech, pairs book (prime backlogs partially insulate the Weapons Book)</td>
+</tr>
+<tr>
+<td>Procurement retrenchment</td>
+<td>Multiyear quantities cut; reconciliation fails; long continuing resolutions</td>
+<td>Weapons sleeve, Weapons Book</td>
+</tr>
+<tr>
+<td>The constraint dissolves</td>
+<td>New motor or forging entrants qualify; lead times normalize; pricing power lost at recompete</td>
+<td>Physical-layer names</td>
+</tr>
+<tr>
+<td>Exit window shuts</td>
+<td>IPOs pulled again; higher-for-longer compresses multiples; secondary discounts widen</td>
+<td>Private stakes, roll-up exit</td>
+</tr>
+<tr>
+<td>Revaluation read as monetization</td>
+<td>Long end bear-steepens on a visible revaluation</td>
+<td>Macro overlay</td>
+</tr>
+</tbody>
+</table>
+<p>When a tripwire trips: stop follow-ons, de-risk, reassess. Thesis invalidation, not mark volatility, is the principal risk in illiquid positions, because marks lag reality by quarters.</p></section><section class="sec"><div class="sec-head"><span class="n">10</span><h2>Known Blind Spots</h2></div><p>A framework earns trust by naming where it flatters its own answer.</p>
+<table>
+<thead>
+<tr>
+<th>Blind spot</th>
+<th>Why it matters</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-factor concentration</td>
+<td>Most of the book (private and public) loads on one geopolitical factor</td>
+<td>Model an explicit de-escalation scenario; cap factor exposure; lean on backlog-protected names</td>
+</tr>
+<tr>
+<td>Judgment-based scores</td>
+<td>Strategic scores drive the convexity case</td>
+<td>Score sensitivity tables; a second scorer</td>
+</tr>
+<tr>
+<td>Point-to-point IRR</td>
+<td>Single exit cash flow; no J-curve or staged calls</td>
+<td>Build a quarterly call / distribution schedule</td>
+</tr>
+<tr>
+<td>Simplified waterfall</td>
+<td>No GP catch-up flatters upside net returns</td>
+<td>Run full catch-up as a sensitivity</td>
+</tr>
+<tr>
+<td>Minority and local liquidity</td>
+<td>Family, ESOP and founder-site stakes may need deep exit discounts</td>
+<td>Apply a liquidity discount; negotiate puts and redemption rights</td>
+</tr>
+<tr>
+<td>Budget execution</td>
+<td>Requests aren’t appropriations</td>
+<td>Tie Base cases to appropriated dollars only</td>
+</tr>
+<tr>
+<td>Crowd reflexivity</td>
+<td>A thesis that goes viral changes its own payoff</td>
+<td>Pre-decide whether to amplify, trim or hold when consensus arrives</td>
+</tr>
+<tr>
+<td>Elevated exit multiples</td>
+<td>Today’s 15–22x used for exits years out</td>
+<td>Mean-revert exit multiples in Base</td>
+</tr>
+</tbody>
+</table></section><section class="sec"><div class="sec-head"><span class="n">11</span><h2>Toolkit: the One-Page Target Scorecard</h2></div><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name · arena · role in book</td>
+<td></td>
+</tr>
+<tr>
+<td>Demand engines (count and evidence)</td>
+<td></td>
+</tr>
+<tr>
+<td>Binding constraint it owns</td>
+<td></td>
+</tr>
+<tr>
+<td>Selection lenses passed</td>
+<td></td>
+</tr>
+<tr>
+<td>Evidence tier of the thesis and of the mark</td>
+<td></td>
+</tr>
+<tr>
+<td>Entry price vs comps / hurdle</td>
+<td></td>
+</tr>
+<tr>
+<td>Access route and structure</td>
+<td></td>
+</tr>
+<tr>
+<td>Instrument and why it matches the mechanism</td>
+<td></td>
+</tr>
+<tr>
+<td>Base / Bull / Bear / tail outcomes; Expected</td>
+<td></td>
+</tr>
+<tr>
+<td>Watch gates: observable, baseline, date</td>
+<td></td>
+</tr>
+<tr>
+<td>Tripwires and kill signal</td>
+<td></td>
+</tr>
+<tr>
+<td>Size, cap and funding source (trim or new money)</td>
+<td></td>
+</tr>
+<tr>
+<td>Open diligence before commitment</td>
+<td></td>
+</tr>
+</tbody>
+</table></section><section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol>
+<li>Evidence-tier weights are the author’s framework weights for conviction decisions, not empirical measurements.</li>
+<li>Leviathan Core PE Holdco IC model, v2 (Faxon / MSL / Golden Dome), September 2026. Holdco size, sleeve structure, scores, entry marks, scenario returns and KS-PME are model outputs, estimated and unaudited; several entry marks are estimates pending cap-table confirmation.</li>
+<li>Roll-up, public-book and macro material is drawn from the author’s research records and position notes, May–November 2026. Positions are described as recorded at the time and are not a current holdings statement. Marina platform multiples come from the platform’s 5-year model.</li>
+</ol>
+<div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
+<p style="font-size:8pt"><b>Note:</b> Model figures are estimated and unaudited. Defense-book material is restricted from LP distribution.</p></section></body></html>
