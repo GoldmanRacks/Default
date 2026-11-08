@@ -10,13 +10,13 @@ break_before: 1,13
 keep_tables: yes
 eyebrow: November 2026 · Donald B Ritts III
 title_html: Private Equity Essentials:<br>Terminology, Structure and Concepts
-lead_html: A reference map organized from fund structure through economics, metrics, deals, capital structure, terms, exits and regulation, closing with founder and GP economics. Formulas and worked examples use round numbers. Cross-references to the Leviathan model are marked <span class="xref">▸</span>.
+lead_html: A reference map organized from fund structure through economics, metrics, deals, capital structure, terms, exits and regulation, closing with founder and GP economics. Formulas and worked examples use round numbers. Cross-references to the January 2027 Leviathan core PE holdco model are marked <span class="xref">▸</span>.
 kf: 10 + 2|typical fund term (years)
 kf: 20%|standard carried interest
 kf: 8%|preferred return (hurdle)
 kf: 1.5–2.0%|management fee on commitments
 pull: The GP controls investment decisions and earns carry; LPs supply the overwhelming majority of capital under limited liability. Everything else in private equity hangs off that relationship.
-closing_note: Financial data is estimated and unaudited. Formulas use round numbers for illustration. Cross-references marked ▸ relate to the Leviathan model.
+closing_note: Financial data is estimated and unaudited. Formulas use round numbers for illustration. Cross-references marked ▸ relate to the January 2027 Leviathan core PE holdco model.
 ---
 
 ## 1. Players and Fund Structure
@@ -37,7 +37,7 @@ The private equity ecosystem is organized around a small number of entities whos
 | Feeder / Parallel / AIV / Blocker | Vehicles used for tax, regulatory or investor-access reasons; same underlying deals | Routes particular investments or LP types efficiently |
 | SPV / Co-investment | Single-asset vehicle, often for co-investment at low or zero fee and carry | Lowers blended fees; lets the GP write bigger checks |
 | Continuation vehicle (CV) | GP-led secondary: assets move from an old fund to a new vehicle; existing LPs roll or sell | Extends the hold on winners |
-| Holdco / Sleeve | Holding company owning stakes across sub-portfolios or distinct sub-strategies. <span class="xref">▸</span> Leviathan: $855M holdco across three sleeves | Multi-strategy exposure within one vehicle |
+| Holdco / Sleeve | Holding company owning stakes across sub-portfolios or distinct sub-strategies. <span class="xref">▸</span> Leviathan core PE holdco: $1,406M across three sleeves (IQT-mirror $250M, Weapons $956M, Consumer / Value $200M) | Multi-strategy exposure within one vehicle |
 | GP commitment | GP’s own capital in the fund (typically 1–5%) | Alignment (“skin in the game”) |
 | Key person / No-fault divorce | Investment period suspends if named individuals leave; LPs can remove the GP by supermajority without cause | Protects LPs against team risk; the ultimate LP lever |
 
@@ -108,7 +108,7 @@ Fees are then deducted: 2% × $100M × 5 years = $10M. The difference between th
 | TVPI | (Cumulative distributions + NAV) ÷ PIC | Net multiple, realized plus unrealized |
 | DPI | Cumulative distributions ÷ PIC | “Cash-on-cash”: what LPs care about most in tight markets |
 | RVPI | NAV ÷ PIC | Unrealized portion; TVPI = DPI + RVPI |
-| PME / KS-PME | Compares PE cash flows with an index. KS-PME = [Σ Dist<sub>t</sub> × (I<sub>T</sub> / I<sub>t</sub>) + NAV<sub>T</sub>] ÷ Σ Call<sub>t</sub> × (I<sub>T</sub> / I<sub>t</sub>) | >1.0 = beat the index. Single in / out: MOIC ÷ (1 + r<sub>index</sub>)<sup>T</sup>. <span class="xref">▸</span> 2.068 ÷ 1.09<sup>5</sup> = 1.34x |
+| PME / KS-PME | Compares PE cash flows with an index. KS-PME = [Σ Dist<sub>t</sub> × (I<sub>T</sub> / I<sub>t</sub>) + NAV<sub>T</sub>] ÷ Σ Call<sub>t</sub> × (I<sub>T</sub> / I<sub>t</sub>) | >1.0 = beat the index. Single in / out: MOIC ÷ (1 + r<sub>index</sub>)<sup>T</sup>. <span class="xref">▸</span> 5-year Base: 2.42x ÷ 1.09<sup>5</sup> = 1.57x vs the S&P 500 |
 | Direct Alpha | IRR of index-compounded cash flows | Annualized excess return over the index |
 | J-curve | Early negative returns (fees, write-downs) before value creation and exits turn the curve up | Subscription lines flatten it artificially |
 | Gross-to-net spread | Gross IRR − net IRR | Typically 4–7 percentage points for buyout |
@@ -124,7 +124,7 @@ Fees are then deducted: 2% × $100M × 5 years = $10M. The difference between th
 | Growth equity | Revenue scaling, near or at profitability | Minority, little leverage | Revenue growth |
 | Buyout / LBO | Mature, cash-generative | Control, 4–7x debt / EBITDA | EBITDA growth, deleveraging, multiple |
 | Take-private (P2P) | Buying a listed company | Control | Re-rating plus operational improvement |
-| Carve-out / spin-off | Buying a division from a corporate parent | Control or minority | Standalone efficiency; TSAs. <span class="xref">▸</span> L3Harris MSL |
+| Carve-out / spin-off | Buying a division from a corporate parent | Control or minority | Standalone efficiency; TSAs |
 | Buy-and-build / roll-up | Platform plus add-on acquisitions | Control | Multiple arbitrage (buy add-ons at 6x, consolidate at 12x) |
 | Secondaries (LP-led) | Buying LP fund interests | Passive | Discount to NAV, shorter J-curve |
 | Secondaries (GP-led) | Continuation vehicles, strip sales | Varies | Extending winners |
@@ -165,13 +165,13 @@ Debt-like items include leases, unfunded pensions and, in some deals, deferred r
 | Term | Definition |
 |---|---|
 | EBITDA / Adjusted EBITDA | Operating cash proxy. “Adjusted” removes one-offs and is where sellers inflate the number |
-| EV / EBITDA, EV / EBIT, EV / Revenue | Core multiples. <span class="xref">▸</span> LHX 15.1x EBITDA, RHM 17.3x, Faxon entry 10.95x, MSL IPO at 22x EBIT |
+| EV / EBITDA, EV / EBIT, EV / Revenue | Core multiples. <span class="xref">▸</span> LHX 15.1x and RHM 17.3x EV / EBITDA; Saronic $9.25B on $200M revenue (~46x EV / revenue) |
 | Trading comps / Precedent transactions | Multiples of similar listed companies / multiples paid in comparable M&A (include a control premium) |
 | DCF / LBO analysis | PV of free cash flow plus terminal value / maximum price a sponsor can pay and still hit its target IRR |
-| Pre-money / post-money | Value before / after new money. Post = Pre + new investment. Ownership = Check ÷ Post. <span class="xref">▸</span> $9M ÷ $92M = 9.8% |
+| Pre-money / post-money | Value before / after new money. Post = Pre + new investment. Ownership = Check ÷ Post. <span class="xref">▸</span> Hermeus: $35M ÷ $1.0B Series C post = 3.5% |
 | Option pool shuffle | Pool created in the pre-money, so the dilution falls on existing holders |
 | ASC 820 / Level 3 | Fair-value accounting; private marks are model-based (Level 3) |
-| Probability-weighted EV | Σ p<sub>i</sub> × EV<sub>i</sub> across scenarios. <span class="xref">▸</span> Faxon 25 / 50 / 25 → $91.75M |
+| Probability-weighted value | Σ p<sub>i</sub> × Value<sub>i</sub> across scenarios. <span class="xref">▸</span> Holdco 7-year Expected = 45% × 3.56x + 25% × 7.79x + 15% × 1.05x + 15% × 6.14x = 4.63x net MOIC |
 
 ## 8. Capital Structure and LBO Mechanics
 
@@ -215,7 +215,7 @@ The terms that protect a minority investor matter most for stakes like the Levia
 | Board seat / observer | Governance or visibility | <span class="xref">▸</span> Sought at >15% ownership |
 | Information rights | Monthly or quarterly financials, budget, audit | Basic |
 | Redemption right | Investor can force a buyback after N years | Liquidity path in family- or ESOP-owned companies |
-| Warrants | Right to buy shares at a strike | Equity kicker. <span class="xref">▸</span> DoW warrants at MSL |
+| Warrants | Right to buy shares at a strike | Equity kicker; common in mezzanine, SPAC and structured deals |
 | Convertible note / SAFE | Early instruments converting at the next round, with cap and discount | Seed stage |
 
 **Dilution and retention:** if a fund owns 10% today and new rounds sell 15%, 10% and 10%, final ownership = 10% × 0.85 × 0.90 × 0.90 = 6.9% (retention 0.69). <span class="xref">▸</span> The model’s 0.68 retention at 10 years for the IQT sleeve encodes the same idea.
@@ -268,7 +268,7 @@ Rule-of-thumb ranges, net to LP.
 | Venture (fund level) | 20–30%+ | 3.0x+ (top quartile) | 8–12 years |
 | Secondaries | 12–18% | 1.5–1.8x | 3–5 years |
 | Private credit | 9–13% | 1.3–1.5x | 3–5 years |
-| <span class="xref">▸</span> Leviathan holdco (7-year, Expected) | 19.4% | 3.46x | 7 years |
+| <span class="xref">▸</span> Leviathan core PE holdco (7-year, Expected) | 24.5% | 4.63x | 7 years |
 
 ## 13. Founder / GP Economics: Worked Example for One Vehicle
 
@@ -316,4 +316,4 @@ This section works through GP economics for **one of the four Leviathan vehicles
 | 10% | 22.5% | $343M | −$38M |
 | 20% | 20.0% | $305M | −$76M |
 
-<p class="note">Sections 1–12 cross-reference the earlier $855M model; this section uses the January 2027 holdco model ($1,406M). The holdco’s own title row reads $1,161M, but its sleeve totals and waterfall use $1,406M, which is the figure used here.</p>
+<p class="note">All Leviathan figures in this document come from the January 2027 core PE holdco model. The model’s title row still reads $1,161M; its sleeve totals and waterfall use $1,406M, which is the figure used throughout.</p>
