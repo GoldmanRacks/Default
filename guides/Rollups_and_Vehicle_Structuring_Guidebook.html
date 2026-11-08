@@ -100,7 +100,7 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 <div class="keyfigs"><div class="kf"><div class="v">1.55x</div><div class="l">EV uplift from multiple arbitrage alone, 5.8x entry to 9.0x exit</div></div><div class="kf"><div class="v">4</div><div class="l">vehicles in the architecture, each matched to its assets’ liquidity</div></div><div class="kf"><div class="v">6</div><div class="l">Luxembourg regimes compared, from UCITS to unregulated SCSp</div></div></div>
 <div class="pull">Structure is strategy. The right asset in the wrong wrapper loses to forced selling, tax leakage or distribution limits, however good the thesis.</div>
 <div class="eyebrow" style="margin-bottom:2pt">Contents</div>
-<ul class="toc"><li><span>01</span>Why Structure Is Strategy</li><li><span>02</span>Roll-ups: How Buy-and-Build Creates Value</li><li><span>03</span>Integration Models</li><li><span>04</span>How Roll-ups Are Structured and Financed</li><li><span>05</span>Worked Example: a Five-Site Marina Platform</li><li><span>06</span>How Roll-ups Fail</li><li><span>07</span>The Luxembourg Toolkit</li><li><span>08</span>How a SICAV Works</li><li><span>09</span>Options Overlays Inside a SICAV</li><li><span>10</span>Beyond Luxembourg: Other Wrappers and Cross-Border Issues</li><li><span>11</span>Long-Dated Vehicles</li><li><span>12</span>How Assets Map to Vehicles</li></ul>
+<ul class="toc"><li><span>01</span>Why Structure Is Strategy</li><li><span>02</span>Roll-ups: How Buy-and-Build Creates Value</li><li><span>03</span>Integration Models</li><li><span>04</span>How Roll-ups Are Structured and Financed</li><li><span>05</span>Worked Example: a Five-Site Marina Platform</li><li><span>06</span>How Roll-ups Fail</li><li><span>07</span>The Luxembourg Toolkit</li><li><span>08</span>How a SICAV Works</li><li><span>09</span>Options Overlays Inside a SICAV</li><li><span>10</span>Commodities and Futures Inside the Liquid SICAV</li><li><span>11</span>Beyond Luxembourg: Other Wrappers and Cross-Border Issues</li><li><span>12</span>Long-Dated Vehicles</li><li><span>13</span>How Assets Map to Vehicles</li></ul>
 </section><section class="sec"><div class="sec-head"><span class="n">01</span><h2>Why Structure Is Strategy</h2></div><p class="lead2">Most investment failures that aren’t thesis failures are structure failures: a liquid book trapped in an illiquid wrapper, an illiquid asset in a vehicle that promises monthly redemptions, a tax-exempt LP hit with unrelated business income, a fund that can’t legally be marketed to the investors who want it. This guide covers two levers: <b>roll-ups</b>, which create value inside the asset, and <b>vehicles</b>, which decide whether that value reaches investors intact.</p>
 
 <h3>1.1 Four principles</h3>
@@ -125,9 +125,9 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 <tbody>
 <tr>
 <td><strong>1. Liquid SICAV</strong></td>
-<td>Listed equities with a monthly options overlay</td>
-<td>Periodic (monthly) dealing</td>
-<td>Luxembourg Part II SICAV via a third-party (white-label) ManCo; separate prime brokerage for the overlay</td>
+<td>Listed equities, monthly options overlay, futures sleeve (rates, gold, energy, FX)</td>
+<td>Monthly dealing</td>
+<td>Part II SICAV via a white-label ManCo; separate prime and clearing brokers</td>
 </tr>
 <tr>
 <td><strong>2. Core PE holdco</strong></td>
@@ -504,7 +504,7 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 <td><strong>UCITS (Part I, 2010 Law)</strong></td>
 <td>Retail, EU passport</td>
 <td>Yes, product-level</td>
-<td>5 / 10 / 40 diversification; global exposure capped (commitment ≤100% NAV, or VaR limits); dealing at least twice a month; eligible assets only</td>
+<td>5 / 10 / 40 diversification; global exposure capped (commitment ≤100% NAV, or VaR limits); dealing at least twice a month; eligible assets only, so no direct commodities</td>
 <td>Liquid retail funds</td>
 </tr>
 <tr>
@@ -625,7 +625,7 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 </tbody>
 </table>
 <h3>8.2 The white-label model</h3>
-<p>A white-label (third-party ManCo) platform lets a new sponsor launch a regulated Luxembourg fund without building its own authorized ManCo: substance, compliance, risk and regulatory reporting are rented, and the sponsor keeps the portfolio decisions. <strong>Trade-offs:</strong> platform fees and less control over operational choices; the ManCo has oversight rights and can veto activity outside the risk framework. <strong>When to graduate:</strong> once AUM and product count justify building a Chapter 15 ManCo or an authorized AIFM of one’s own.</p></section><section class="sec"><div class="sec-head"><span class="n">09</span><h2>Options Overlays Inside a SICAV</h2></div><p>Vehicle 1 is planned as a liquid book with a <strong>monthly rolling options overlay</strong>. The wrapper decides which overlays are allowed.</p>
+<p>A white-label (third-party ManCo) platform lets a new sponsor launch a regulated Luxembourg fund without building its own authorized ManCo: substance, compliance, risk and regulatory reporting are rented, and the sponsor keeps the portfolio decisions. <strong>Trade-offs:</strong> platform fees and less control over operational choices; the ManCo has oversight rights and can veto activity outside the risk framework. <strong>When to graduate:</strong> once AUM and product count justify building a Chapter 15 ManCo or an authorized AIFM of one’s own.</p></section><section class="sec"><div class="sec-head"><span class="n">09</span><h2>Options Overlays Inside a SICAV</h2></div><p>Vehicle 1 is planned as a liquid book with a <strong>monthly rolling options overlay</strong> and a futures sleeve (§10). The wrapper decides which overlays are allowed.</p>
 <h3>9.1 Overlay strategies</h3>
 <table>
 <thead>
@@ -699,21 +699,119 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 <td>As the prospectus sets: monthly suits a monthly roll</td>
 </tr>
 <tr>
+<td>Commodity exposure</td>
+<td>Only via eligible diversified commodity indices or delta-one ETCs; no single-commodity futures</td>
+<td>Direct listed commodity futures and options on futures, within prospectus limits</td>
+</tr>
+<tr>
 <td>Distribution</td>
 <td>Retail passport across the EU</td>
 <td>Retail in Luxembourg; professional marketing in the EU under the AIFMD passport</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Why Part II for this book:</strong> a monthly roll and leveraged LEAPS-style expressions fit Part II flexibility better than UCITS cover and exposure rules, while monthly dealing aligns investor liquidity with the overlay cycle.</p>
+<p><strong>Why Part II for this book:</strong> a monthly roll, LEAPS-style leverage and commodity futures fit Part II better than UCITS rules, and monthly dealing matches the overlay cycle.</p>
 <h3>9.3 What can go wrong</h3>
 <ul>
-<li><strong>Assignment and pin risk</strong>: short calls near expiry can be exercised unexpectedly, which is why rolls usually happen before expiry week.</li>
-<li><strong>Gap risk</strong>: covered calls add income but don’t protect the downside; tail protection is a separate decision.</li>
-<li><strong>Margin</strong>: prime-broker haircuts rise in volatile markets and can force sales at the worst time.</li>
-<li><strong>NAV timing and tax</strong>: option marks must be priced consistently with the underlying at the valuation point, and option premium is taxed differently across investor jurisdictions.</li>
+<li><strong>Assignment and pin risk</strong>: short calls can be exercised near expiry, so rolls usually happen before expiry week.</li>
+<li><strong>Gap risk</strong>: covered calls add income but don’t protect the downside.</li>
+<li><strong>Margin</strong>: haircuts rise in volatile markets and can force sales at the worst time.</li>
 <li><strong>Behavioral drift</strong>: income-seeking overwriting can quietly turn a fund into a short-volatility strategy.</li>
-</ul></section><section class="sec"><div class="sec-head"><span class="n">10</span><h2>Beyond Luxembourg: Other Wrappers and Cross-Border Issues</h2></div><h3>10.1 Domicile comparison</h3>
+</ul></section><section class="sec"><div class="sec-head"><span class="n">10</span><h2>Commodities and Futures Inside the Liquid SICAV</h2></div><p>Yes: a <strong>Part II</strong> SICAV can hold listed commodity and financial futures, and options on futures, alongside its equity and options book. That lets one regulated vehicle carry both the equity overlay and the macro expressions (gold, rates curve, energy, FX) that would otherwise need separate accounts or wrappers.<sup class="en">(3)</sup></p>
+<h3>10.1 What each regime allows</h3>
+<table>
+<thead>
+<tr>
+<th>Exposure</th>
+<th>UCITS</th>
+<th>Part II</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Financial futures</strong> (equity index, rates, FX)</td>
+<td>Permitted, within global-exposure and cover rules</td>
+<td>Permitted, within prospectus limits</td>
+</tr>
+<tr>
+<td><strong>Single-commodity futures</strong> (gold, crude, metals)</td>
+<td>Not permitted</td>
+<td>Permitted, listed and exchange-cleared</td>
+</tr>
+<tr>
+<td><strong>Commodity index exposure</strong></td>
+<td>Only via indices meeting financial-index diversification rules (generally ≤20% per component, one up to 35%), through swaps or index futures</td>
+<td>Permitted directly or via indices</td>
+</tr>
+<tr>
+<td><strong>Delta-one ETCs</strong></td>
+<td>Eligible as transferable securities if they embed no derivative</td>
+<td>Permitted</td>
+</tr>
+<tr>
+<td><strong>Options on futures</strong></td>
+<td>Financial underlyings only</td>
+<td>Financial and commodity underlyings</td>
+</tr>
+<tr>
+<td><strong>Physical delivery</strong></td>
+<td>Not permitted</td>
+<td>Avoided in practice: positions are rolled or closed before delivery</td>
+</tr>
+</tbody>
+</table>
+<p>CSSF Circular 02/80 contains specific risk-spreading rules for Part II funds that invest in futures and options; the prospectus sets the fund’s own limits within them.</p>
+<h3>10.2 What a futures sleeve adds</h3>
+<table>
+<thead>
+<tr>
+<th>Thesis</th>
+<th>Futures expression</th>
+<th>Compared with the equity / ETF route</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gold revaluation, negative real rates</strong></td>
+<td>COMEX gold futures (100 oz; micro 10 oz) and options on gold futures</td>
+<td>No ETF fee and lower capital usage than GLD calls; adds roll and margin management</td>
+</tr>
+<tr>
+<td><strong>Long-end financial repression (2s30s flattener)</strong></td>
+<td>2-year Treasury futures against ultra-bond futures, weighted so DV01s match</td>
+<td>A pure curve trade, cleaner and cheaper than combining bond ETFs or TBT</td>
+</tr>
+<tr>
+<td><strong>Iran / Hormuz energy tail</strong></td>
+<td>WTI or Brent crude futures and options</td>
+<td>Direct exposure to the commodity rather than to energy equities’ operating leverage</td>
+</tr>
+<tr>
+<td><strong>Yen carry unwind</strong></td>
+<td>CME yen futures (or options on them)</td>
+<td>Cleaner than FXY; leverage and expiry are chosen to match the thesis horizon</td>
+</tr>
+<tr>
+<td><strong>Equity beta management</strong></td>
+<td>Equity index futures and index options</td>
+<td>Fast hedging of the long book without selling core positions</td>
+</tr>
+</tbody>
+</table>
+<h3>10.3 How futures change the mechanics</h3>
+<ul>
+<li><strong>Margin and collateral.</strong> Futures need only initial and variation margin, so most of the sleeve’s capital sits as collateral, typically in Treasury bills that earn the short rate. In a financial-repression regime that collateral yield is itself part of the return.</li>
+<li><strong>Roll yield.</strong> Holding futures means rolling them. In contango (later contracts more expensive) the roll costs money; in backwardation it earns money. Gold is usually in mild contango; crude flips between the two.</li>
+<li><strong>Delivery.</strong> Physically settled contracts (gold, crude, Treasuries) are rolled or closed before first notice day, so the fund never takes delivery.</li>
+<li><strong>Leverage measurement.</strong> Futures add notional exposure far above the margin posted. The prospectus defines a leverage measure (gross and commitment under AIFMD), and the ManCo’s risk function monitors it daily.</li>
+<li><strong>Clearing.</strong> Futures clear through a futures commission merchant (FCM) or clearing broker, often alongside but separate from the prime broker that finances the equity book.</li>
+<li><strong>US regulatory touchpoint.</strong> Trading US-listed futures can raise CFTC commodity-pool-operator questions for the sponsor; these are usually addressed through an available exemption.</li>
+<li><strong>NAV.</strong> Futures are marked to settlement prices daily, which fits monthly dealing comfortably.</li>
+</ul>
+<div class="panel"><div class="panel-title">Illustrative liquid SICAV allocation with a futures sleeve</div><div class="sub">% of NAV; futures shown by margin and collateral used, not notional</div>
+<div class="stack"><div style="flex:55;background:#1B5E5C"></div><div style="flex:10;background:#4C9F8B"></div><div style="flex:25;background:#006492"></div><div style="flex:10;background:#CACED7"></div></div>
+<div class="legend"><span><span class="sw" style="background:#1B5E5C"></span>Listed equities 55%</span><span><span class="sw" style="background:#4C9F8B"></span>Options overlay premium 10%</span><span><span class="sw" style="background:#006492"></span>Futures margin and T-bill collateral 25%</span><span><span class="sw" style="background:#CACED7"></span>Cash buffer 10%</span></div>
+<div class="note">Illustrative only. The futures sleeve’s notional exposure (gold, curve, energy, FX) can be a multiple of its 25% capital allocation, which is why the leverage limit, not the capital allocation, is the binding constraint.</div></div></section><section class="sec"><div class="sec-head"><span class="n">11</span><h2>Beyond Luxembourg: Other Wrappers and Cross-Border Issues</h2></div><h3>11.1 Domicile comparison</h3>
 <table>
 <thead>
 <tr>
@@ -745,7 +843,7 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 </tr>
 </tbody>
 </table>
-<h3>10.2 Cross-border tax and marketing issues</h3>
+<h3>11.2 Cross-border tax and marketing issues</h3>
 <table>
 <thead>
 <tr>
@@ -787,7 +885,7 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 </tr>
 </tbody>
 </table>
-<p><strong>AIFMD II</strong> (transposition deadline April 2026) adds loan-origination rules, tighter delegation oversight and mandatory liquidity-management tools for open-ended AIFs, which is relevant for any semi-liquid vehicle.</p></section><section class="sec"><div class="sec-head"><span class="n">11</span><h2>Long-Dated Vehicles</h2></div><h3>11.1 Holdco versus fund versus evergreen</h3>
+<p><strong>AIFMD II</strong> (transposition deadline April 2026) adds loan-origination rules, tighter delegation oversight and mandatory liquidity-management tools for open-ended AIFs, which is relevant for any semi-liquid vehicle.</p></section><section class="sec"><div class="sec-head"><span class="n">12</span><h2>Long-Dated Vehicles</h2></div><h3>12.1 Holdco versus fund versus evergreen</h3>
 <table>
 <thead>
 <tr>
@@ -836,8 +934,8 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 </tr>
 </tbody>
 </table>
-<h3>11.2 The infrastructure vehicle</h3>
-<p>A ~10-year vehicle suits assets whose value accrues slowly and predictably: contracted revenue, real estate and digital infrastructure. Structure it as a closed-ended partnership (typically an SCSp, regulated as a RAIF or SIF if investors require it) with a long investment period, distribution-focused economics and inflation linkage. Defense-corridor digital infrastructure (dark fiber and dual-use compute near government nodes) connects it to the roll-up thesis.</p></section><section class="sec"><div class="sec-head"><span class="n">12</span><h2>How Assets Map to Vehicles</h2></div><table>
+<h3>12.2 The infrastructure vehicle</h3>
+<p>A ~10-year vehicle suits assets whose value accrues slowly and predictably: contracted revenue, real estate and digital infrastructure. Structure it as a closed-ended partnership (typically an SCSp, regulated as a RAIF or SIF if investors require it) with a long investment period, distribution-focused economics and inflation linkage. Defense-corridor digital infrastructure (dark fiber and dual-use compute near government nodes) connects it to the roll-up thesis.</p></section><section class="sec"><div class="sec-head"><span class="n">13</span><h2>How Assets Map to Vehicles</h2></div><table>
 <thead>
 <tr>
 <th>If the assets are…</th>
@@ -847,7 +945,7 @@ ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
 </thead>
 <tbody>
 <tr>
-<td>Listed, liquid, with derivatives overlays</td>
+<td>Listed, liquid, with options overlays and futures (rates, commodities, FX)</td>
 <td>Professional and private-bank, EU-centric</td>
 <td><strong>Part II SICAV</strong> (white-label to start)</td>
 </tr>

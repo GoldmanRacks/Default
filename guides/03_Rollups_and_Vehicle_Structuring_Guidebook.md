@@ -36,7 +36,7 @@ Leviathan is planned as four vehicles, each built for a different asset liquidit
 
 | Vehicle | Assets | Investor liquidity | Planned wrapper |
 |---|---|---|---|
-| **1. Liquid SICAV** | Listed equities with a monthly options overlay | Periodic (monthly) dealing | Luxembourg Part II SICAV via a third-party (white-label) ManCo; separate prime brokerage for the overlay |
+| **1. Liquid SICAV** | Listed equities, monthly options overlay, futures sleeve (rates, gold, energy, FX) | Monthly dealing | Part II SICAV via a white-label ManCo; separate prime and clearing brokers |
 | **2. Core PE holdco** | Private minority and pre-IPO stakes across three sleeves | Locked; 5 / 7 / 10-year holds | Holding company with sub-fund sleeves |
 | **3. Infrastructure vehicle** | Long-duration real assets and contracted cash flows | Locked, ~10-year term | Closed-ended long-dated vehicle |
 | **4. Fourth vehicle** | To be defined | Matched to assets once defined | Open |
@@ -192,7 +192,7 @@ Luxembourg is the default EU domicile for cross-border funds because it offers e
 
 | Regime | Who can invest | CSSF authorization | Key constraints | Typical use |
 |---|---|---|---|---|
-| **UCITS (Part I, 2010 Law)** | Retail, EU passport | Yes, product-level | 5 / 10 / 40 diversification; global exposure capped (commitment ≤100% NAV, or VaR limits); dealing at least twice a month; eligible assets only | Liquid retail funds |
+| **UCITS (Part I, 2010 Law)** | Retail, EU passport | Yes, product-level | 5 / 10 / 40 diversification; global exposure capped (commitment ≤100% NAV, or VaR limits); dealing at least twice a month; eligible assets only, so no direct commodities | Liquid retail funds |
 | **Part II UCI (2010 Law)** | Retail in Luxembourg; an AIF under AIFMD | Yes, product-level | Flexible risk-spreading set by CSSF circulars; alternative strategies permitted | Liquid and semi-liquid alternatives, options strategies |
 | **SIF (2007 Law)** | Well-informed investors | Yes | Risk-spreading principle (generally ≤30% in one issuer) | Professional funds needing a regulated label |
 | **SICAR (2004 Law)** | Well-informed investors | Yes | Must invest in risk capital; no diversification rule | Private equity and venture |
@@ -232,7 +232,7 @@ A white-label (third-party ManCo) platform lets a new sponsor launch a regulated
 
 ## 9. Options Overlays Inside a SICAV
 
-Vehicle 1 is planned as a liquid book with a **monthly rolling options overlay**. The wrapper decides which overlays are allowed.
+Vehicle 1 is planned as a liquid book with a **monthly rolling options overlay** and a futures sleeve (§10). The wrapper decides which overlays are allowed.
 
 ### 9.1 Overlay strategies
 
@@ -252,21 +252,63 @@ Vehicle 1 is planned as a liquid book with a **monthly rolling options overlay**
 | Counterparty limits (OTC) | 10% of NAV for credit institutions, 5% otherwise | Set by risk framework |
 | Short exposure | Synthetic only (no physical short sales) | Wider latitude |
 | Dealing | At least twice a month | As the prospectus sets: monthly suits a monthly roll |
+| Commodity exposure | Only via eligible diversified commodity indices or delta-one ETCs; no single-commodity futures | Direct listed commodity futures and options on futures, within prospectus limits |
 | Distribution | Retail passport across the EU | Retail in Luxembourg; professional marketing in the EU under the AIFMD passport |
 
-**Why Part II for this book:** a monthly roll and leveraged LEAPS-style expressions fit Part II flexibility better than UCITS cover and exposure rules, while monthly dealing aligns investor liquidity with the overlay cycle.
+**Why Part II for this book:** a monthly roll, LEAPS-style leverage and commodity futures fit Part II better than UCITS rules, and monthly dealing matches the overlay cycle.
 
 ### 9.3 What can go wrong
 
-- **Assignment and pin risk**: short calls near expiry can be exercised unexpectedly, which is why rolls usually happen before expiry week.
-- **Gap risk**: covered calls add income but don’t protect the downside; tail protection is a separate decision.
-- **Margin**: prime-broker haircuts rise in volatile markets and can force sales at the worst time.
-- **NAV timing and tax**: option marks must be priced consistently with the underlying at the valuation point, and option premium is taxed differently across investor jurisdictions.
+- **Assignment and pin risk**: short calls can be exercised near expiry, so rolls usually happen before expiry week.
+- **Gap risk**: covered calls add income but don’t protect the downside.
+- **Margin**: haircuts rise in volatile markets and can force sales at the worst time.
 - **Behavioral drift**: income-seeking overwriting can quietly turn a fund into a short-volatility strategy.
 
-## 10. Beyond Luxembourg: Other Wrappers and Cross-Border Issues
+## 10. Commodities and Futures Inside the Liquid SICAV
 
-### 10.1 Domicile comparison
+Yes: a **Part II** SICAV can hold listed commodity and financial futures, and options on futures, alongside its equity and options book. That lets one regulated vehicle carry both the equity overlay and the macro expressions (gold, rates curve, energy, FX) that would otherwise need separate accounts or wrappers.<sup class="en">(3)</sup>
+
+### 10.1 What each regime allows
+
+| Exposure | UCITS | Part II |
+|---|---|---|
+| **Financial futures** (equity index, rates, FX) | Permitted, within global-exposure and cover rules | Permitted, within prospectus limits |
+| **Single-commodity futures** (gold, crude, metals) | Not permitted | Permitted, listed and exchange-cleared |
+| **Commodity index exposure** | Only via indices meeting financial-index diversification rules (generally ≤20% per component, one up to 35%), through swaps or index futures | Permitted directly or via indices |
+| **Delta-one ETCs** | Eligible as transferable securities if they embed no derivative | Permitted |
+| **Options on futures** | Financial underlyings only | Financial and commodity underlyings |
+| **Physical delivery** | Not permitted | Avoided in practice: positions are rolled or closed before delivery |
+
+CSSF Circular 02/80 contains specific risk-spreading rules for Part II funds that invest in futures and options; the prospectus sets the fund’s own limits within them.
+
+### 10.2 What a futures sleeve adds
+
+| Thesis | Futures expression | Compared with the equity / ETF route |
+|---|---|---|
+| **Gold revaluation, negative real rates** | COMEX gold futures (100 oz; micro 10 oz) and options on gold futures | No ETF fee and lower capital usage than GLD calls; adds roll and margin management |
+| **Long-end financial repression (2s30s flattener)** | 2-year Treasury futures against ultra-bond futures, weighted so DV01s match | A pure curve trade, cleaner and cheaper than combining bond ETFs or TBT |
+| **Iran / Hormuz energy tail** | WTI or Brent crude futures and options | Direct exposure to the commodity rather than to energy equities’ operating leverage |
+| **Yen carry unwind** | CME yen futures (or options on them) | Cleaner than FXY; leverage and expiry are chosen to match the thesis horizon |
+| **Equity beta management** | Equity index futures and index options | Fast hedging of the long book without selling core positions |
+
+### 10.3 How futures change the mechanics
+
+- **Margin and collateral.** Futures need only initial and variation margin, so most of the sleeve’s capital sits as collateral, typically in Treasury bills that earn the short rate. In a financial-repression regime that collateral yield is itself part of the return.
+- **Roll yield.** Holding futures means rolling them. In contango (later contracts more expensive) the roll costs money; in backwardation it earns money. Gold is usually in mild contango; crude flips between the two.
+- **Delivery.** Physically settled contracts (gold, crude, Treasuries) are rolled or closed before first notice day, so the fund never takes delivery.
+- **Leverage measurement.** Futures add notional exposure far above the margin posted. The prospectus defines a leverage measure (gross and commitment under AIFMD), and the ManCo’s risk function monitors it daily.
+- **Clearing.** Futures clear through a futures commission merchant (FCM) or clearing broker, often alongside but separate from the prime broker that finances the equity book.
+- **US regulatory touchpoint.** Trading US-listed futures can raise CFTC commodity-pool-operator questions for the sponsor; these are usually addressed through an available exemption.
+- **NAV.** Futures are marked to settlement prices daily, which fits monthly dealing comfortably.
+
+<div class="panel"><div class="panel-title">Illustrative liquid SICAV allocation with a futures sleeve</div><div class="sub">% of NAV; futures shown by margin and collateral used, not notional</div>
+<div class="stack"><div style="flex:55;background:#1B5E5C"></div><div style="flex:10;background:#4C9F8B"></div><div style="flex:25;background:#006492"></div><div style="flex:10;background:#CACED7"></div></div>
+<div class="legend"><span><span class="sw" style="background:#1B5E5C"></span>Listed equities 55%</span><span><span class="sw" style="background:#4C9F8B"></span>Options overlay premium 10%</span><span><span class="sw" style="background:#006492"></span>Futures margin and T-bill collateral 25%</span><span><span class="sw" style="background:#CACED7"></span>Cash buffer 10%</span></div>
+<div class="note">Illustrative only. The futures sleeve’s notional exposure (gold, curve, energy, FX) can be a multiple of its 25% capital allocation, which is why the leverage limit, not the capital allocation, is the binding constraint.</div></div>
+
+## 11. Beyond Luxembourg: Other Wrappers and Cross-Border Issues
+
+### 11.1 Domicile comparison
 
 | Domicile / wrapper | Strengths | Typical investors |
 |---|---|---|
@@ -275,7 +317,7 @@ Vehicle 1 is planned as a liquid book with a **monthly rolling options overlay**
 | **Cayman Islands** | Familiar to US and Asian investors; flexible; tax-neutral | Hedge funds, master-feeder structures |
 | **Delaware LP** | Standard for US investors; tax-transparent | US taxable investors and the US side of master-feeders |
 
-### 10.2 Cross-border tax and marketing issues
+### 11.2 Cross-border tax and marketing issues
 
 | Issue | What happens | Common solution |
 |---|---|---|
@@ -288,9 +330,9 @@ Vehicle 1 is planned as a liquid book with a **monthly rolling options overlay**
 
 **AIFMD II** (transposition deadline April 2026) adds loan-origination rules, tighter delegation oversight and mandatory liquidity-management tools for open-ended AIFs, which is relevant for any semi-liquid vehicle.
 
-## 11. Long-Dated Vehicles
+## 12. Long-Dated Vehicles
 
-### 11.1 Holdco versus fund versus evergreen
+### 12.1 Holdco versus fund versus evergreen
 
 | Vehicle type | Capital | Life | Fits |
 |---|---|---|---|
@@ -301,15 +343,15 @@ Vehicle 1 is planned as a liquid book with a **monthly rolling options overlay**
 | **Continuation vehicle** | Rolled assets from an earlier vehicle | New term | Extending the hold on winners |
 | **Co-invest SPV** | Deal-specific | Life of the deal | Larger checks; low-fee LP exposure |
 
-### 11.2 The infrastructure vehicle
+### 12.2 The infrastructure vehicle
 
 A ~10-year vehicle suits assets whose value accrues slowly and predictably: contracted revenue, real estate and digital infrastructure. Structure it as a closed-ended partnership (typically an SCSp, regulated as a RAIF or SIF if investors require it) with a long investment period, distribution-focused economics and inflation linkage. Defense-corridor digital infrastructure (dark fiber and dual-use compute near government nodes) connects it to the roll-up thesis.
 
-## 12. How Assets Map to Vehicles
+## 13. How Assets Map to Vehicles
 
 | If the assets are… | And investors are… | Typical vehicle |
 |---|---|---|
-| Listed, liquid, with derivatives overlays | Professional and private-bank, EU-centric | **Part II SICAV** (white-label to start) |
+| Listed, liquid, with options overlays and futures (rates, commodities, FX) | Professional and private-bank, EU-centric | **Part II SICAV** (white-label to start) |
 | Listed, liquid, plain | EU retail | **UCITS** |
 | Private equity, harvest cycle | Professional, institutional | **SCSp** (unregulated or RAIF), or SICAR |
 | Private stakes, long and flexible holds | Sponsor and close network | **Holdco** with sleeves |
