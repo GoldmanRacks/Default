@@ -106,6 +106,9 @@ EXTRA_CSS = """
 .toc { columns:2; column-gap:20pt; font-size:9pt; margin:6pt 0 0; padding:0; list-style:none; }
 .toc li { display:flex; gap:8pt; border-bottom:1px solid #E4E4E4; padding:4pt 0; break-inside:avoid; }
 .toc li span { color:#727272; font-weight:500; width:16pt; }
+.keep { break-after:avoid; }
+.sec-head + * , h3 + * { break-before:avoid; }
+h3 { break-after:avoid; }
 .pull { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:14pt; line-height:1.3; border-top:1px solid #000; border-bottom:1px solid #000; padding:10pt 0; margin:4pt 0 16pt; }
 """
 
@@ -134,11 +137,25 @@ for part in re.split(r"^## ", src, flags=re.M)[1:]:
     m = re.match(r"(\d+)\.\s+(.*)", head.strip())
     sections.append((int(m.group(1)), m.group(2), body.strip()))
 
+FLOW_ALL = M("flow", "no").lower() == "yes"
+BREAKS = {int(x) for x in M("break_before", "").replace(" ", "").split(",") if x}
 out = []
 for n, title, body in sections:
     md.reset()
     h = md.convert(body)
-    out.append(f'<section class="sec"><div class="sec-head"><span class="n">{n:02d}</span><h2>{esc(title)}</h2></div>{h}</section>')
+    if M("keep_tables", "no").lower() == "yes":
+        h = re.sub(r"<table>(.*?)</table>", lambda m: ('<table style="break-inside:avoid">' if m.group(1).count("<tr>") <= 15 else "<table>") + m.group(1) + "</table>", h, flags=re.S)
+    cls = "sec flow" if FLOW_ALL and n not in BREAKS else "sec"
+    head = f'<div class="sec-head"><span class="n">{n:02d}</span><h2>{esc(title)}</h2></div>'
+    if M("keep_tables", "no").lower() == "yes":
+        # bind each h3 to the content through its first short table
+        h = re.sub(r'(<h3>(?:(?!<h3>).)*?<table style="break-inside:avoid">.*?</table>)', r'<div style="break-inside:avoid">\1</div>', h, flags=re.S)
+        # bind the section heading + intro + first short table (if it comes before any h3)
+        m1 = re.search(r'<table style="break-inside:avoid">.*?</table>', h, flags=re.S)
+        if m1 and "<h3>" not in h[:m1.start()] and '<div style="break-inside:avoid">' not in h[:m1.start()]:
+            h = f'<div style="break-inside:avoid">{head}{h[:m1.end()]}</div>{h[m1.end():]}'
+            head = ""
+    out.append(f'<section class="{cls}">{head}{h}</section>')
 
 toc = "".join(f"<li><span>{n:02d}</span>{esc(t)}</li>" for n, t, _ in sections)
 kfs = "".join(f'<div class="kf"><div class="v">{v.split("|",1)[0]}</div><div class="l">{v.split("|",1)[1]}</div></div>' for v in meta.get("kf", []))
@@ -147,16 +164,19 @@ COVER = f"""<section>
 <div class="eyebrow">{M("eyebrow")}</div>
 <h1 class="title">{M("title_html")}</h1>
 <p class="lead">{M("lead_html")}</p>
-<div class="keyfigs">{kfs}</div>
+<div class="keyfigs" style="grid-template-columns:repeat({max(len(meta.get("kf", [])), 1)},1fr)">{kfs}</div>
 <div class="pull">{M("pull")}</div>
 <div class="eyebrow" style="margin-bottom:2pt">Contents</div>
 <ul class="toc">{toc}</ul>
 </section>"""
 
 notes = "".join(f"<li>{n}</li>" for n in meta.get("note", []))
-NOTES = f"""<section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol>{notes}</ol>
-<div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
-<p style="font-size:8pt"><b>Note:</b> {M("closing_note", "Model figures are estimated and unaudited.")}</p></section>"""
+DISC = f"""<div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
+<p style="font-size:8pt"><b>Note:</b> {M("closing_note", "Model figures are estimated and unaudited.")}</p>"""
+if notes:
+    NOTES = f"""<section class="sec flow notes"><div class="sec-head"><span class="n">Notes</span><h2>Sources and endnotes</h2></div><ol>{notes}</ol>{DISC}</section>"""
+else:
+    NOTES = f"""<div style="break-inside:avoid;margin-top:14pt">{DISC}</div>"""
 
 doc = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>{M("html_title", "Guidebook")}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,7 +185,7 @@ doc = f"""<!DOCTYPE html><html><head><meta charset="utf-8"><title>{M("html_title
 open(HTML_OUT, "w", encoding="utf-8").write(doc)
 
 HEADER = f"""<div style="width:100%;font-family:Helvetica,Arial,sans-serif;font-size:7px;letter-spacing:.05em;text-transform:uppercase;padding:0 0.7in;display:flex;justify-content:space-between;color:#000;">
-<span style="font-weight:600">D. B. Ritts III · {M("header_label", "Guidebook")}</span><span>Confidential — internal reference · not for LP distribution</span></div>"""
+<span style="font-weight:600">{M("header_name", "D. B. Ritts III")} · {M("header_label", "Guidebook")}</span><span>{M("header_right", "Confidential — internal reference · not for LP distribution")}</span></div>"""
 FOOTER = f"""<div style="width:100%;font-family:Helvetica,Arial,sans-serif;font-size:7px;padding:0 0.7in;color:#000;">
 <div style="border-top:1px solid #000;padding-top:4px;display:flex;justify-content:space-between;align-items:baseline;">
 <span style="font-weight:600">Model figures are estimated and unaudited. Not investment advice.</span>

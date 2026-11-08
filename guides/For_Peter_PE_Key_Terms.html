@@ -1,0 +1,999 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Private Equity Essentials — Key Terms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+@page { size: Letter; margin: 0.85in 0.7in 0.95in 0.7in; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin:0; font-family:'Public Sans',Helvetica,Arial,sans-serif; font-weight:300; color:#000;
+       font-size:9.5pt; line-height:1.4; -webkit-font-smoothing:antialiased; }
+.serif { font-family:'Source Serif 4',Georgia,serif; font-weight:600; }
+b, strong { font-weight:500; }
+em { font-style:normal; font-weight:500; }
+sup.en { font-size:7pt; font-weight:500; margin-left:1px; }
+.xref { color:#A95228; font-weight:500; }
+p { margin:0 0 7pt; }
+/* masthead / cover */
+.mast-top { display:flex; justify-content:space-between; font-size:8pt; font-weight:300; letter-spacing:.04em; text-transform:uppercase; }
+.mast-top b { font-weight:500; }
+.rule-ink { height:1px; background:#000; margin:8pt 0 18pt; }
+.eyebrow { font-size:10pt; font-weight:500; letter-spacing:.04em; text-transform:uppercase; }
+h1.title { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:27pt; line-height:1.08; margin:8pt 0 12pt; letter-spacing:-.01em; }
+.lead { font-size:12pt; line-height:1.35; font-weight:300; max-width:6.1in; margin-bottom:14pt; }
+.keyfigs { display:grid; grid-template-columns:repeat(3,1fr); gap:14pt; margin:6pt 0 20pt; }
+.kf { border-top:2px solid #1B5E5C; padding-top:7pt; }
+.kf .v { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:26pt; line-height:1; }
+.kf .l { font-size:9pt; font-weight:400; margin-top:4pt; line-height:1.3; }
+.disc-box { border:1px solid #000; padding:7pt 9pt; font-size:7.5pt; font-weight:500; line-height:1.4; letter-spacing:.01em; margin:14pt 0 8pt; }
+/* sections */
+.sec { break-before: page; }
+.sec.flow { break-before: auto; margin-top:22pt; }
+.sec-head { display:flex; align-items:baseline; gap:10pt; border-bottom:1px solid #000; padding-bottom:6pt; margin-bottom:10pt; break-after:avoid; }
+.sec-head .n { font-size:9pt; font-weight:500; color:#727272; }
+.sec-head h2 { margin:0; font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:20pt; line-height:1.1; }
+h3 { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:13pt; margin:14pt 0 6pt; break-after:avoid; }
+.sub { font-size:9pt; font-weight:300; margin:-3pt 0 8pt; }
+/* tables (4.3 performance table pattern) */
+table { width:100%; border-collapse:collapse; font-size:8.1pt; font-weight:300; margin:4pt 0 10pt; }
+thead { display:table-header-group; }
+th { background:#1B5E5C; color:#FFF; font-weight:500; text-align:left; padding:4pt 6pt; vertical-align:bottom; }
+td { padding:3.4pt 6pt; border-bottom:1px solid #BFBFBF; vertical-align:top; }
+tbody tr:nth-child(even) td { background:#F2F2F2; }
+tbody tr:last-child td { border-bottom:1px solid #000; }
+td:first-child { font-weight:500; }
+tr { break-inside:avoid; }
+/* formula block */
+.formula { border-top:1px solid #000; border-bottom:1px solid #000; padding:9pt 0; margin:6pt 0 12pt;
+           font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:11.5pt; text-align:center; }
+/* lists */
+ul { margin:2pt 0 10pt 0; padding-left:14pt; } li { margin-bottom:3pt; }
+/* components */
+.panel { background:#FFF; border:1px solid #E4E4E4; padding:10pt 12pt; margin:6pt 0 12pt; break-inside:avoid; }
+.panel-title { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:12pt; margin-bottom:2pt; }
+.grid-map { display:grid; grid-template-columns:repeat(2,1fr); gap:6pt; margin:6pt 0 8pt; }
+.dom { border-top:3px solid #000; background:#F4F4F2; padding:5pt 9pt; break-inside:avoid; }
+.dom .k { font-size:8pt; font-weight:500; color:#727272; }
+.dom .h { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:11pt; margin:0 0 2pt; }
+.dom .d { font-size:8.3pt; line-height:1.35; }
+.track { display:grid; gap:4pt; margin:8pt 0 12pt; }
+.step { border-top:3px solid #1B5E5C; background:#F4F4F2; padding:7pt 8pt; font-size:8pt; line-height:1.3; break-inside:avoid; }
+.step .h { font-weight:500; font-size:8.6pt; margin-bottom:2pt; }
+.step .y { color:#727272; font-size:7.6pt; margin-bottom:3pt; }
+.step.hl { border-top-color:#A95228; }
+.legend { display:flex; flex-wrap:wrap; gap:4pt 14pt; font-size:8pt; margin-top:6pt; }
+.legend span.sw { display:inline-block; width:9px; height:9px; margin-right:5px; vertical-align:-1px; }
+.stack { display:flex; height:20px; gap:2px; margin:3pt 0; }
+.barrow { display:grid; grid-template-columns:1.55in 1fr 0.75in; gap:8pt; align-items:center; font-size:8.3pt; padding:3pt 0; }
+.barrow .track2 { height:13px; background:#E4E4E4; position:relative; }
+.barrow .fill { position:absolute; top:0; bottom:0; }
+.barrow .val { text-align:right; font-weight:500; }
+.note { font-size:7.8pt; color:#727272; line-height:1.4; margin-top:4pt; }
+.struct { display:grid; grid-template-columns:repeat(4,1fr); gap:6pt; margin:8pt 0 4pt; font-size:8pt; text-align:center; }
+.box { border:1px solid #000; padding:6pt 4pt; background:#FFF; line-height:1.25; }
+.box b { display:block; font-size:8.6pt; }
+.box.ink { background:#1B5E5C; color:#FFF; border-color:#1B5E5C; }
+.arrowline { text-align:center; font-size:9pt; color:#727272; margin:2pt 0; letter-spacing:.04em; }
+.notes ol { padding-left:16pt; font-size:8pt; line-height:1.45; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:14pt; }
+
+.lead2 { font-size:11.5pt; line-height:1.4; font-weight:300; margin:2pt 0 12pt; }
+.habits { display:grid; grid-template-columns:1fr 1fr; gap:6pt 14pt; margin:6pt 0 12pt; }
+.hb { border-top:1px solid #BFBFBF; padding-top:5pt; font-size:8.6pt; line-height:1.38; break-inside:avoid; }
+.hb span { display:block; font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:13pt; line-height:1; margin-bottom:3pt; }
+.case { border-top:3px solid #000; background:#F4F4F2; padding:9pt 12pt 4pt; margin:6pt 0 12pt; break-inside:avoid; }
+.case p { font-size:9pt; margin:0 0 6pt; }
+.case-tag { font-size:8pt; font-weight:500; letter-spacing:.05em; text-transform:uppercase; margin-bottom:5pt; }
+.two .case { margin-top:0; }
+.track5 { display:grid; grid-template-columns:repeat(5,1fr); gap:4pt; margin:6pt 0 10pt; }
+.st { border-top:3px solid #1B5E5C; background:#F4F4F2; padding:6pt 7pt; font-size:8pt; line-height:1.3; break-inside:avoid; }
+.st b { display:block; font-size:8.6pt; margin-bottom:2pt; }
+.st.dark { border-top-color:#000; }
+.toc { columns:2; column-gap:20pt; font-size:9pt; margin:6pt 0 0; padding:0; list-style:none; }
+.toc li { display:flex; gap:8pt; border-bottom:1px solid #E4E4E4; padding:4pt 0; break-inside:avoid; }
+.toc li span { color:#727272; font-weight:500; width:16pt; }
+.keep { break-after:avoid; }
+.sec-head + * , h3 + * { break-before:avoid; }
+h3 { break-after:avoid; }
+.pull { font-family:'Source Serif 4',Georgia,serif; font-weight:600; font-size:14pt; line-height:1.3; border-top:1px solid #000; border-bottom:1px solid #000; padding:10pt 0; margin:4pt 0 16pt; }
+</style></head><body><section>
+<div class="rule-ink" style="margin-top:0"></div>
+<div class="eyebrow">November 2026 · Donald B Ritts III</div>
+<h1 class="title">Private Equity Essentials:<br>Terminology, Structure and Concepts</h1>
+<p class="lead">A reference map organized from fund structure through economics, metrics, deals, capital structure, terms, exits and regulation, closing with founder and GP economics. Formulas and worked examples use round numbers. Cross-references to the Leviathan model are marked <span class="xref">▸</span>.</p>
+<div class="keyfigs" style="grid-template-columns:repeat(4,1fr)"><div class="kf"><div class="v">10 + 2</div><div class="l">typical fund term (years)</div></div><div class="kf"><div class="v">20%</div><div class="l">standard carried interest</div></div><div class="kf"><div class="v">8%</div><div class="l">preferred return (hurdle)</div></div><div class="kf"><div class="v">1.5–2.0%</div><div class="l">management fee on commitments</div></div></div>
+<div class="pull">The GP controls investment decisions and earns carry; LPs supply the overwhelming majority of capital under limited liability. Everything else in private equity hangs off that relationship.</div>
+<div class="eyebrow" style="margin-bottom:2pt">Contents</div>
+<ul class="toc"><li><span>01</span>Players and Fund Structure</li><li><span>02</span>Fund Lifecycle</li><li><span>03</span>Fund Economics</li><li><span>04</span>Performance Metrics</li><li><span>05</span>Strategies</li><li><span>06</span>Deal Process</li><li><span>07</span>Valuation</li><li><span>08</span>Capital Structure and LBO Mechanics</li><li><span>09</span>Equity Terms (Venture, Growth, Minority)</li><li><span>10</span>Exits and Regulatory Considerations</li><li><span>11</span>Formula Cheat Sheet</li><li><span>12</span>Quick-Reference Return Targets</li><li><span>13</span>Founder / GP Economics: 5-, 7- and 10-Year Holds</li></ul>
+</section><section class="sec"><div class="sec-head"><span class="n">01</span><h2>Players and Fund Structure</h2></div><p>The private equity ecosystem is organized around a small number of entities whose relationships are defined in the Limited Partnership Agreement. The GP controls investment decisions and earns carry; LPs supply the overwhelming majority of capital under limited liability.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GP (General Partner)</td>
+<td>Entity that controls the fund and makes investment decisions; unlimited liability (usually held via an LLC)</td>
+<td>Earns carry; legally responsible</td>
+</tr>
+<tr>
+<td>LP (Limited Partner)</td>
+<td>Investor (pensions, endowments, sovereigns, insurers, family offices, HNW); liability limited to commitment</td>
+<td>Supplies roughly 95–99% of capital</td>
+</tr>
+<tr>
+<td>Management Company (ManCo)</td>
+<td>Adviser entity that employs the team and receives management fees</td>
+<td>Registered investment adviser; holds the economics of running the firm</td>
+</tr>
+<tr>
+<td>Fund (Limited Partnership)</td>
+<td>Usually a Delaware or Cayman LP; closed-end, ~10 years plus extensions</td>
+<td>The legal pool of capital</td>
+</tr>
+<tr>
+<td>LPA</td>
+<td>Governing contract: economics, governance, term, key person provisions</td>
+<td>Everything is negotiated here</td>
+</tr>
+<tr>
+<td>PPM</td>
+<td>Offering document describing strategy, team, risks and terms</td>
+<td>Disclosure document</td>
+</tr>
+<tr>
+<td>Side letter</td>
+<td>Bilateral LP-specific terms (fee breaks, reporting, co-invest, ESG or sanctions exclusions)</td>
+<td>Usually accompanied by an MFN clause</td>
+</tr>
+<tr>
+<td>MFN (Most Favored Nation)</td>
+<td>LP can elect any better term given to a similar-size LP</td>
+<td>Limits preferential deals</td>
+</tr>
+<tr>
+<td>LPAC</td>
+<td>Committee of large LPs that approves conflicts, valuations and extensions</td>
+<td>Governance check on the GP</td>
+</tr>
+<tr>
+<td>Feeder / Parallel / AIV / Blocker</td>
+<td>Vehicles used for tax, regulatory or investor-access reasons; same underlying deals</td>
+<td>Routes particular investments or LP types efficiently</td>
+</tr>
+<tr>
+<td>SPV / Co-investment</td>
+<td>Single-asset vehicle, often for co-investment at low or zero fee and carry</td>
+<td>Lowers blended fees; lets the GP write bigger checks</td>
+</tr>
+<tr>
+<td>Continuation vehicle (CV)</td>
+<td>GP-led secondary: assets move from an old fund to a new vehicle; existing LPs roll or sell</td>
+<td>Extends the hold on winners</td>
+</tr>
+<tr>
+<td>Holdco / Sleeve</td>
+<td>Holding company owning stakes across sub-portfolios or distinct sub-strategies. <span class="xref"><span class="xref">▸</span></span> Leviathan: $855M holdco across three sleeves</td>
+<td>Multi-strategy exposure within one vehicle</td>
+</tr>
+<tr>
+<td>GP commitment</td>
+<td>GP’s own capital in the fund (typically 1–5%)</td>
+<td>Alignment (“skin in the game”)</td>
+</tr>
+<tr>
+<td>Key person / No-fault divorce</td>
+<td>Investment period suspends if named individuals leave; LPs can remove the GP by supermajority without cause</td>
+<td>Protects LPs against team risk; the ultimate LP lever</td>
+</tr>
+</tbody>
+</table></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">02</span><h2>Fund Lifecycle</h2></div><p>A typical closed-end PE fund runs 10 + 2 years. Capital is called during the investment period (roughly years 1–5), value is created through years 3–8, and harvest and distributions dominate years 4–12.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Commitment</td>
+<td>Total capital an LP agrees to provide over the fund’s life</td>
+</tr>
+<tr>
+<td>First / final close</td>
+<td>First and last dates LPs can join; later closers pay equalization interest</td>
+</tr>
+<tr>
+<td>Capital call (drawdown)</td>
+<td>GP requests a portion of commitments, usually with ~10 business days’ notice</td>
+</tr>
+<tr>
+<td>Paid-in capital (PIC)</td>
+<td>Cumulative capital actually called</td>
+</tr>
+<tr>
+<td>Unfunded commitment / Dry powder</td>
+<td>Commitment not yet called; industry-wide or fund-level uncalled capital available to invest</td>
+</tr>
+<tr>
+<td>Investment period</td>
+<td>Window (~5 years) in which new platforms can be acquired</td>
+</tr>
+<tr>
+<td>Harvest period</td>
+<td>Post-investment period: follow-ons and exits only</td>
+</tr>
+<tr>
+<td>Recycling</td>
+<td>Reinvesting early proceeds (up to a cap) instead of distributing them</td>
+</tr>
+<tr>
+<td>Subscription line</td>
+<td>Bank loan secured by LP commitments; delays calls and inflates IRR</td>
+</tr>
+<tr>
+<td>NAV loan</td>
+<td>Fund-level borrowing secured by portfolio NAV; used for liquidity or follow-ons</td>
+</tr>
+<tr>
+<td>Vintage year</td>
+<td>Year of first investment or first close; used for peer comparison</td>
+</tr>
+<tr>
+<td>Follow-on reserve</td>
+<td>Capital set aside for existing portfolio companies. <span class="xref"><span class="xref">▸</span></span> IQT sleeve: $25M of $250M</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec flow"><div class="sec-head"><span class="n">03</span><h2>Fund Economics</h2></div><div style="break-inside:avoid"><h3>3.1 Fees</h3>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Typical</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management fee</td>
+<td>Annual fee to the ManCo</td>
+<td>1.5–2.0% of committed capital during the investment period, stepping down thereafter. <span class="xref"><span class="xref">▸</span></span> Model uses 2% of committed for the full life</td>
+</tr>
+<tr>
+<td>Fee offset</td>
+<td>Share of transaction and monitoring fees credited against the management fee</td>
+<td>80–100% offset today</td>
+</tr>
+<tr>
+<td>Transaction / monitoring fees</td>
+<td>Fees the GP charges portfolio companies</td>
+<td>Increasingly offset or banned</td>
+</tr>
+<tr>
+<td>Organizational expenses</td>
+<td>Fund formation costs charged to the fund (capped)</td>
+<td>e.g. $1–3M cap</td>
+</tr>
+<tr>
+<td>Fund expenses</td>
+<td>Audit, admin, legal, broken-deal costs</td>
+<td>Charged to the fund</td>
+</tr>
+</tbody>
+</table></div>
+<div style="break-inside:avoid"><h3>3.2 Carry and hurdle</h3>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Carried interest (carry)</td>
+<td>GP’s share of profits, typically 20% (range 10–30%)</td>
+</tr>
+<tr>
+<td>Preferred return (hurdle)</td>
+<td>Minimum LP return before carry is paid, usually 8% compounded annually</td>
+</tr>
+<tr>
+<td>Catch-up</td>
+<td>After the pref, the GP takes a large share (often 100%) until it has caught up to its 20% of total profits</td>
+</tr>
+<tr>
+<td>European (whole-fund) waterfall</td>
+<td>Carry only after LPs have received all contributed capital plus pref across the entire fund. LP-friendly</td>
+</tr>
+<tr>
+<td>American (deal-by-deal) waterfall</td>
+<td>Carry paid on each realized deal (usually after returning that deal’s cost plus allocated expenses). GP-friendly; needs a clawback</td>
+</tr>
+<tr>
+<td>Clawback</td>
+<td>GP must return carry already received if the final fund result does not support it</td>
+</tr>
+<tr>
+<td>Hard vs soft hurdle</td>
+<td>Hard: carry only on profits above the hurdle (no catch-up). Soft: once the hurdle is met, carry applies to all profit (with catch-up)</td>
+</tr>
+</tbody>
+</table></div>
+<div style="break-inside:avoid"><h3>3.3 Worked waterfall: $100M fund, $250M gross proceeds, 5-year single exit</h3>
+<p>Pref = 100 × (1.08<sup>5</sup> − 1) = <strong>$46.93M</strong>. Total profit = <strong>$150M</strong>.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Tier</th>
+<th>Full catch-up (soft hurdle)</th>
+<th>No catch-up (hard hurdle) <span class="xref"><span class="xref">▸</span></span> Leviathan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Return of capital (LP)</td>
+<td>100.00</td>
+<td>100.00</td>
+</tr>
+<tr>
+<td>2. Preferred 8% (LP)</td>
+<td>46.93</td>
+<td>46.93</td>
+</tr>
+<tr>
+<td>3. GP catch-up (100%)</td>
+<td>11.73 (= 46.93 × 20 / 80)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4. Remaining split 80 / 20</td>
+<td>LP 73.07 / GP 18.27</td>
+<td>LP 82.46 / GP 20.61</td>
+</tr>
+<tr>
+<td>GP carry total</td>
+<td>30.00 (= 20% of 150)</td>
+<td>20.61</td>
+</tr>
+<tr>
+<td>LP total (before fees)</td>
+<td>220.00</td>
+<td>229.39</td>
+</tr>
+</tbody>
+</table></div>
+<p>Fees are then deducted: 2% × $100M × 5 years = $10M. The difference between the two waterfalls (~$9.4M here) grows with performance.</p></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">04</span><h2>Performance Metrics</h2></div><table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Formula</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MOIC</td>
+<td>Total value ÷ invested capital</td>
+<td>Ignores time. Gross (deal level) vs net (to LP)</td>
+</tr>
+<tr>
+<td>IRR</td>
+<td>Discount rate r such that Σ CF<sub>t</sub> / (1 + r)<sup>t</sup> = 0</td>
+<td>Time-weighted; sensitive to timing and subscription lines. Single-exit shortcut: MOIC<sup>1/T</sup> − 1</td>
+</tr>
+<tr>
+<td>TVPI</td>
+<td>(Cumulative distributions + NAV) ÷ PIC</td>
+<td>Net multiple, realized plus unrealized</td>
+</tr>
+<tr>
+<td>DPI</td>
+<td>Cumulative distributions ÷ PIC</td>
+<td>“Cash-on-cash”: what LPs care about most in tight markets</td>
+</tr>
+<tr>
+<td>RVPI</td>
+<td>NAV ÷ PIC</td>
+<td>Unrealized portion; TVPI = DPI + RVPI</td>
+</tr>
+<tr>
+<td>PME / KS-PME</td>
+<td>Compares PE cash flows with an index. KS-PME = [Σ Dist<sub>t</sub> × (I<sub>T</sub> / I<sub>t</sub>) + NAV<sub>T</sub>] ÷ Σ Call<sub>t</sub> × (I<sub>T</sub> / I<sub>t</sub>)</td>
+<td>&gt;1.0 = beat the index. Single in / out: MOIC ÷ (1 + r<sub>index</sub>)<sup>T</sup>. <span class="xref"><span class="xref">▸</span></span> 2.068 ÷ 1.09<sup>5</sup> = 1.34x</td>
+</tr>
+<tr>
+<td>Direct Alpha</td>
+<td>IRR of index-compounded cash flows</td>
+<td>Annualized excess return over the index</td>
+</tr>
+<tr>
+<td>J-curve</td>
+<td>Early negative returns (fees, write-downs) before value creation and exits turn the curve up</td>
+<td>Subscription lines flatten it artificially</td>
+</tr>
+<tr>
+<td>Gross-to-net spread</td>
+<td>Gross IRR − net IRR</td>
+<td>Typically 4–7 percentage points for buyout</td>
+</tr>
+<tr>
+<td>Loss ratio</td>
+<td>% of capital invested in deals returning &lt; 1.0x</td>
+<td>Measures underwriting discipline</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Common traps:</strong> IRR can be gamed with subscription lines and quick flips. MOIC ignores time. Interim NAVs are Level 3 marks (judgment). Always look at DPI and PME together.</p></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">05</span><h2>Strategies</h2></div><table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Profile</th>
+<th>Control / leverage</th>
+<th>Return driver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Venture capital</td>
+<td>Pre-profit, high growth, power-law outcomes</td>
+<td>Minority, no leverage</td>
+<td>A few outsized winners</td>
+</tr>
+<tr>
+<td>Growth equity</td>
+<td>Revenue scaling, near or at profitability</td>
+<td>Minority, little leverage</td>
+<td>Revenue growth</td>
+</tr>
+<tr>
+<td>Buyout / LBO</td>
+<td>Mature, cash-generative</td>
+<td>Control, 4–7x debt / EBITDA</td>
+<td>EBITDA growth, deleveraging, multiple</td>
+</tr>
+<tr>
+<td>Take-private (P2P)</td>
+<td>Buying a listed company</td>
+<td>Control</td>
+<td>Re-rating plus operational improvement</td>
+</tr>
+<tr>
+<td>Carve-out / spin-off</td>
+<td>Buying a division from a corporate parent</td>
+<td>Control or minority</td>
+<td>Standalone efficiency; TSAs. <span class="xref"><span class="xref">▸</span></span> L3Harris MSL</td>
+</tr>
+<tr>
+<td>Buy-and-build / roll-up</td>
+<td>Platform plus add-on acquisitions</td>
+<td>Control</td>
+<td>Multiple arbitrage (buy add-ons at 6x, consolidate at 12x)</td>
+</tr>
+<tr>
+<td>Secondaries (LP-led)</td>
+<td>Buying LP fund interests</td>
+<td>Passive</td>
+<td>Discount to NAV, shorter J-curve</td>
+</tr>
+<tr>
+<td>Secondaries (GP-led)</td>
+<td>Continuation vehicles, strip sales</td>
+<td>Varies</td>
+<td>Extending winners</td>
+</tr>
+<tr>
+<td>Private credit / direct lending</td>
+<td>Senior loans to sponsor-backed companies</td>
+<td>Lender</td>
+<td>Floating-rate spread</td>
+</tr>
+<tr>
+<td>Distressed / special situations</td>
+<td>Stressed balance sheets</td>
+<td>Loan-to-own</td>
+<td>Restructuring</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">06</span><h2>Deal Process</h2></div><div class="track5" style="grid-template-columns:repeat(6,1fr)">
+<div class="st"><b>Sourcing</b>NDA, teaser, CIM</div>
+<div class="st"><b>IOI</b>Non-binding range</div>
+<div class="st"><b>Diligence</b>Management presentation, data room</div>
+<div class="st dark"><b>LOI</b>Price, structure, exclusivity</div>
+<div class="st"><b>Confirmatory</b>QoE, legal; SPA / APA</div>
+<div class="st"><b>Sign → close</b>HSR / CFIUS, then closing</div>
+</div>
+
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proprietary deal</td>
+<td>Sourced outside a banker auction; less competition</td>
+</tr>
+<tr>
+<td>Auction (broad / limited)</td>
+<td>Banker-run process with rounds of bids</td>
+</tr>
+<tr>
+<td>Teaser / CIM</td>
+<td>Anonymous 1–2 page summary / detailed sell-side book</td>
+</tr>
+<tr>
+<td>IOI / LOI</td>
+<td>Non-binding first-round valuation range / second-round proposal, usually granting exclusivity</td>
+</tr>
+<tr>
+<td>QoE (Quality of Earnings)</td>
+<td>Accounting diligence normalizing EBITDA</td>
+</tr>
+<tr>
+<td>SPA / APA</td>
+<td>Stock or Asset Purchase Agreement</td>
+</tr>
+<tr>
+<td>Reps &amp; warranties / RWI</td>
+<td>Seller statements of fact; R&amp;W insurance covers breaches and reduces escrow needs</td>
+</tr>
+<tr>
+<td>MAC / MAE</td>
+<td>Material adverse change clause allowing walk-away</td>
+</tr>
+<tr>
+<td>Locked box vs completion accounts</td>
+<td>Fixed historical balance sheet vs post-close true-up</td>
+</tr>
+<tr>
+<td>Earn-out / Rollover equity</td>
+<td>Contingent consideration tied to future performance / sellers or management reinvest part of their proceeds</td>
+</tr>
+<tr>
+<td>TSA</td>
+<td>Transition Services Agreement: the parent keeps providing services to a carve-out temporarily</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">07</span><h2>Valuation</h2></div><div class="formula">Equity Value = Enterprise Value − Debt − Preferred − Minority interest − Debt-like items + Cash</div>
+
+<p>Debt-like items include leases, unfunded pensions and, in some deals, deferred revenue.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EBITDA / Adjusted EBITDA</td>
+<td>Operating cash proxy. “Adjusted” removes one-offs and is where sellers inflate the number</td>
+</tr>
+<tr>
+<td>EV / EBITDA, EV / EBIT, EV / Revenue</td>
+<td>Core multiples. <span class="xref"><span class="xref">▸</span></span> LHX 15.1x EBITDA, RHM 17.3x, Faxon entry 10.95x, MSL IPO at 22x EBIT</td>
+</tr>
+<tr>
+<td>Trading comps / Precedent transactions</td>
+<td>Multiples of similar listed companies / multiples paid in comparable M&amp;A (include a control premium)</td>
+</tr>
+<tr>
+<td>DCF / LBO analysis</td>
+<td>PV of free cash flow plus terminal value / maximum price a sponsor can pay and still hit its target IRR</td>
+</tr>
+<tr>
+<td>Pre-money / post-money</td>
+<td>Value before / after new money. Post = Pre + new investment. Ownership = Check ÷ Post. <span class="xref"><span class="xref">▸</span></span> $9M ÷ $92M = 9.8%</td>
+</tr>
+<tr>
+<td>Option pool shuffle</td>
+<td>Pool created in the pre-money, so the dilution falls on existing holders</td>
+</tr>
+<tr>
+<td>ASC 820 / Level 3</td>
+<td>Fair-value accounting; private marks are model-based (Level 3)</td>
+</tr>
+<tr>
+<td>Probability-weighted EV</td>
+<td>Σ p<sub>i</sub> × EV<sub>i</sub> across scenarios. <span class="xref"><span class="xref">▸</span></span> Faxon 25 / 50 / 25 → $91.75M</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">08</span><h2>Capital Structure and LBO Mechanics</h2></div><p><strong>Stack, senior → junior:</strong> revolver → Term Loan A → Term Loan B / unitranche → second lien → senior / sub notes → mezzanine / PIK → HoldCo PIK → preferred equity → common equity (sponsor + management).</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revolver (RCF) / TLA / TLB</td>
+<td>Drawable working-capital line / amortizing bank loan / institutional, mostly bullet, floating rate</td>
+</tr>
+<tr>
+<td>Unitranche / Second lien</td>
+<td>Single blended senior loan / junior secured claim on the same collateral</td>
+</tr>
+<tr>
+<td>Mezzanine / PIK</td>
+<td>Subordinated debt with warrants or equity kicker / interest that accrues to principal</td>
+</tr>
+<tr>
+<td>Leverage / Interest coverage / FCCR</td>
+<td>Debt ÷ EBITDA / EBITDA ÷ interest / (EBITDA − capex − tax) ÷ fixed charges</td>
+</tr>
+<tr>
+<td>Maintenance vs incurrence covenants</td>
+<td>Tested quarterly vs only when taking an action</td>
+</tr>
+<tr>
+<td>Cov-lite</td>
+<td>No maintenance covenants (common in TLB)</td>
+</tr>
+<tr>
+<td>Sources &amp; uses</td>
+<td>Table showing where the money comes from and where it goes</td>
+</tr>
+<tr>
+<td>Dividend recap / Deleveraging</td>
+<td>Borrowing to pay the sponsor a dividend (DPI without an exit) / using FCF to repay debt</td>
+</tr>
+<tr>
+<td>MIP / sweet equity</td>
+<td>Management equity, often 5–15% of common, with ratchets</td>
+</tr>
+</tbody>
+</table></div>
+<h3>8.1 Worked LBO</h3>
+<p>Entry EBITDA $50M × 10x = EV $500M, funded with 5x debt ($250M) and $250M equity. In year 5, EBITDA $80M × 10x = EV $800M; net debt is paid down to $120M, so equity = <strong>$680M</strong>.</p>
+<div class="keyfigs" style="grid-template-columns:repeat(3,1fr)">
+ <div class="kf"><div class="v">2.72x</div><div class="l">MOIC = 680 ÷ 250</div></div>
+ <div class="kf"><div class="v">22.2%</div><div class="l">IRR = 2.72<sup>1/5</sup> − 1</div></div>
+ <div class="kf"><div class="v">$430M</div><div class="l">gain: EBITDA growth $300M + deleveraging $130M + multiple $0</div></div>
+</div></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">09</span><h2>Equity Terms (Venture, Growth, Minority)</h2></div><p>The terms that protect a minority investor matter most for stakes like the Leviathan ones.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+<th>Investor-friendly version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liquidation preference</td>
+<td>Paid before common in an exit</td>
+<td>1x non-participating is standard; &gt;1x or participating is aggressive</td>
+</tr>
+<tr>
+<td>Participating preferred</td>
+<td>Gets its preference back, then shares pro rata</td>
+<td>“Double dip”; often capped (e.g. 3x)</td>
+</tr>
+<tr>
+<td>Anti-dilution</td>
+<td>Price protection in down rounds</td>
+<td>Full ratchet (strong) vs broad-based weighted average (standard)</td>
+</tr>
+<tr>
+<td>Pro rata / preemptive right</td>
+<td>Right to keep ownership % in future rounds</td>
+<td>Key for follow-on reserves</td>
+</tr>
+<tr>
+<td>ROFR</td>
+<td>Right of first refusal on share transfers</td>
+<td>Controls the cap table</td>
+</tr>
+<tr>
+<td>Tag-along / Drag-along</td>
+<td>Minority can sell alongside the majority / majority can force the minority to sell</td>
+<td>Essential minority protection / minority wants a price floor</td>
+</tr>
+<tr>
+<td>Protective provisions</td>
+<td>Consent needed for new senior securities, sale, debt, budget</td>
+<td>Key minority control</td>
+</tr>
+<tr>
+<td>Board seat / observer</td>
+<td>Governance or visibility</td>
+<td><span class="xref"><span class="xref">▸</span></span> Sought at &gt;15% ownership</td>
+</tr>
+<tr>
+<td>Information rights</td>
+<td>Monthly or quarterly financials, budget, audit</td>
+<td>Basic</td>
+</tr>
+<tr>
+<td>Redemption right</td>
+<td>Investor can force a buyback after N years</td>
+<td>Liquidity path in family- or ESOP-owned companies</td>
+</tr>
+<tr>
+<td>Warrants</td>
+<td>Right to buy shares at a strike</td>
+<td>Equity kicker. <span class="xref"><span class="xref">▸</span></span> DoW warrants at MSL</td>
+</tr>
+<tr>
+<td>Convertible note / SAFE</td>
+<td>Early instruments converting at the next round, with cap and discount</td>
+<td>Seed stage</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Dilution and retention:</strong> if a fund owns 10% today and new rounds sell 15%, 10% and 10%, final ownership = 10% × 0.85 × 0.90 × 0.90 = 6.9% (retention 0.69). <span class="xref"><span class="xref">▸</span></span> The model’s 0.68 retention at 10 years for the IQT sleeve encodes the same idea.</p></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">10</span><h2>Exits and Regulatory Considerations</h2></div><table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Route</th>
+<th>Mechanics</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Strategic sale</td>
+<td>Sale to a corporate buyer</td>
+<td>Synergies mean the highest price; CFIUS limits who can buy</td>
+</tr>
+<tr>
+<td>Secondary buyout (SBO)</td>
+<td>Sale to another sponsor</td>
+<td>Common; “pass the parcel” critique</td>
+</tr>
+<tr>
+<td>IPO</td>
+<td>Listing; sponsor sells over time</td>
+<td>Lock-up (usually 180 days), greenshoe, cornerstone investors</td>
+</tr>
+<tr>
+<td>Continuation vehicle</td>
+<td>GP-led secondary: assets move to a new vehicle</td>
+<td>Extends hold on winners; LPs choose to roll or sell</td>
+</tr>
+</tbody>
+</table></div>
+<div style="break-inside:avoid"><h3>10.1 Regulatory</h3>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Area</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CFIUS / ITAR / FOCI</td>
+<td>Committee on Foreign Investment in the United States; International Traffic in Arms Regulations; Foreign Ownership, Control or Influence. Especially relevant for defense contracting</td>
+</tr>
+<tr>
+<td>Advisers Act / ERISA</td>
+<td>Registration and fiduciary standards for managers; Employee Retirement Income Security Act constraints on pension capital</td>
+</tr>
+<tr>
+<td>Defense contracting</td>
+<td>Sole source / J&amp;A, OTA (Other Transaction Authority), SBIR / STTR, black / classified budgets. <span class="xref"><span class="xref">▸</span></span> IQT is funded within the NIP</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">11</span><h2>Formula Cheat Sheet</h2></div><table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Item</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ownership</td>
+<td>Check ÷ Post-money</td>
+</tr>
+<tr>
+<td>Post-money</td>
+<td>Pre-money + New money</td>
+</tr>
+<tr>
+<td>Single-exit IRR</td>
+<td>MOIC<sup>1/T</sup> − 1</td>
+</tr>
+<tr>
+<td>Rule of 72</td>
+<td>Years to double ≈ 72 ÷ IRR (%). 2x in 5 years ≈ 15%; 3x in 5 years ≈ 24.6%; 3x in 7 years ≈ 17%</td>
+</tr>
+<tr>
+<td>TVPI</td>
+<td>DPI + RVPI</td>
+</tr>
+<tr>
+<td>KS-PME (single cash flow)</td>
+<td>MOIC ÷ (1 + index return)<sup>T</sup></td>
+</tr>
+<tr>
+<td>Compounded pref</td>
+<td>Capital × [(1 + h)<sup>T</sup> − 1]</td>
+</tr>
+<tr>
+<td>Full catch-up amount</td>
+<td>Pref × carry ÷ (1 − carry)</td>
+</tr>
+<tr>
+<td>Equity value</td>
+<td>EV − Net debt − Preferred − Minorities − Debt-like items</td>
+</tr>
+<tr>
+<td>LBO equity at exit</td>
+<td>Exit EBITDA × Exit multiple − Exit net debt</td>
+</tr>
+<tr>
+<td>Value bridge</td>
+<td>ΔEBITDA × Entry multiple + ΔMultiple × Exit EBITDA + Debt paydown</td>
+</tr>
+<tr>
+<td>Retention</td>
+<td>Π (1 − dilution per round)</td>
+</tr>
+<tr>
+<td>Probability-weighted value</td>
+<td>Σ p<sub>i</sub> × Value<sub>i</sub></td>
+</tr>
+<tr>
+<td><span class="xref"><span class="xref">▸</span></span> Leviathan proceeds</td>
+<td>Check × (1 + CAGR)<sup>Hold</sup> × Retention</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec flow"><div style="break-inside:avoid"><div class="sec-head"><span class="n">12</span><h2>Quick-Reference Return Targets</h2></div><p>Rule-of-thumb ranges, net to LP.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Target net IRR</th>
+<th>Target net MOIC</th>
+<th>Hold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Large buyout</td>
+<td>15–20%</td>
+<td>1.8–2.2x</td>
+<td>4–6 years</td>
+</tr>
+<tr>
+<td>Mid-market buyout</td>
+<td>18–25%</td>
+<td>2.0–2.5x</td>
+<td>4–6 years</td>
+</tr>
+<tr>
+<td>Growth equity</td>
+<td>20–25%</td>
+<td>2.5–3.0x</td>
+<td>4–7 years</td>
+</tr>
+<tr>
+<td>Venture (fund level)</td>
+<td>20–30%+</td>
+<td>3.0x+ (top quartile)</td>
+<td>8–12 years</td>
+</tr>
+<tr>
+<td>Secondaries</td>
+<td>12–18%</td>
+<td>1.5–1.8x</td>
+<td>3–5 years</td>
+</tr>
+<tr>
+<td>Private credit</td>
+<td>9–13%</td>
+<td>1.3–1.5x</td>
+<td>3–5 years</td>
+</tr>
+<tr>
+<td><span class="xref"><span class="xref">▸</span></span> Leviathan holdco (7-year, Expected)</td>
+<td>19.4%</td>
+<td>3.46x</td>
+<td>7 years</td>
+</tr>
+</tbody>
+</table></div></section><section class="sec"><div style="break-inside:avoid"><div class="sec-head"><span class="n">13</span><h2>Founder / GP Economics: 5-, 7- and 10-Year Holds</h2></div><p>Illustrative total economics to the General Partner and Management Company under the Leviathan terms, based on the <strong>PE holdco vehicle file only ($1,406M)</strong>. Figures are reverse-engineered from that file’s net MOICs; the other three vehicles are excluded, and additional capital could be raised.</p>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Assumption</th>
+<th>Basis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fund terms</td>
+<td>2% management fee on committed capital for the full hold; 20% carry; 8% compounded preferred return</td>
+</tr>
+<tr>
+<td>Waterfall</td>
+<td>Whole-fund European, hard hurdle, no GP catch-up: carry only on profit above return of capital plus pref</td>
+</tr>
+<tr>
+<td>GP ownership</td>
+<td>Blackstone modeled as a 50% silent GP underwriter (no operational role); the remaining 50% split equally between the two operating founders, Donald B Ritts III and Peter McCarthy</td>
+</tr>
+<tr>
+<td>Cases</td>
+<td>(i) the model’s probability-weighted Expected; (ii) a simple arithmetic blend of Base, Bull and Expected net MOICs</td>
+</tr>
+</tbody>
+</table></div>
+<table style="break-inside:avoid">
+<thead>
+<tr>
+<th>Item</th>
+<th>5-year</th>
+<th>7-year</th>
+<th>10-year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expected net MOIC</td>
+<td>2.79x</td>
+<td>4.63x</td>
+<td>10.63x</td>
+</tr>
+<tr>
+<td>Blend MOIC (Base + Bull + Exp) ÷ 3</td>
+<td>3.12x</td>
+<td>5.33x</td>
+<td>12.63x</td>
+</tr>
+<tr>
+<td>Cumulative management fees (2%)</td>
+<td>$141M</td>
+<td>$197M</td>
+<td>$281M</td>
+</tr>
+<tr>
+<td><strong>Total GP pool: Expected</strong></td>
+<td><strong>~$641M</strong></td>
+<td><strong>~$1,271M</strong></td>
+<td><strong>~$3,330M</strong></td>
+</tr>
+<tr>
+<td>Blackstone 50% (Expected)</td>
+<td>~$320M</td>
+<td>~$635M</td>
+<td>~$1,665M</td>
+</tr>
+<tr>
+<td>Each founder 25% (Expected)</td>
+<td>~$160M</td>
+<td>~$318M</td>
+<td>~$832M</td>
+</tr>
+<tr>
+<td><strong>Total GP pool: Blend</strong></td>
+<td><strong>~$757M</strong></td>
+<td><strong>~$1,516M</strong></td>
+<td><strong>~$4,032M</strong></td>
+</tr>
+<tr>
+<td>Blackstone 50% (Blend)</td>
+<td>~$378M</td>
+<td>~$758M</td>
+<td>~$2,016M</td>
+</tr>
+<tr>
+<td>Each founder 25% (Blend)</td>
+<td>~$189M</td>
+<td>~$379M</td>
+<td>~$1,008M</td>
+</tr>
+</tbody>
+</table>
+<p class="note">Actual results will vary with realized exits, recycling, NAV loans and scenario outcomes. The holdco size and MOICs in this section come from the $1,406M PE holdco file and differ from the $855M model figures cross-referenced elsewhere in this document.</p></section><div style="break-inside:avoid;margin-top:14pt"><div class="disc-box">INTERNAL REFERENCE ONLY. NOT AN OFFER, A SOLICITATION OR INVESTMENT ADVICE. NOT FOR LP OR EXTERNAL DISTRIBUTION.</div>
+<p style="font-size:8pt"><b>Note:</b> Financial data is estimated and unaudited. Formulas use round numbers for illustration. Cross-references marked ▸ relate to the Leviathan model.</p></div></body></html>
