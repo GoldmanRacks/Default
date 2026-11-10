@@ -1,0 +1,8 @@
+# Sandbox for the research swarm.
+# unrestricted: Scouts must reach sources that cannot be listed in advance.
+# This gives the whole sandbox full egress, so keep secrets out of uploads.
+# To lock it down: {type: limited, allow_package_managers: true, allowed_hosts: [example.com, ...]}
+name: research-swarm-env
+config:
+  type: cloud
+  networking: {type: unrestricted}
