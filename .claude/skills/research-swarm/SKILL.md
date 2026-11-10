@@ -13,6 +13,7 @@ Runs one Managed Agents session via `swarm/run.py`. Trigger only on explicit req
 
    `python swarm/run.py "<problem>" --upload <file> --budget <usd>`
 
+   If the uploads are confidential, add `--offline` (no web, no sandbox egress) and say so to the user.
    Write a long problem to a file and pass `@path` instead.
 4. If it stops with `budget_reached`, tell the user what was spent and ask whether to resume with `python swarm/run.py --resume <session id> --budget <new total>`.
 5. When it finishes, read `swarm/runs/<session id>/brief.md` and give the user the bottom line, the surviving hypotheses, and the path to the full brief.

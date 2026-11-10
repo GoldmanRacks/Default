@@ -6,7 +6,7 @@ A lead agent with three specialists, run on demand. Each run is one session with
 |---|---|---|
 | Swarm Orchestrator | `claude-opus-5-5` | Decomposes, dispatches, adjudicates, writes the brief |
 | Scout | `claude-haiku-5-5` | One inquiry vector per spawn; web and uploaded files; writes evidence JSON |
-| Analyst | `claude-sonnet-5-5` | Correlations, knowledge graph, ranked hypotheses, gaps |
+| Analyst | `claude-sonnet-5-5` | Correlations, knowledge graph, ranked hypotheses, gaps; the only agent with a shell |
 | Red-Team | `claude-sonnet-5-5` | Tries to disprove each hypothesis; independent parallel passes |
 
 ## One-time setup
@@ -18,11 +18,11 @@ ant auth login
 ```
 
 ```bash
-ant apply --dry-run -v swarm/agents/orchestrator.md swarm/environments/swarm.yaml
+ant apply --dry-run -v swarm/agents/orchestrator.md swarm/environments/swarm.yaml swarm/environments/swarm-locked.yaml
 ```
 
 ```bash
-ant apply swarm/agents/orchestrator.md swarm/environments/swarm.yaml
+ant apply swarm/agents/orchestrator.md swarm/environments/swarm.yaml swarm/environments/swarm-locked.yaml
 ```
 
 The orchestrator file references the other three agents, so they are created with it. Commit the
@@ -41,6 +41,19 @@ python swarm/run.py "Your problem statement" --upload path/to/file.xlsx --budget
   `python swarm/run.py --resume <session id> --budget <new total>`.
 - `--max-iterations` sets how many times the grader can send the brief back (default 3).
 - Deliverables are saved to `swarm/runs/<session id>/`.
+
+## Sandbox security
+
+Two environments, chosen per run:
+
+- **Default (open web).** Researching arbitrary sources needs unrestricted networking, which also opens
+  egress from the sandbox. To keep that egress out of reach, every agent that reads the web
+  (Orchestrator, Scout, Red-Team) has no shell, and the only agent with a shell (Analyst) has no web
+  tools and is told to make no network requests. Residual risk: text planted in a web page could reach
+  the Analyst through an evidence file. Shell calls are also screened by the `auto` permission policy.
+- **`--offline` (locked).** No sandbox egress and no web results; the swarm works from uploads only.
+  Use this for confidential files. To allow named sources, add `allowed_hosts` in
+  `swarm/environments/swarm-locked.yaml` and re-apply.
 
 ## Tuning cost
 

@@ -1,7 +1,9 @@
-# Sandbox for the research swarm.
-# unrestricted: Scouts must reach sources that cannot be listed in advance.
-# This gives the whole sandbox full egress, so keep secrets out of uploads.
-# To lock it down: {type: limited, allow_package_managers: true, allowed_hosts: [example.com, ...]}
+# Default sandbox for the research swarm: open web research.
+# The web tools need unrestricted networking to reach sources that cannot be
+# listed in advance, and that setting also opens egress from the sandbox itself.
+# The agents are built so that egress is hard to reach: every agent that reads
+# the web has no shell, and the one agent with a shell (Analyst) has no web tools.
+# For confidential uploads use swarm-locked.yaml instead (run.py --offline).
 name: research-swarm-env
 config:
   type: cloud

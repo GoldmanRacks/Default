@@ -160,6 +160,8 @@ def main() -> None:
                         help="Hard spend cap in USD at list prices (default 15, or $SWARM_BUDGET_USD)")
     parser.add_argument("--max-iterations", type=int, default=3, help="Grader revision rounds (1-20, default 3)")
     parser.add_argument("--out", type=Path, default=None, help="Where to save deliverables (default swarm/runs/<session id>)")
+    parser.add_argument("--offline", action="store_true",
+                        help="Locked sandbox: no network egress and no web results; uploads only. Use for confidential files")
     parser.add_argument("--resume", metavar="SESSION_ID", help="Raise the cap on a budget-paused session to --budget and keep following it")
     args = parser.parse_args()
 
@@ -175,6 +177,10 @@ def main() -> None:
         if not args.problem:
             parser.error("problem is required unless --resume is given")
         problem = Path(args.problem[1:]).read_text() if args.problem.startswith("@") else args.problem
+        if args.offline and not args.upload:
+            parser.error("--offline has no web access, so it needs at least one --upload")
+        if args.offline:
+            problem += "\n\nThis run is offline: web search and fetch return nothing. Work only from the uploaded files."
 
         resources = []
         for path in map(Path, args.upload):
@@ -186,13 +192,17 @@ def main() -> None:
 
         session = client.beta.sessions.create(
             agent=lock_id("swarm/agents/orchestrator.md", "SWARM_AGENT_ID"),
-            environment_id=lock_id("swarm/environments/swarm.yaml", "SWARM_ENV_ID"),
+            environment_id=(
+                lock_id("swarm/environments/swarm-locked.yaml", "SWARM_LOCKED_ENV_ID")
+                if args.offline
+                else lock_id("swarm/environments/swarm.yaml", "SWARM_ENV_ID")
+            ),
             title=problem[:80],
             resources=resources,
             budget=budget_param(args.budget),  # create-only: it can be changed later but never added
         )
         session_id = session.id
-        print(f"[session] {session_id}  cap ${args.budget:.2f}")
+        print(f"[session] {session_id}  cap ${args.budget:.2f}  network {'locked' if args.offline else 'open web'}")
         print(f"[watch]   https://platform.claude.com/workspaces/default/sessions/{session_id}\n")
 
         kickoff = {

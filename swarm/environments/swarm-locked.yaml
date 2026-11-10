@@ -1,0 +1,8 @@
+# Locked sandbox: no egress from the sandbox and no web results.
+# Selected with `run.py --offline`. The swarm works from uploaded files only.
+# To allow specific sources, list them (they open to the web tools AND the sandbox):
+#   allowed_hosts: [sec.gov, "*.sec.gov"]
+name: research-swarm-locked-env
+config:
+  type: cloud
+  networking: {type: limited, allow_package_managers: true}
